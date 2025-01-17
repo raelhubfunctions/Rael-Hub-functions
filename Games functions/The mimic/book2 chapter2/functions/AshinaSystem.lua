@@ -11,47 +11,40 @@ function AshinaSystem.FindFolderPhaseAshina()
       end
     end
   end
+  return nil
 end
 
-
-function AshinaSystem.GetAshina(callback)
+function AshinaSystem.GetAshina()
   
   local FolderFound = AshinaSystem.FindFolderPhaseAshina()
-  local Ashina = FolderFound:FindFirstChild("Ashina", true)
   
-  if Ashina and callback then
-    callback(Ashina)
+  for _, Pasta in ipairs(FolderFound:GetChildren()) do
+    if Pasta:IsA("Folder") then
+      for _, Monster in ipairs(Pasta:GetChildren()) do
+        if Monster:IsA("Model") and Monster.Name == "Ashina" then
+          return Monster
+        end
+      end
+    end
   end
-  
+  return nil
 end
 
 function AshinaSystem.ActivateEspAshina(value)
-  
   getgenv().AshinaSystem_Ashina = value
-  
+
   task.spawn(function()
     while getgenv().AshinaSystem_Ashina do
-    
-      AshinaSystem.GetAshina(function(monster)
-        
-        if not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
-          RaelHubFunction.CreateEspDistance(monster, Color3.fromRGB(255, 102, 102), monster.Name, true)
-        end
-        
-      end)
-      
-      task.wait()
-      
+      local monster = AshinaSystem.GetAshina()
+      if monster and not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
+        RaelHubFunction.CreateEspDistance(monster, Color3.fromRGB(255, 102, 102), monster.Name, true)
+      end
+      task.wait(0.1)
     end
-    
+
     if not getgenv().AshinaSystem_Ashina then
-      
-      AshinaSystem.GetAshina(function(monster)
-        
-        RaelHubFunction.DisableEsp(monster)
-        
-      end)
-      
+      local monster = AshinaSystem.GetAshina()
+      RaelHubFunction.DisableEsp(monster)
     end
   end)
 end
