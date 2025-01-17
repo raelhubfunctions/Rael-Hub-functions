@@ -582,4 +582,38 @@ function RaelHubFunction.freezeplayer(Time)
   end
 end
 
-return RaelHubFunction
+function RaelHubFunction.FlyToPosition(targetPosition, speed)
+  
+  local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+  
+  if HumanoidRootPart then
+  
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
+    bodyVelocity.Velocity = (targetPosition - HumanoidRootPart.Position).unit * speed
+    bodyVelocity.Parent = HumanoidRootPart
+    
+    _G.RaelHubFlyService = RunService.Stepped:Connect(function()
+      
+      if (targetPosition - HumanoidRootPart.Position).magnitude < 5 then
+        
+        bodyVelocity:Destroy()
+        
+        _G.RaelHubFlyService:Disconnect()
+        _G.RaelHubFlyService = nil
+        
+        HumanoidRootPart.CFrame = CFrame.new(targetPosition)
+        
+      end
+    end)
+  end
+end
+
+function RaelHubFunction.StopFly()
+  if _G.RaelHubFlyService then
+    _G.RaelHubFlyService:Disconnect()
+    _G.RaelHubFlyService = nil
+  end
+end
+
+RaelHubFunction.FlyToPosition(Vector3.new(-531.6111450195312, 22.19345474243164, -85.54778289794922), 60)
