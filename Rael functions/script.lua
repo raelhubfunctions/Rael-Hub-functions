@@ -231,6 +231,15 @@ function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
 end
 
 function RaelHubFunction.CreateEspDistance(objeto, cor, texto, mostrarDistancia)
+  
+  if objeto:FindFirstChild("RaelHubIcon") then
+    return
+  end
+  
+  if objeto:FindFirstChild("RaelHubDestaque") then
+    return
+  end
+  
   local highlight = Instance.new("Highlight")
   highlight.Name = "RaelHubDestaque"
   highlight.Adornee = objeto
