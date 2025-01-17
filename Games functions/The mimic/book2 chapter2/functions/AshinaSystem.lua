@@ -34,7 +34,7 @@ function AshinaSystem.ActivateEspAshina()
   
   local monster = AshinaSystem.GetAshina()
   if monster and not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
-    RaelHubFunction.CreateEspDistance(monster, Color3.fromRGB(255, 102, 102), monster.Name, true)
+    RaelHubFunction.CreateEsp(monster, Color3.fromRGB(255, 102, 102), "88229448947616", monster.Name)
   end
   
 end
