@@ -573,9 +573,11 @@ function RaelHubFunction.freezeplayer(Time)
   
   if HumanoidRootPart then
     
-    HumanoidRootPart.Anchored = true
-    task.wait(Time)
-    HumanoidRootPart.Anchored = false
+    task.spawn(function()
+      HumanoidRootPart.Anchored = true
+      task.wait(Time)
+      HumanoidRootPart.Anchored = false
+    end)
     
   end
 end
