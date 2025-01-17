@@ -1,5 +1,11 @@
-local RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/script.lua"))()
 local AshinaSystem = {}
+
+function EspMonster(monster)
+  local highlight = Instance.new("Highlight")
+  highlight.Adornee = monster
+  highlight.FillColor = Color3.new(1, 0, 0)
+  highlight.Parent = monster
+end
 
 function AshinaSystem.FindFolderPhaseAshina()
   for _, pasta in ipairs(Workspace:GetChildren()) do
@@ -33,9 +39,7 @@ end
 function AshinaSystem.ActivateEspAshina()
   
   local monster = AshinaSystem.GetAshina()
-  if monster and not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
-    RaelHubFunction.CreateEsp(monster, Color3.fromRGB(255, 102, 102), "88229448947616", monster.Name)
-  end
+  EspMonster(monster)
   
 end
 
