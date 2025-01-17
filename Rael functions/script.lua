@@ -29,6 +29,65 @@ if not _G.MonitorCharacter then
   
 end
 
+function RaelHubFunction.ShowCountText(text, count)
+  
+  if shared.ScreenGuiShowCountTextTime then
+    
+    shared.ScreenGuiShowCountTextTime:Destroy()
+    
+  end
+  
+  if shared.ScreenGuiShowCountText then
+    
+    shared.ScreenGuiShowCountText:Destroy()
+    
+  end
+  shared.ScreenGuiShowCountText = Instance.new("ScreenGui")
+  shared.ScreenGuiShowCountText.Name = "ShowCountText"
+  shared.ScreenGuiShowCountText.Parent = LocalPlayer.PlayerGui
+    
+  local textLabel = Instance.new("TextLabel")
+  textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
+  textLabel.Position = UDim2.new(0.1, 0, 0.35, 0)
+  textLabel.BackgroundTransparency = 1
+  textLabel.TextColor3 = Color3.fromRGB(255, 69, 50)
+  textLabel.TextStrokeColor3 = Color3.fromRGB(255, 69, 50)
+  textLabel.TextSize = 30
+  textLabel.Font = Enum.Font.SourceSans
+  textLabel.Text = text
+  textLabel.Parent = shared.ScreenGuiShowCountText
+    
+  textLabel.BorderSizePixel = 0
+  textLabel.TextWrapped = true
+  textLabel.TextScaled = true
+  textLabel.TextStrokeTransparency = 0
+  textLabel.TextXAlignment = Enum.TextXAlignment.Center
+
+  shared.ScreenGuiShowCountTextTime = Instance.new("ScreenGui")
+  shared.ScreenGuiShowCountTextTime.Name = "TimerGui"
+  shared.ScreenGuiShowCountTextTime.Parent = LocalPlayer.PlayerGui
+
+  local timerTextLabel = Instance.new("TextLabel")
+  timerTextLabel.Parent = shared.ScreenGuiShowCountTextTime
+  timerTextLabel.Size = UDim2.new(0, 100, 0, 30)
+  timerTextLabel.Position = UDim2.new(0.5, -50, 0.55, 0)
+  timerTextLabel.BackgroundTransparency = 1
+  timerTextLabel.TextColor3 = Color3.new(50/255, 255/255, 107/255)
+  timerTextLabel.Font = Enum.Font.SourceSans
+  timerTextLabel.TextSize = 50
+  timerTextLabel.Text = tostring(count)
+
+  local countdown = coroutine.wrap(function()
+    for i = count, 1, -1 do
+      timerTextLabel.Text = tostring(i)
+      task.wait(1)
+    end
+    shared.ScreenGuiShowCountTextTime:Destroy()
+    shared.ScreenGuiShowCountText:Destroy()
+  end)
+  countdown()
+end
+
 function RaelHubFunction.CreateNotification(texto, duracao)
     local NotificationScreenGui = Instance.new("ScreenGui")
     NotificationScreenGui.Name = "RaelHubNotification"
