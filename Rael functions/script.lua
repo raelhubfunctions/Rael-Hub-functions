@@ -616,4 +616,4 @@ function RaelHubFunction.StopFly()
   end
 end
 
-RaelHubFunction.FlyToPosition(Vector3.new(-531.6111450195312, 22.19345474243164, -85.54778289794922), 60)
+return RaelHubFunction
