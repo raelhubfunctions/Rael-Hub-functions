@@ -567,4 +567,17 @@ function RaelHubFunction.ClickButton(button)
   end
 end
 
+function RaelHubFunction.freezeplayer(Time)
+  
+  local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+  
+  if HumanoidRootPart then
+    
+    HumanoidRootPart.Anchored = true
+    task.wait(Time)
+    HumanoidRootPart.Anchored = false
+    
+  end
+end
+
 return RaelHubFunction
