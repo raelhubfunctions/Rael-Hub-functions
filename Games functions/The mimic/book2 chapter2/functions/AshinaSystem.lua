@@ -30,23 +30,13 @@ function AshinaSystem.GetAshina()
   return nil
 end
 
-function AshinaSystem.ActivateEspAshina(value)
-  getgenv().AshinaSystem_Ashina = value
-
-  task.spawn(function()
-    while getgenv().AshinaSystem_Ashina do
-      local monster = AshinaSystem.GetAshina()
-      if monster and not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
-        RaelHubFunction.CreateEspDistance(monster, Color3.fromRGB(255, 102, 102), monster.Name, true)
-      end
-      task.wait(0.1)
-    end
-
-    if not getgenv().AshinaSystem_Ashina then
-      local monster = AshinaSystem.GetAshina()
-      RaelHubFunction.DisableEsp(monster)
-    end
-  end)
+function AshinaSystem.ActivateEspAshina()
+  
+  local monster = AshinaSystem.GetAshina()
+  if monster and not monster:FindFirstChild("RaelHubIcon") and not monster:FindFirstChild("RaelHubDestaque") then
+    RaelHubFunction.CreateEspDistance(monster, Color3.fromRGB(255, 102, 102), monster.Name, true)
+  end
+  
 end
 
 function AshinaSystem.GetFolderRestaurant()
