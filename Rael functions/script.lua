@@ -150,13 +150,13 @@ function RaelHubFunction.CreateNotification(texto, duracao)
     local function animateNotification()
         local finalPosition = UDim2.new(1, -310, 1, -110)
         notificationFrame:TweenPosition(finalPosition, "Out", "Quad", 0.7, true)
-        wait(duracao)
+        task.wait(duracao)
         notificationFrame:TweenPosition(UDim2.new(1, 310, 1, -110), "In", "Quad", 1, true)
-        wait(1)
+        task.wait(1)
         NotificationScreenGui:Destroy()
     end
 
-    animateNotification()
+    task.spawn(animateNotification)
 
     workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(animateNotification)
 end
