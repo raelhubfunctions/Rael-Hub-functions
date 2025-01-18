@@ -195,7 +195,7 @@ function RatCollector.AutoColletRat()
         teleportPlayer(CFrame.new(cube.Position))
 
         for _, prompt in ipairs(cube:GetChildren()) do
-          if toque:IsA("ProximityPrompt") then
+          if prompt:IsA("ProximityPrompt") then
             fireproximityprompt(prompt)
           end
         end
