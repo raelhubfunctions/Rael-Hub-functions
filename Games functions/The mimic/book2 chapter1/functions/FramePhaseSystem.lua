@@ -69,18 +69,18 @@ function ShowFrames(senha)
     
     if _G.Frame_Image and #_G.Frame_Image == 5 then
       
-      local ScreenGui = playerGui:FindFirstChild("RaelHubFrames")
+      local ScreenGui = PlayerGui:FindFirstChild("RaelHubFrames")
       if ScreenGui then
         ScreenGui:Destroy()
       end
       ScreenGui = Instance.new("ScreenGui")
       ScreenGui.Name = "RaelHubFrames"
       ScreenGui.ResetOnSpawn = false
-      ScreenGui.Parent = playerGui
+      ScreenGui.Parent = PlayerGui
      
       local container = Instance.new("Frame")
       
-      ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+      ScreenGui.Parent = PlayerGui
       
       container.Parent = ScreenGui
       container.Size = UDim2.new(1, 0, 1, 0)
