@@ -106,7 +106,7 @@ function GetHintpicTexture()
   
   if hintpic then
     
-    local hintpic_texture = objeto.Image.Decal.Texture
+    local hintpic_texture = hintpic.Image.Decal.Texture
     
     return hintpic_texture
     
@@ -156,9 +156,9 @@ function GetspecialpicTexture()
   
   if specialpic then
     
-    local hintpic_texture = objeto.Image.Decal.Texture
+    local specialpic_texture = specialpic.Image.Decal.Texture
     
-    return hintpic_texture
+    return specialpic_texture
     
   end
 end
