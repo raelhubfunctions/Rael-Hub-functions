@@ -5,8 +5,6 @@ local PlayerGui = LocalPlayer.PlayerGui
 local FramePhaseSystem = {}
 local containerVisible = true
 
-_G.Frame_Image = {}
-
 function CriarInterfaceQuadro(Imagem, posX, container)
   local ImageLabel = Instance.new("ImageLabel")
   local BorderFrame = Instance.new("Frame")
@@ -188,6 +186,40 @@ function GetspecialpicTexture()
   end
 end
 
+function Checkhintpic()
+  if not shared.FolderFramePhase then
+    warn("[Erro] Frame folder not found")
+    return
+  end
+  
+  for _, Model in ipairs(shared.FolderFramePhase:GetDescendants()) do
+    
+    if Model.Name == "hintpic" then
+      
+      return false
+      
+    end
+  end
+  
+  return true
+end
+  
+  
+function WaitDisappear()
+  
+  if not shared.FolderFramePhase then
+    warn("[Erro] Frame folder not found")
+    return
+  end
+  
+  repeat
+    
+    task.wait(1)
+    
+  until Checkhintpic()
+  
+end
+
 function EnableTouch()
   for _, part in pairs(Workspace:GetDescendants()) do
     if part:IsA("ProximityPrompt") then
@@ -212,7 +244,7 @@ function CollectFrame(senha)
   function AddFramesToList(index, cframe, callback, callback2)
     FreezPlayer(false)
     shared.Character.HumanoidRootPart.CFrame = cframe
-    task.wait(5)
+    WaitDisappear()
     EnableTouch()
     task.wait(1)
     FreezPlayer(true)
