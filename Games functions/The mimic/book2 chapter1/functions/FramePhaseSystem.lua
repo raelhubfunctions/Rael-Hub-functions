@@ -364,7 +364,7 @@ function AutoLightCandles(senha)
             
             shared.Character.HumanoidRootPart.CFrame = CFrame.new(WaxPart.Position)
             
-            task.wait(1)
+            task.wait(0.5)
             
             if Prompt then
               
@@ -378,7 +378,6 @@ function AutoLightCandles(senha)
       for index = 1, 5 do
         
         LightCandles(index)
-        task.wait(1)
       
         warn("Successes")
       
