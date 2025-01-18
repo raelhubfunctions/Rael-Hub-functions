@@ -17,7 +17,7 @@ function RatCollector.findAISpawnFolder()
       
       if not shared.FolderPhaseRats then
 
-        warn("Rat folder was found")
+        warn("Rats folder was found")
         shared.FolderPhaseRats = folder
 
       end
@@ -152,13 +152,13 @@ function RatCollector.AutoColletRat()
   local function ActivateWell()
     teleportPlayer(CFrame.new(-1540.4487, -30.1707, -3544.8022))
     RatCollector.FindTwelveObjects()
-    task.wait(2)
-    teleportPlayer(CFrame.new(-1674.685791015625, -23.473472595214844, -3409.773681640625))
   end
   
   local function ActivateBell()
     teleportPlayer(CFrame.new(-1563.4094, -28.9097, -3408.4204))
     RatCollector.FindTwelveObjects()
+    task.wait(2)
+    teleportPlayer(CFrame.new(-1674.685791015625, -23.473472595214844, -3409.773681640625))
   end
   
   local function WaitPoisoning()
