@@ -359,7 +359,12 @@ function AutoLightCandles(senha)
           local WaxPart = ModelCandle:FindFirstChild("Wax", true)
           
           if WaxPart then
+            
             local Prompt = WaxPart:FindFirstChildOfClass("ProximityPrompt")
+            
+            shared.Character.HumanoidRootPart.CFrame = CFrame.new(WaxPart.Position)
+            
+            task.wait(1)
             
             if Prompt then
               
