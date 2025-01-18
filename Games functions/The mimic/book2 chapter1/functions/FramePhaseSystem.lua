@@ -360,14 +360,15 @@ function AutoLightCandles(senha)
           end
         end
       end
-    end
-    
-    for index = 1, 5 do
-      LightCandles(index)
-      task.wait(1)
       
-      warn("Successes")
+      for index = 1, 5 do
+        
+        LightCandles(index)
+        task.wait(1)
       
+        warn("Successes")
+      
+      end
     end
   end
 end
