@@ -26,7 +26,7 @@ function RatCollector.findAISpawnFolder()
   return nil
 end
 
-function RatCollector.FindThreeModels()
+function RatCollector.FindThreeRatsModels()
   
   if not shared.FolderPhaseRats then
     return
@@ -219,11 +219,12 @@ task.spawn(function()
     
   until shared.FolderPhaseRats
   
-  if shared.FolderPhaseRats then
+  repeat
     
-    RatCollector.FindThreeModels()
+    RatCollector.FindThreeRatsModels()
+    task.wait()
     
-  end
+  until shared.FolderRatsModel
   
 end)
 
