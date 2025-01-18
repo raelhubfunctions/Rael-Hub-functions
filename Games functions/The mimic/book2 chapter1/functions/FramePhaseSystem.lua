@@ -356,9 +356,12 @@ function AutoLightCandles(senha)
         
         if ModelCandle and ModelCandle:IsA("Model") then
           
-          for _, Prompt in ipairs(ModelCandle:GetDescendants()) do
+          local WaxPart = ModelCandle:FindFirstChild("Wax", true)
+          
+          if WaxPart then
+            local Prompt = WaxPart:FindFirstChildOfClass("ProximityPrompt")
             
-            if Prompt:IsA("ProximityPrompt") then
+            if Prompt then
               
               fireproximityprompt(Prompt)
               
