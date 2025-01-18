@@ -63,34 +63,41 @@ function CriarBotao(ScreenGui, container)
   end)
 end
 
-function CriarInterface()
+function ShowFrames(senha)
   
-  local ScreenGui = playerGui:FindFirstChild("RaelHubFrames")
-  if ScreenGui then
-    ScreenGui:Destroy()
+  if senha == "RaelKira" then
+    
+    if _G.Frame_Image and #_G.Frame_Image == 5 then
+      
+      local ScreenGui = playerGui:FindFirstChild("RaelHubFrames")
+      if ScreenGui then
+        ScreenGui:Destroy()
+      end
+      ScreenGui = Instance.new("ScreenGui")
+      ScreenGui.Name = "RaelHubFrames"
+      ScreenGui.ResetOnSpawn = false
+      ScreenGui.Parent = playerGui
+     
+      local container = Instance.new("Frame")
+      
+      ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+      
+      container.Parent = ScreenGui
+      container.Size = UDim2.new(1, 0, 1, 0)
+      container.BackgroundTransparency = 1
+      CriarTitulo(ScreenGui)
+      
+      local totalWidth = 0.10 * 5
+      local startX = (1 - totalWidth) / 2 
+    
+      for i = 1, 5 do
+        CriarInterfaceQuadro(_G.Frame_Image[i], startX + (0.10 * (i - 1)), container)
+      end
+    
+      CriarBotao(ScreenGui, container)
+    end
+    
   end
-  ScreenGui = Instance.new("ScreenGui")
-  ScreenGui.Name = "RaelHubFrames"
-  ScreenGui.ResetOnSpawn = false
-  ScreenGui.Parent = playerGui
- 
-  local container = Instance.new("Frame")
-  
-  ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-  
-  container.Parent = ScreenGui
-  container.Size = UDim2.new(1, 0, 1, 0)
-  container.BackgroundTransparency = 1
-  CriarTitulo(ScreenGui)
-  
-  local totalWidth = 0.10 * 5
-  local startX = (1 - totalWidth) / 2 
-
-  for i = 1, 5 do
-    CriarInterfaceQuadro(_G.Frame_Image[i], startX + (0.10 * (i - 1)), container)
-  end
-
-  CriarBotao(ScreenGui, container)
 end
 
 function GetHintpicTexture()
@@ -176,7 +183,7 @@ function EnableTouch()
   end
 end
 
-function ExecuteAutoFrame(senha)
+function CollectFrame(senha)
   
   local function FreezPlayer(value)
     
@@ -213,6 +220,8 @@ function ExecuteAutoFrame(senha)
     AddFramesToList(4, CFrame.new(-268.2510070800781, 19.283910751342773, 3712.910888671875), FindHintpic, GetHintpicTexture)
     
     AddFramesToList(5, CFrame.new(-288.14141845703125, 19.362136840820312, 3811.348876953125), FindHintpic, GetHintpicTexture)
+    
+    FreezPlayer(false)
     
     for _, Texture in pairs(_G.Frame_Image) do
       
