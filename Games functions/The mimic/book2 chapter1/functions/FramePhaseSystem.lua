@@ -106,9 +106,10 @@ function GetHintpicTexture()
   
   if hintpic then
     
-    local hintpic_texture = hintpic.Image.Decal.Texture
+    local hintpic_texture = hintpic:FindFirstChild("Decal", true)
     
-    return hintpic_texture
+    print("Texture: " .. hintpic_texture.Texture)
+    return hintpic_texture.Texture
     
   end
 end
@@ -122,9 +123,11 @@ function FindHintpic()
   
   repeat
     
-    task.wait(0.1)
-    
+    task.wait(1)
+    print("wait...")
   until shared.FolderFramePhase:FindFirstChild("hintpic", true)
+  
+  print("Success")
   
 end
 
@@ -138,8 +141,9 @@ function FindSpecialpic()
   repeat
     
     task.wait(0.1)
-    
+    print("wait...")
   until shared.FolderFramePhase:FindFirstChild("specialpic", true)
+  print("Success")
   
 end
 
@@ -156,9 +160,10 @@ function GetspecialpicTexture()
   
   if specialpic then
     
-    local specialpic_texture = specialpic.Image.Decal.Texture
+    local specialpic_texture = specialpic:FindFirstChild("Decal", true)
     
-    return specialpic_texture
+    print("Texture: " .. hintpic_texture.Texture)
+    return specialpic_texture.Texture
     
   end
 end
@@ -189,7 +194,7 @@ function ExecuteAutoFrame(senha)
     shared.Character.HumanoidRootPart.CFrame = cframe
     task.wait(2)
     EnableTouch()
-    task.wait(1)
+    task.wait(2)
     FreezPlayer(true)
     callback()
     _G.Frame_Image[index] = callback2()
@@ -208,8 +213,12 @@ function ExecuteAutoFrame(senha)
     AddFramesToList(4, CFrame.new(-268.2510070800781, 19.283910751342773, 3712.910888671875), FindHintpic, GetHintpicTexture)
     
     AddFramesToList(5, CFrame.new(-288.14141845703125, 19.362136840820312, 3811.348876953125), FindHintpic, GetHintpicTexture)
-
-    CriarInterface()
+    
+    for _, Texture in pairs(_G.Frame_Image) do
+      
+      print("Here texture" .. Texture)
+      
+    end
     
   end
 end
