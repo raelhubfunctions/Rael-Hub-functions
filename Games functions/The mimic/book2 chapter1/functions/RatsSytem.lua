@@ -210,4 +210,20 @@ function RatCollector.AutoColletRat()
   end
 end
 
+task.spawn(function()
+  
+  repeat
+    
+    RatCollector.findAISpawnFolder()
+    
+  until shared.FolderPhaseRats
+  
+  if shared.FolderPhaseRats then
+    
+    RatCollector.FindThreeModels()
+    
+  end
+  
+end)
+
 return RatCollector
