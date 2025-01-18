@@ -162,7 +162,7 @@ function GetspecialpicTexture()
     
     local specialpic_texture = specialpic:FindFirstChild("Decal", true)
     
-    print("Texture: " .. hintpic_texture.Texture)
+    print("Texture: " .. specialpic_texture.Texture)
     return specialpic_texture.Texture
     
   end
