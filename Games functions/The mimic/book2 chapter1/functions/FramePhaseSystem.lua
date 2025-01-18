@@ -107,17 +107,30 @@ function GetHintpicTexture()
     return
   end
   
-  local hintpic = shared.FolderFramePhase:FindFirstChild("hintpic", true)
-  
-  
-  
-  if hintpic then
+  for _, Frame in ipairs(shared.FolderFramePhase: GetDescendants()) do
     
-    local hintpic_texture = hintpic:FindFirstChild("Decal", true)
+    if Frame.Name == "hintpic" then
     
-    print("Texture: " .. hintpic_texture.Texture)
-    return hintpic_texture.Texture
-    
+      if #_G.Frame_Image == 0 then
+        
+        local hintpic_texture = Frame:FindFirstChild("Decal", true) 
+        
+        return hintpic_texture.Texture
+        
+      else
+        
+        local hintpic_texture = Frame:FindFirstChild("Decal", true)
+        
+        for _, Texture in pairs(_G.Frame_Image) do
+          
+          if hintpic_texture.Texture ~= Texture then
+            
+            return hintpic_texture.Texture
+            
+          end
+        end
+      end
+    end
   end
 end
 
@@ -211,6 +224,8 @@ function CollectFrame(senha)
     
     
   if senha == "RaelSystem32" then
+    
+    _G.Frame_Image = {}
     
     AddFramesToList(1, CFrame.new(-71.8661880493164, 19.296241760253906, 3719.196533203125), FindHintpic, GetHintpicTexture)
     
