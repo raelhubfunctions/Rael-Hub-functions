@@ -215,6 +215,7 @@ task.spawn(function()
   repeat
     
     RatCollector.findAISpawnFolder()
+    task.wait()
     
   until shared.FolderPhaseRats
   
