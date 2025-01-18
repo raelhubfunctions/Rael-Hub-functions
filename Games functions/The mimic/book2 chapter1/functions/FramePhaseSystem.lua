@@ -280,6 +280,98 @@ function CollectFrame(senha)
   end
 end
 
+
+
+
+function GetFolderCandles()
+  
+  if not shared.FolderFramePhase then
+    warn("[Erro] Frame folder not found")
+    return
+  end
+  
+  for _, part in pairs(shared.FolderFramePhase:GetDescendants()) do
+    if part.Name == "Candle" then
+      local Model = part.Parent
+      if Model.Name == "1" then
+        
+        warn("[Rael Hub] FolderCandles was found")
+        return Model.Parent
+        
+      end
+    end
+  end
+end
+
+function GetFolderModelFrames()
+  
+  if not shared.FolderFramePhase then
+    warn("[Erro] Frame folder not found")
+    return
+  end
+  
+  for _, part in pairs(shared.FolderFramePhase:GetDescendants()) do
+    if part.Name == "Frame" then
+      local Model = part.Parent
+      if Model.Name == "1" then
+        
+        warn("[Rael Hub] FolderModelFrames was found")
+        return Model.Parent
+        
+      end
+    end
+  end
+end
+
+function AutoLightCandles(senha)
+  
+  if senha == "RaelProScripts" then
+    if _G.Frame_Image and #_G.Frame_Image == 5 then
+      
+      local FolderCandles = GetFolderCandles()
+      local FolderModelFrames = GetFolderModelFrames()
+      
+      local function GetIndexFrame(index)
+        for _, Model in ipairs(FolderModelFrames:GetChildren()) do
+          
+          local Decal = Model:FindFirstChild("Decal", true)
+          
+          if Decal.Texture == _G.Frame_Image[index] then
+          
+            return Model.Name
+          
+          end
+        end
+      end
+      
+      local function LightCandles(index)
+        
+        local ModelCandle = FolderCandles:FindFirstChild(GetIndexFrame(index))
+        
+        if ModelCandle then
+          
+          for _, Prompt in ipairs(ModelCandle:GetDescendants()) do
+            
+            if Prompt:IsA("ProximityPrompt") then
+              
+              fireproximityprompt(Prompt)
+              
+            end
+          end
+        end
+      end
+    end
+    
+    for index = 1, 5 do
+      LightCandles(index)
+      task.wait(1)
+      
+      warn("Successes")
+      
+    end
+  end
+end
+
 function EspMonster(monster)
   local highlight = Instance.new("Highlight")
   highlight.Adornee = monster
