@@ -218,7 +218,7 @@ function CollectFrame(senha)
     
     AddFramesToList(3, CFrame.new(-199.4065704345703, 22.314420700073242, 3769.70703125), FindSpecialpic, GetspecialpicTexture)
     
-    AddFramesToList(4, CFrame.new(-268.2510070800781, 19.283910751342773, 3712.910888671875), FindHintpic, GetHintpicTexture)
+    AddFramesToList(4, CFrame.new(-268.2510070800781, 19.283912658691406, 3712.910888671875), FindHintpic, GetHintpicTexture)
     
     AddFramesToList(5, CFrame.new(-288.14141845703125, 19.362136840820312, 3811.348876953125), FindHintpic, GetHintpicTexture)
     
