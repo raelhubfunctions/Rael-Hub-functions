@@ -334,12 +334,18 @@ function AutoLightCandles(senha)
       local function GetIndexFrame(index)
         for _, Model in ipairs(FolderModelFrames:GetChildren()) do
           
-          local Decal = Model:FindFirstChild("Decal", true)
+          if Model:IsA("Model") then
           
-          if Decal.Texture == _G.Frame_Image[index] then
-          
-            return Model.Name
-          
+            local Decal = Model:FindFirstChild("Decal", true)
+            
+            if Decal then
+            
+              if Decal.Texture == _G.Frame_Image[index] then
+            
+                return Model.Name
+              
+              end
+            end
           end
         end
       end
@@ -348,7 +354,7 @@ function AutoLightCandles(senha)
         
         local ModelCandle = FolderCandles:FindFirstChild(GetIndexFrame(index))
         
-        if ModelCandle then
+        if ModelCandle and ModelCandle:IsA("Model") then
           
           for _, Prompt in ipairs(ModelCandle:GetDescendants()) do
             
