@@ -67,7 +67,7 @@ function TowerSystem.TeleportePuzzle()
           
           if HumanoidRootPart then
             
-            HumanoidRootPart.CFrame = CFrame.new(Part1.Position)
+            HumanoidRootPart.CFrame = CFrame.new(Part1.Position + Vector3.new(0, 15, 0))
             
           end
           
@@ -75,7 +75,7 @@ function TowerSystem.TeleportePuzzle()
           
           if HumanoidRootPart then
             
-            HumanoidRootPart.CFrame = CFrame.new(Part1.Position)
+            HumanoidRootPart.CFrame = CFrame.new(Part2.Position + Vector3.new(0, 15, 0))
             
           end
         end
