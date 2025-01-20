@@ -111,6 +111,4 @@ function AshinaSystem.TpRestaurantRoom()
   end
 end
 
-AshinaSystem.ActivateEspAshina(false)
-
 return AshinaSystem
