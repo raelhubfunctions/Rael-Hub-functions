@@ -148,7 +148,7 @@ function CookingSystem.MakeFood(food)
     
     local Detector = TabletStove[getgenv().ChooseStove]:FindFirstChild("Detector")
     
-    local Prompt = Detector:FindFirstChild("ProximityPrompt")
+    local Prompt = Detector:FindFirstChildOfClass("ProximityPrompt")
     
     TeleportActivePrompt(CFrame.new(Detector.Position), Prompt)
     
