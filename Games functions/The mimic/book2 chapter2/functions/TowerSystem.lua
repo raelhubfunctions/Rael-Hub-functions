@@ -90,6 +90,24 @@ function TowerSystem.TeleportePuzzle()
     return nil
   end
   
+  local function TeleportToFront(object)
+    
+    if object:IsA("BasePart") then
+      
+      local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+      
+      local frontPosition = object.CFrame.LookVector * 5
+      
+      local newPosition = frontPosition + object.Position
+      
+      if HumanoidRootPart then
+      
+        shared.Character.HumanoidRootPart.CFrame = CFrame.new(newPosition)
+        
+      end
+    end
+  end
+  
   for _, PuzzleModel in ipairs(shared.FolderModelPuzzle:GetChildren()) do
     
     if PuzzleModel:IsA("Model") then
@@ -101,27 +119,18 @@ function TowerSystem.TeleportePuzzle()
       
       if Part1.Transparency == 0 and Part2.Transparency == 0 then
         
-        local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+        
         
         if Part1.Color == Color3.fromRGB(27, 42, 53) then
           
-          if HumanoidRootPart then
-            
-            Createfloor(Vector3.new(Base.Position))
-            
-            HumanoidRootPart.CFrame = CFrame.new(Base.Position + Vector3.new(0, 15, 0))
-            
-          end
+          TeleportToFront(Base)
+          break
           
         elseif Part2.Color == Color3.fromRGB(27, 42, 53) then
           
-          if HumanoidRootPart then
-            
-            Createfloor(Vector3.new(Base.Position))
-            
-            HumanoidRootPart.CFrame = CFrame.new(Base.Position + Vector3.new(0, 15, 0))
-            
-          end
+          TeleportToFront(Base)
+          break
+          
         end
       end
     end
