@@ -235,11 +235,15 @@ function CookingSystem.MakeFood(food)
     
     if CheckPotInStove() == false then
       
+      print("Não tem")
+      
       InteractWithTheSolve()
       
       task.wait(2)
       
       CheckPotInStove(function(Pot)
+        
+        print("Agora tem")
         
         CheckTimePotInStove(Pot)
         GetorSetItem("Bowl")
@@ -260,4 +264,4 @@ GetFolderCooking()
 
 
 
-return CookingSystem
+CookingSystem.MakeFood("Chicken")
