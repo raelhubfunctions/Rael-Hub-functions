@@ -154,6 +154,35 @@ function CookingSystem.MakeFood(food)
     
   end
   
+  local function CheckPotInStove()
+    
+    local SystemBin = shared.FolderCooking.SystemBin
+    
+    local PotPositions = {
+      Vector3.new(-2701.040771484375, 969.5958862304688, -4903.8017578125),
+      Vector3.new(-2710.281005859375, 969.5958862304688, -4903.8017578125),
+      Vector3.new(-2719.7724609375, 969.5958862304688, -4903.8017578125),
+      Vector3.new(-2729.154052734375, 969.5958862304688, -4903.8017578125)
+    }
+    
+    for _, Pot in ipairs(SystemBin:GetChildren()) do
+      
+      if Pot then
+        
+        local Position = Pot.WorldPivot.Position
+        
+        if Position == PotPositions[getgenv().ChooseStove] then
+          
+          return Pot
+          
+        end
+      end
+    end
+    
+    return false
+    
+  end
+  
   if food == "Chicken" then
     
     
@@ -167,9 +196,24 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     
+    if not InteractWithTheSolve() then
+      
+      InteractWithTheSolve()
+      
+      local CheckSolve = CheckPotInStove()
+      
+      if CheckSolve then
+        
+        warn("O seu pote esta na mesa")
+        
+      end
+    end
   end
 end
 
 GetFolderCooking()
+
+
+
 
 return CookingSystem
