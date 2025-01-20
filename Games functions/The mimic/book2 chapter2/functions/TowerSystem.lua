@@ -1,5 +1,44 @@
 local TowerSystem = {}
 
+function Createfloor(position)
+  local part = Instance.new("Part")
+  part.Size = Vector3.new(10, 1, 10)
+  part.Position = position
+  part.Anchored = true 
+  part.BrickColor = BrickColor.new("Bright green")
+  barrier.Transparency = 1
+  part.Parent = game.Workspace
+
+  local function createBarrier(position, size)
+    local barrier = Instance.new("Part")
+    barrier.Size = size
+    barrier.Position = position
+    barrier.Anchored = true
+    barrier.CanCollide = true
+    barrier.Transparency = 1
+    barrier.BrickColor = BrickColor.new("Bright blue")
+    barrier.Parent = game.Workspace
+  end
+
+  local barrierThickness = 1
+  local barrierHeight = 10
+
+  local barrierPositions = {
+    Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z - part.Size.Z / 2 - barrierThickness / 2),
+    Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z + part.Size.Z / 2 + barrierThickness / 2),
+    Vector3.new(part.Position.X - part.Size.X / 2 - barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z),
+    Vector3.new(part.Position.X + part.Size.X / 2 + barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z),
+  }
+
+  for _, pos in ipairs(barrierPositions) do
+    if pos.Z == part.Position.Z then
+      createBarrier(pos, Vector3.new(barrierThickness, barrierHeight, part.Size.Z))
+    else
+      createBarrier(pos, Vector3.new(part.Size.X, barrierHeight, barrierThickness))
+    end
+  end
+end
+
 function TowerSystem.FindFolderTower()
   for _, pasta in ipairs(Workspace:GetChildren()) do
     if pasta:IsA("Folder") then
@@ -55,8 +94,9 @@ function TowerSystem.TeleportePuzzle()
     
     if PuzzleModel:IsA("Model") then
       
-      local Part1 = PuzzleModel:FindFirstChild("Part1", true)
-      local Part2 = PuzzleModel:FindFirstChild("Part1", true)
+      local Base = PuzzleModel:FindFirstChild("Base")
+      local Part1 = Base:FindFirstChild("Part1")
+      local Part2 = Base:FindFirstChild("Part1")
       
       
       if Part1.Transparency == 0 and Part2.Transparency == 0 then
@@ -67,7 +107,9 @@ function TowerSystem.TeleportePuzzle()
           
           if HumanoidRootPart then
             
-            HumanoidRootPart.CFrame = CFrame.new(Part1.Position + Vector3.new(0, 15, 0))
+            Createfloor(Vector3.new(Base.Position))
+            
+            HumanoidRootPart.CFrame = CFrame.new(Base.Position + Vector3.new(0, 15, 0))
             
           end
           
@@ -75,7 +117,9 @@ function TowerSystem.TeleportePuzzle()
           
           if HumanoidRootPart then
             
-            HumanoidRootPart.CFrame = CFrame.new(Part2.Position + Vector3.new(0, 15, 0))
+            Createfloor(Vector3.new(Base.Position))
+            
+            HumanoidRootPart.CFrame = CFrame.new(Base.Position + Vector3.new(0, 15, 0))
             
           end
         end
