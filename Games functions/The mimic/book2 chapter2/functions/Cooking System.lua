@@ -196,7 +196,7 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     
-    if not InteractWithTheSolve() then
+    if not CheckPotInStove() then
       
       InteractWithTheSolve()
       
