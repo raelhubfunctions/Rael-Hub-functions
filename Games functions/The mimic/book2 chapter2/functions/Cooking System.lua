@@ -17,6 +17,17 @@ function GetFolderCooking()
   
 end
 
+local function fireProximityPromptWithRetry(proximityPrompt, maxRetries)
+  local retries = 0
+  while retries < maxRetries do
+    if proximityPrompt then
+      fireproximityprompt(proximityPrompt)
+      task.wait(0.1)
+    end
+    retries = retries + 1
+  end
+end
+
 function CookingSystem.GetTableStove()
   
   if not shared.FolderCooking then
@@ -82,7 +93,7 @@ function CookingSystem.MakeFood(food)
       
       HumanoidRootPart.CFrame = Position
       task.wait(1)
-      fireproximityprompt(Prompt)
+      fireProximityPromptWithRetry(Prompt, 3)
       
     end
   end
@@ -220,6 +231,40 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     DeliverToTheMonster()
         
+  elseif food == "Ham" then
+    
+    
+    GetorSetItem("Pot")
+    InteractWithTheBench()
+    GetorSetItem("Ham")
+    InteractWithTheBench()
+    GetorSetItem("Sausage")
+    InteractWithTheBench()
+    InteractWithTheBench()
+    
+    InteractWithTheSolve()
+      
+    task.wait(10)
+      
+    GetorSetItem("Bowl")
+    InteractWithTheBench()
+    InteractWithTheSolve()
+    InteractWithTheBench()
+    InteractWithTheBench()
+    DeliverToTheMonster()
+    
+  elseif food == "Eyeball" then
+    
+    
+    GetorSetItem("Bowl")
+    InteractWithTheBench()
+    GetorSetItem("Eyeball")
+    InteractWithTheBench()
+    GetorSetItem("Spaghetti")
+    InteractWithTheBench()
+    InteractWithTheBench()
+    DeliverToTheMonster()
+    
   end
 end
 
