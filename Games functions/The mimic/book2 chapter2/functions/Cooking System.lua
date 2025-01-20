@@ -87,7 +87,7 @@ function CookingSystem.MakeFood(food)
     end
   end
   
-  local function FoodGetorSet(foodname)
+  local function GetorSetItem(foodname)
     
     local Givers =  shared.FolderCooking:FindFirstChild("Givers")
     
@@ -187,16 +187,49 @@ function CookingSystem.MakeFood(food)
     
   end
   
+  local function CheckTimePotInStove(pot)
+    
+    if Pot and Pot:IsA("Model") then
+      
+      local Entry = Pot:FindFirstChild("Entry", true)
+      
+      if Entry then
+        
+        repeat
+          
+          task.wait(0.5)
+          
+        until Entry.BackgroundColor3 == Color3.fromRGB(65025, 0, 0)
+      end
+    end
+  end
+  
+  local function DeliverToTheMonster()
+    
+    local Detector = shared.FolderCooking.TurnInFood:FindFirstChild("Detector")
+    
+    if Detector then
+      
+      local Prompt = Detector:FindFirstChildOfClass("ProximityPrompt")
+      
+      if Prompt then
+        
+        TeleportActivePrompt(CFrame.new(-2753.5341796875, 968.2463989257812, -4920.02978515625), Prompt)
+      
+      end
+    end
+  end
+      
   if food == "Chicken" then
     
     
-    FoodGetorSet("Pot")
+    GetorSetItem("Pot")
     InteractWithTheBench()
-    FoodGetorSet("Chicken")
+    GetorSetItem("Chicken")
     InteractWithTheBench()
-    FoodGetorSet("Wrapped Meat")
+    GetorSetItem("Wrapped Meat")
     InteractWithTheBench()
-    FoodGetorSet("Cheese")
+    GetorSetItem("Cheese")
     InteractWithTheBench()
     InteractWithTheBench()
     
@@ -208,7 +241,13 @@ function CookingSystem.MakeFood(food)
       
       CheckPotInStove(function(Pot)
         
-        warn("Aqui ó " .. Pot)
+        CheckTimePotInStove(Pot)
+        GetorSetItem("Bowl")
+        InteractWithTheBench()
+        InteractWithTheSolve()
+        InteractWithTheBench()
+        InteractWithTheBench()
+        DeliverToTheMonster()
         
       end)
       
