@@ -166,42 +166,18 @@ function CookingSystem.MakeFood(food)
     }
     
     for _, Pot in ipairs(SystemBin:GetChildren()) do
-      
       if Pot then
-        
         local Position = Pot.WorldPivot.Position
-        
-        if Position == PotPositions[getgenv().ChooseStove] then
-          
+        if (Position - PotPositions[getgenv().ChooseStove]).Magnitude < 0.1 then
           if calback then
             calback(Pot)
           end
-          
           return true
-          
         end
       end
     end
-    
     return false
     
-  end
-  
-  local function CheckTimePotInStove(pot)
-    
-    if Pot and Pot:IsA("Model") then
-      
-      local Entry = Pot:FindFirstChild("Entry", true)
-      
-      if Entry then
-        
-        repeat
-          
-          task.wait(0.5)
-          
-        until Entry.BackgroundColor3 == Color3.fromRGB(65025, 0, 0)
-      end
-    end
   end
   
   local function DeliverToTheMonster()
@@ -233,35 +209,20 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     
-    if CheckPotInStove() == false then
+    InteractWithTheSolve()
       
-      print("Não tem")
+    task.wait(10)
       
-      InteractWithTheSolve()
-      
-      task.wait(2)
-      
-      CheckPotInStove(function(Pot)
+    GetorSetItem("Bowl")
+    InteractWithTheBench()
+    InteractWithTheSolve()
+    InteractWithTheBench()
+    InteractWithTheBench()
+    DeliverToTheMonster()
         
-        print("Agora tem")
-        
-        CheckTimePotInStove(Pot)
-        GetorSetItem("Bowl")
-        InteractWithTheBench()
-        InteractWithTheSolve()
-        InteractWithTheBench()
-        InteractWithTheBench()
-        DeliverToTheMonster()
-        
-      end)
-      
-    end
   end
 end
 
 GetFolderCooking()
 
-
-
-
-CookingSystem.MakeFood("Chicken")
+return CookingSystem
