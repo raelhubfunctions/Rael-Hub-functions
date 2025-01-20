@@ -23,7 +23,7 @@ function TowerSystem.FindFolderModelPuzzle()
     return nil
   end
     
-  for _, Folder in ipairs(folder:GetChildren()) do
+  for _, Folder in ipairs(shared.FolderTower:GetChildren()) do
     if Folder:IsA("Folder") then
       for _, ModelTower in ipairs(Folder:GetChildren()) do
         if ModelTower:IsA("Model") and (ModelTower.Name == "1" or ModelTower.Name == "2" or ModelTower.Name == "3") then
