@@ -247,7 +247,11 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     DeliverToTheMonster()
-        
+    
+    getgenv().CookingChickenValue = false
+    getgenv().CookingHamValue = false
+    getgenv().CookingEyeballValue = false
+    
   elseif food == "Ham" then
     
     getgenv().CookingChickenValue = false
@@ -273,6 +277,10 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     DeliverToTheMonster()
     
+    getgenv().CookingChickenValue = false
+    getgenv().CookingHamValue = false
+    getgenv().CookingEyeballValue = false
+    
   elseif food == "Eyeball" then
     
     getgenv().CookingChickenValue = false
@@ -287,6 +295,10 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     DeliverToTheMonster()
+    
+    getgenv().CookingChickenValue = false
+    getgenv().CookingHamValue = false
+    getgenv().CookingEyeballValue = false
     
   end
 end
