@@ -6,7 +6,7 @@ function Createfloor(position)
   part.Position = position
   part.Anchored = true 
   part.BrickColor = BrickColor.new("Bright green")
-  barrier.Transparency = 1
+  part.Transparency = 1
   part.Parent = game.Workspace
 
   local function createBarrier(position, size)
