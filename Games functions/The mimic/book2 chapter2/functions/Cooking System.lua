@@ -2,6 +2,9 @@ local CookingSystem = {}
 
 getgenv().ChooseStove = 1
 getgenv().ChooseBench = 1
+getgenv().CookingChickenValue = false
+getgenv().CookingHamValue = false
+getgenv().CookingEyeballValue = false
 
 function GetFolderCooking()
   
@@ -91,9 +94,13 @@ function CookingSystem.MakeFood(food)
     
     if HumanoidRootPart then
       
-      HumanoidRootPart.CFrame = Position
-      task.wait(1)
-      fireProximityPromptWithRetry(Prompt, 3)
+      if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+        HumanoidRootPart.CFrame = Position
+        task.wait(0.5)
+      end
+      if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+        fireProximityPromptWithRetry(Prompt, 3)
+      end
       
     end
   end
@@ -108,7 +115,9 @@ function CookingSystem.MakeFood(food)
       
       local Prompt = Handle:FindFirstChildOfClass("ProximityPrompt")
       
-      TeleportActivePrompt(CFrame.new(Handle.Position), Prompt)
+      if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+        TeleportActivePrompt(CFrame.new(Handle.Position), Prompt)
+      end
     end
   end
   
@@ -142,7 +151,9 @@ function CookingSystem.MakeFood(food)
     
     local BasePart, Prompt = GetBaseAndPrompt(TableBenches[getgenv().ChooseBench])
     
-    TeleportActivePrompt(CFrame.new(BasePart.Position), Prompt)
+    if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+      TeleportActivePrompt(CFrame.new(BasePart.Position), Prompt)
+    end
     
   end
   
@@ -161,7 +172,9 @@ function CookingSystem.MakeFood(food)
     
     local Prompt = Detector:FindFirstChildOfClass("ProximityPrompt")
     
-    TeleportActivePrompt(CFrame.new(Detector.Position), Prompt)
+    if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+      TeleportActivePrompt(CFrame.new(Detector.Position), Prompt)
+    end
     
   end
   
@@ -201,14 +214,18 @@ function CookingSystem.MakeFood(food)
       
       if Prompt then
         
-        TeleportActivePrompt(CFrame.new(-2753.5341796875, 968.2463989257812, -4920.02978515625), Prompt)
-      
+        if getgenv().CookingChickenValue or getgenv().CookingHamValue or getgenv().CookingEyeballValue then
+          TeleportActivePrompt(CFrame.new(-2753.5341796875, 968.2463989257812, -4920.02978515625), Prompt)
+        end
       end
     end
   end
       
   if food == "Chicken" then
     
+    getgenv().CookingChickenValue = true
+    getgenv().CookingHamValue = false
+    getgenv().CookingEyeballValue = false
     
     GetorSetItem("Pot")
     InteractWithTheBench()
@@ -233,6 +250,9 @@ function CookingSystem.MakeFood(food)
         
   elseif food == "Ham" then
     
+    getgenv().CookingChickenValue = false
+    getgenv().CookingHamValue = true
+    getgenv().CookingEyeballValue = false
     
     GetorSetItem("Pot")
     InteractWithTheBench()
@@ -255,6 +275,9 @@ function CookingSystem.MakeFood(food)
     
   elseif food == "Eyeball" then
     
+    getgenv().CookingChickenValue = false
+    getgenv().CookingHamValue = false
+    getgenv().CookingEyeballValue = true
     
     GetorSetItem("Bowl")
     InteractWithTheBench()
