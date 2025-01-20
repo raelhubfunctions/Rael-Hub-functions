@@ -137,7 +137,7 @@ function CookingSystem.MakeFood(food)
   
   local function InteractWithTheSolve()
     
-    local TabletStove = CookingSystem.StoveTable()
+    local TabletStove = CookingSystem.GetTableStove()
     
     if not TabletStove then
       
