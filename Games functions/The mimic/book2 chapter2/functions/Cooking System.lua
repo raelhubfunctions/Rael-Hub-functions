@@ -97,7 +97,7 @@ function CookingSystem.MakeFood(food)
       
       local Prompt = Handle:FindFirstChildOfClass("ProximityPrompt")
       
-      TeleportActivePrompt(CFrame(Handle.Position), Prompt)
+      TeleportActivePrompt(CFrame.new(Handle.Position), Prompt)
     end
   end
   
@@ -131,7 +131,7 @@ function CookingSystem.MakeFood(food)
     
     local BasePart, Prompt = GetBaseAndPrompt(TableBenches[getgenv().ChooseBench])
     
-    TeleportActivePrompt(CFrame(BasePart.Position), Prompt)
+    TeleportActivePrompt(CFrame.new(BasePart.Position), Prompt)
     
   end
   
@@ -150,7 +150,7 @@ function CookingSystem.MakeFood(food)
     
     local Prompt = Detector:FindFirstChild("ProximityPrompt")
     
-    TeleportActivePrompt(CFrame(Detector.Position), Prompt)
+    TeleportActivePrompt(CFrame.new(Detector.Position), Prompt)
     
   end
   
