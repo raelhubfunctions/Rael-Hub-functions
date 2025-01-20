@@ -12,6 +12,7 @@ function AshinaSystem.FindFolderPhaseAshina()
     if pasta:IsA("Folder") then
       for _, model in ipairs(pasta:GetChildren()) do
         if model:IsA("Model") and model.Name == "TeleportDoor" then
+          warn("[Rael Hub] FolderAshina was found")
           return pasta
         end
       end
@@ -23,6 +24,12 @@ end
 function AshinaSystem.GetAshina()
   
   local FolderFound = AshinaSystem.FindFolderPhaseAshina()
+  
+  if not FolderFound then
+    
+    return nil
+    
+  end
   
   for _, Pasta in ipairs(FolderFound:GetChildren()) do
     if Pasta:IsA("Folder") then
