@@ -154,7 +154,7 @@ function CookingSystem.MakeFood(food)
     
   end
   
-  local function CheckPotInStove()
+  local function CheckPotInStove(calback)
     
     local SystemBin = shared.FolderCooking.SystemBin
     
@@ -173,7 +173,11 @@ function CookingSystem.MakeFood(food)
         
         if Position == PotPositions[getgenv().ChooseStove] then
           
-          return Pot
+          if calback then
+            calback(Pot)
+          end
+          
+          return true
           
         end
       end
@@ -196,17 +200,18 @@ function CookingSystem.MakeFood(food)
     InteractWithTheBench()
     InteractWithTheBench()
     
-    if not CheckPotInStove() then
+    if CheckPotInStove() == false then
       
       InteractWithTheSolve()
       
-      local CheckSolve = CheckPotInStove()
+      task.wait(2)
       
-      if CheckSolve then
+      CheckPotInStove(function(Pot)
         
-        warn("O seu pote esta na mesa")
+        warn("Aqui ó " .. Pot)
         
-      end
+      end)
+      
     end
   end
 end
