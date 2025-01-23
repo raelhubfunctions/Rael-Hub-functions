@@ -33,7 +33,7 @@ function AshinaSystem.GetAshina()
     
   end
   
-  for _, Pasta in ipairs(FolderFound:GetChildren()) do
+  for _, Pasta in ipairs(shared.FolderAshina:GetChildren()) do
     if Pasta:IsA("Folder") then
       for _, Monster in ipairs(Pasta:GetChildren()) do
         if Monster:IsA("Model") and Monster.Name == "Ashina" then
