@@ -94,6 +94,7 @@ function NagisaSystem.AutoCollectBala(value)
 end
 
 NagisaSystem.FindFolder()
+NagisaSystem.AutoClicker(false)
 NagisaSystem.AntiLeizer(false)
 NagisaSystem.AutoCollectBala(false)
 
