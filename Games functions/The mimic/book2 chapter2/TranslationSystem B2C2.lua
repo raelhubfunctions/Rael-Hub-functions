@@ -335,7 +335,7 @@ function TranslationModule:GetTabs()
         paragrafo = RaelHubTradutor.Tradutor("Join my YouTube channel and Discord for new updates.", currentLanguage)
       }
       
-      notification:createNotification(RaelHubTradutor.Tradutor('"Others" translation completed', currentLanguage), 5)
+      notification:createNotification(RaelHubTradutor.Tradutor('"Credits" translation completed', currentLanguage), 5)
 
       local updatedConfig = {
         Tab_Oceano = Tab_Oceano,
@@ -415,7 +415,7 @@ function TranslationModule:GetTabs()
       
       local Tab_Comida = {
         name = "Food Phase",
-        section1 = "Make the meals",
+        section1 = "Make the meals (working 🥲)",
         section4 = "Auto escape from Zuboshi",
         button1 = "Make chicken automatically",
         button2 = "Making ham automatically",
