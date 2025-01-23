@@ -81,7 +81,7 @@ function ChihiroSystem.AutoCollectLetters()
   return nil
 end
 
-function ChihiroSistema.TeleportChihiro()
+function ChihiroSystem.TeleportChihiro()
   
   if not shared.FolderChihiro then
     
@@ -98,7 +98,7 @@ function ChihiroSistema.TeleportChihiro()
   end
 end
 
-function ChihiroSistema.AutoTeleportChihiro(value)
+function ChihiroSystem.AutoTeleportChihiro(value)
   
   if not shared.FolderChihiro then
     
@@ -130,7 +130,7 @@ function ChihiroSistema.AutoTeleportChihiro(value)
   end)
 end
 
-function ChihiroSistema.TeleportForDoor()
+function ChihiroSystem.TeleportForDoor()
   
   if not shared.FolderChihiro then
     
@@ -148,7 +148,7 @@ function ChihiroSistema.TeleportForDoor()
 end
 
 
-function ChihiroSistema.EspMonsterMother()
+function ChihiroSystem.EspMonsterMother()
   
   if not shared.FolderChihiro then
     
@@ -171,4 +171,4 @@ end
 
 ChihiroSystem.FindFolder()
 
-return ChihiroSistema
+return ChihiroSystem
