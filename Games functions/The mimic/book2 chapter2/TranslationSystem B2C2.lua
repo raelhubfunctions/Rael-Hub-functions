@@ -265,7 +265,7 @@ function TranslationModule:GetTabs()
       local Tab_Comida = {
         name = RaelHubTradutor.Tradutor("Food Phase", currentLanguage),
         section1 = RaelHubTradutor.Tradutor("Make the meals (working 🥲)", currentLanguage),
-        section4 = RaelHubTradutor.Tradutor("Auto escape from Zuboshi", currentLanguage),
+        section2 = RaelHubTradutor.Tradutor("Auto escape from Zuboshi", currentLanguage),
         button1 = RaelHubTradutor.Tradutor("Make chicken automatically", currentLanguage),
         button2 = RaelHubTradutor.Tradutor("Making ham automatically"),
         button3 = RaelHubTradutor.Tradutor("Make eyeballs automatically", currentLanguage),
@@ -416,7 +416,7 @@ function TranslationModule:GetTabs()
       local Tab_Comida = {
         name = "Food Phase",
         section1 = "Make the meals (working 🥲)",
-        section4 = "Auto escape from Zuboshi",
+        section2 = "Auto escape from Zuboshi",
         button1 = "Make chicken automatically",
         button2 = "Making ham automatically",
         button3 = "Make eyeballs automatically",
