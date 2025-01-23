@@ -331,7 +331,7 @@ function TranslationModule:GetTabs()
       notification:createNotification(RaelHubTradutor.Tradutor('"Others" translation completed', currentLanguage), 5)
       
       local Tab_Creditos = {
-        name = RaelHubTradutor.Tradutor("Others", currentLanguage),
+        name = RaelHubTradutor.Tradutor("Credits", currentLanguage),
         paragrafo = RaelHubTradutor.Tradutor("Join my YouTube channel and Discord for new updates.", currentLanguage)
       }
       
