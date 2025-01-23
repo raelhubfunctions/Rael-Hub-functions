@@ -53,16 +53,22 @@ function NagisaSystem.AutoCollectBala(value)
   
   while getgenv().AutoCollectBala do
   
-    local InteractPart = shared.FolderNagisaBoss:FindFirstChild("Interact", true)
+    local BallGiverModel = shared.FolderNagisaBoss:FindFirstChild("BallGiver", true)
+
+    if BallGiverModel then
+      
+      local InteractPart = BallGiverModel:FindFirstChild("Interact")
     
-    if InteractPart and InteractPart:IsA("BasePart") and tostring(InteractPart.Parent) == "BallGiver" then
+      if InteractPart then
       
-      local Prompt = InteractPart:FindFirstChildOfClass("ProximityPrompt")
+        local Prompt = InteractPart:FindFirstChildOfClass("ProximityPrompt")
       
-      if Prompt then
-        fireproximityprompt(Prompt)
-        task.wait(0.5)
+        if Prompt then
+          fireproximityprompt(Prompt)
+          task.wait(0.5)
+        end
       end
+      
     end
     task.wait()
     
