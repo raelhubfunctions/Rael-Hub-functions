@@ -264,7 +264,7 @@ function TranslationModule:GetTabs()
       
       local Tab_Comida = {
         name = RaelHubTradutor.Tradutor("Food Phase", currentLanguage),
-        section1 = RaelHubTradutor.Tradutor("Make the meals", currentLanguage),
+        section1 = RaelHubTradutor.Tradutor("Make the meals (working 🥲)", currentLanguage),
         section4 = RaelHubTradutor.Tradutor("Auto escape from Zuboshi", currentLanguage),
         button1 = RaelHubTradutor.Tradutor("Make chicken automatically", currentLanguage),
         button2 = RaelHubTradutor.Tradutor("Making ham automatically"),
