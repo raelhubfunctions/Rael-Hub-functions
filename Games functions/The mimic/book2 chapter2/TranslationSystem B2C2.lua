@@ -298,14 +298,17 @@ function TranslationModule:GetTabs()
         name = RaelHubTradutor.Tradutor("Chihiro Phase", currentLanguage),
         section1 = RaelHubTradutor.Tradutor("Teleport to safe zone", currentLanguage),
         section2 = RaelHubTradutor.Tradutor("Show Mom's Location", currentLanguage),
-        section3 = RaelHubTradutor.Tradutor("Teleport to Chihiro", currentLanguage),
+        section3 = RaelHubTradutor.Tradutor("Chihiro teleports", currentLanguage),
         section4 = RaelHubTradutor.Tradutor("Teleport to the door to escape this phase", currentLanguage),
         section5 = RaelHubTradutor.Tradutor("Auto collect all cards", currentLanguage),
         button1 = RaelHubTradutor.Tradutor("Safe area", currentLanguage),
         button2 = RaelHubTradutor.Tradutor("Esp mommy", currentLanguage),
         button3 = RaelHubTradutor.Tradutor("Teleport to Chihiro", currentLanguage),
-        button4 = RaelHubTradutor.Tradutor("Teleport to door", currentLanguage),
-        button5 = RaelHubTradutor.Tradutor("Auto collect letters", currentLanguage)
+        button4 = RaelHubTradutor.Tradutor("Teleport to Chihiro [Safe]", currentLanguage),
+        button5 = RaelHubTradutor.Tradutor("Teleport to door", currentLanguage),
+        button6 = RaelHubTradutor.Tradutor("Auto collect letters", currentLanguage),
+        slidevalue = RaelHubTradutor.Tradutor("Teleport to chihiro automatically", currentLanguage),
+        toggle = RaelHubTradutor.Tradutor("Character height", currentLanguage)
       }
       
       notification:createNotification(RaelHubTradutor.Tradutor('"Chihiro Phase" translation completed', currentLanguage), 5)
@@ -443,14 +446,17 @@ function TranslationModule:GetTabs()
         name = "Chihiro's Phase",
         section1 = "Teleport to safe zone",
         section2 = "Show Mom's Location",
-        section3 = "Teleport to Chihiro",
+        section3 = "Chiriro teleports",
         section4 = "Teleport to the door to escape this phase",
         section5 = "Auto collect all cards",
         button1 = "Safe area",
         button2 = "Esp mommy",
         button3 = "Teleport to Chihiro",
-        button4 = "Teleport to door",
-        button5 = "Auto collect letters"
+        button4 = "Teleport to Chihiro [Safe]",
+        button5 = "Teleport to door",
+        button6 = "Auto collect letters",
+        slidevalue = "Character height",
+        toggle = "Teleport to chiriro automatically"
       }
       
       local Tab_Boss = {
