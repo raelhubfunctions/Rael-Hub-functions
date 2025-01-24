@@ -38,7 +38,7 @@ function LeversSystem.ActivateLevers()
     return nil
   end
 
-  local levers = pasta.Levers:GetChildren()
+  local levers = shared.FolderLevers.Levers:GetChildren()
     
   for _, alavanca in ipairs(levers) do
     local lever = alavanca:FindFirstChild("Lever")
