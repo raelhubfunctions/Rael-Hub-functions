@@ -446,7 +446,7 @@ function TranslationModule:GetTabs()
         name = "Chihiro's Phase",
         section1 = "Teleport to safe zone",
         section2 = "Show Mom's Location",
-        section3 = "Chiriro teleports",
+        section3 = "Teleport to Chihiro",
         section4 = "Teleport to the door to escape this phase",
         section5 = "Auto collect all cards",
         button1 = "Safe area",
