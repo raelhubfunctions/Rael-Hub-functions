@@ -298,7 +298,7 @@ function TranslationModule:GetTabs()
         name = RaelHubTradutor.Tradutor("Chihiro Phase", currentLanguage),
         section1 = RaelHubTradutor.Tradutor("Teleport to safe zone", currentLanguage),
         section2 = RaelHubTradutor.Tradutor("Show Mom's Location", currentLanguage),
-        section3 = RaelHubTradutor.Tradutor("Chihiro teleports", currentLanguage),
+        section3 = RaelHubTradutor.Tradutor("Teleport to chihiro", currentLanguage),
         section4 = RaelHubTradutor.Tradutor("Teleport to the door to escape this phase", currentLanguage),
         section5 = RaelHubTradutor.Tradutor("Auto collect all cards", currentLanguage),
         button1 = RaelHubTradutor.Tradutor("Safe area", currentLanguage),
@@ -307,8 +307,8 @@ function TranslationModule:GetTabs()
         button4 = RaelHubTradutor.Tradutor("Teleport to Chihiro [Safe]", currentLanguage),
         button5 = RaelHubTradutor.Tradutor("Teleport to door", currentLanguage),
         button6 = RaelHubTradutor.Tradutor("Auto collect letters", currentLanguage),
-        slidevalue = RaelHubTradutor.Tradutor("Teleport to chihiro automatically", currentLanguage),
-        toggle = RaelHubTradutor.Tradutor("Character height", currentLanguage)
+        slidevalue = RaelHubTradutor.Tradutor("Player Height", currentLanguage),
+        toggle = RaelHubTradutor.Tradutor("Teleport to chihiro automatically", currentLanguage)
       }
       
       notification:createNotification(RaelHubTradutor.Tradutor('"Chihiro Phase" translation completed', currentLanguage), 5)
