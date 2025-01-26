@@ -137,6 +137,63 @@ function RaelHubChapter4Module.AutoHeartsSaigomo(value)
   end)
 end
 
+
+
+function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
+  
+  if not RaelHubChapter4Module.CheckPart4() then
+    
+    return nil
+    
+  end
+  
+  getgenv().AutoKillSaigomoSimple = value
+  
+  local function TeleportUpSaigmo()
+    local BossBattle = Workspace:FindFirstChild("BossBattle")
+    if BossBattle then
+      local Saigomo = BossBattle:FindFirstChild("Saigomo")
+      if Saigomo and shared.Character then
+        local PlayerRoot = shared.Character:FindFirstChild("HumanoidRootPart")
+        local SaigomoRoot = Saigomo:FindFirstChild("HumanoidRootPart")
+        if PlayerRoot and SaigomoRoot then
+          PlayerRoot.CFrame = CFrame.new(SaigomoRoot.Position + Vector3.new(0, 27, 0))
+        end
+      end
+    end
+  end
+
+
+
+  local function modifyhitboxsaigomo(sizevector3)
+    local BossBattle = Workspace:FindFirstChild("BossBattle")
+    if BossBattle then
+      local Saigomo = BossBattle:FindFirstChild("Saigomo")
+      if Saigomo then
+        local SpiderHitbox = Saigomo:FindFirstChild("SpiderHitbox")
+        if SpiderHitbox then
+          SpiderHitbox.Size = sizevector3
+        end
+      end
+    end
+  end
+  
+  task.spawn(function()
+    
+    while getgenv().AutoKillSaigomoSimple do
+      
+      TeleportUpSaigmo()
+      modifyhitboxsaigomo(Vector3.new(150, 21, 21))
+      
+      task.wait()
+      
+    end
+  end)
+end
+
+
+
+warn("[Rael Hub] loaded functions")
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
 RaelHubChapter4Module.AutoHeartsSaigomo(false)
