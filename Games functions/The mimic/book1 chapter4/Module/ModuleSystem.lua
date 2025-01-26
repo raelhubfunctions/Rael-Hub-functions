@@ -146,8 +146,6 @@ function RaelHubChapter4Module.TeleportToPart4()
   end
 end
 
-teleportToPlace()
-
 function RaelHubChapter4Module.AutoClicker(value)
   
   function autoClick()
