@@ -350,11 +350,132 @@ function RaelHubChapter4Module.EspMonsters(value)
   end
 end
 
+
+
+function RaelHubChapter4Module.EspObjects(value)
+  
+  if RaelHubChapter4Module.CheckPart1() then
+    
+    local KeysParts = {
+      workspace:GetChildren()[120].Model.Model:GetChildren()[4].Handle, 
+      workspace:GetChildren()[31].Handle,
+      workspace:GetChildren()[27].Handle
+    }
+    
+    local Crowbar = workspace:GetChildren()[29].Handle
+    
+    if Value then
+        
+      for index, Key in KeysParts do
+        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", "Key " .. index)
+      end
+      
+      shared.RaelHubFunction.CreateEspObject(Crowbar, Color3.fromRGB(0, 255, 255), "122586788171758", "Crowbar")
+      
+    else
+      
+      for index, Key in KeysParts do
+        RaelHubFunction.DisableEsp(Key)
+      end
+      
+      RaelHubFunction.DisableEsp(Crowbar)
+      
+    end
+    
+  elseif RaelHubChapter4Module.CheckPart2() then
+    
+    local Butterflies = workspace:FindFirstChild("Butterflies")
+    
+    local KeysParts = {
+      workspace:GetChildren()[23].Handle,
+      workspace:GetChildren()[22].Handle,
+      workspace:GetChildren()[10].Handle
+    }
+    
+    if Butterflies and value then
+      
+      for index, Key in KeysParts do
+        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", "Key " .. index)
+      end
+      
+      for _, butterfly in ipairs(Butterflies:GetChildren()) do
+        shared.RaelHubFunction.CreateEspObject(butterfly, Color3.fromRGB(0, 255, 255), "71196298747032", "")
+      end
+      
+    elseif Butterflies and not value then
+      
+      for index, Key in KeysParts do
+        RaelHubFunction.DisableEsp(Key)
+      end
+      
+      for _, butterfly in ipairs(Butterflies:GetChildren()) do
+        shared.RaelHubFunction.DisableEsp(butterfly)
+      end
+      
+    end
+  elseif RaelHubChapter4Module.CheckPart3() then
+    
+    local Butterfly = workspace:GetChildren()[346].Spirit.Handle
+    
+    local GameInfo = workspace:FindFirstChild("GameInfo")
+    
+    if GameInfo then
+      
+      local PuzzleItems = GameInfo:FindFirstChild("PuzzleItems")
+      
+      if PuzzleItems and Butterfly and value then
+        
+        shared.RaelHubFunction.CreateEspObject(Butterfly, Color3.fromRGB(0, 255, 255), "71196298747032", "")
+        
+        for _, Armor in ipairs(PuzzleItems:GetChildren()) do
+          
+          shared.RaelHubFunction.CreateEspObject(Armor, Color3.fromRGB(0, 255, 255), "122586788171758", "Armor")
+          
+        end
+        
+      elseif PuzzleItems and Butterfly and not value then
+        
+        shared.RaelHubFunction.DisableEsp(Butterfly)
+        
+        for _, Armor in ipairs(PuzzleItems:GetChildren()) do
+          
+          shared.RaelHubFunction.DisableEsp(Armor)
+          
+        end
+        
+      end
+    end
+  elseif RaelHubChapter4Module.CheckPart4() then
+    
+    local GameHearts = workspace:FindFirstChild("GameHearts")
+    
+    if GameHearts and value then
+      
+      for _, Heart in ipairs(GameHearts:GetChildren()) do
+        
+        shared.RaelHubFunction.CreateEspDistance(Heart, Color3.fromRGB(148, 5, 9), "Heart", true)
+        
+      end
+      
+    elseif GameHearts and not value then
+      
+      for _, Heart in ipairs(GameHearts:GetChildren()) do
+        
+        shared.RaelHubFunction.DisableEsp(Heart)
+        
+      end
+    end
+  end
+end
+
+
+
 warn("[Rael Hub] loaded functions")
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
 RaelHubChapter4Module.AutoHeartsSaigomo(false)
 RaelHubChapter4Module.EspMonsters(false)
+RaelHubChapter4Module.EspObjects(false)
 RaelHubChapter4Module.AutoKillSaigomoSimple(false)
 
 return RaelHubChapter4Module
