@@ -91,7 +91,54 @@ end
 
 
 
+function RaelHubChapter4Module.AutoHeartSaigomo(value)
+  
+  if not RaelHubChapter4Module.CheckPart4() then
+    
+    return nil
+    
+  end
+  
+  getgenv().AutoHeartSaigomo = value
+  
+  task.spawn(function()
+    
+    while getgenv().AutoHeartSaigomo do
+    
+      local GameHearts = workspace:FindFirstChild("GameHearts")
+      
+      if GameHearts then
+        
+        local Hearts = GameHearts:GetChildren()
+        
+        for _, Heart in ipairs(Hearts) do
+          
+          if Heart:IsA("Model") and not Heart:FindFirstChild("Destroyed") then
+            
+            local HeartRoot = Heart:FindFirstChild("Root")
+            
+            if HeartRoot and shared.Character then
+              
+              local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+              
+              if HumanoidRootPart then
+                
+                HumanoidRootPart.CFrame = CFrame.new(HeartRoot.Positon + Vector3.new(0, 20, 0))
+                
+              end
+            end
+          end
+        end
+      end
+      
+      task.wait()
+      
+    end
+  end)
+end
+
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
+RaelHubChapter4Module.AutoHeartSaigomo(false)
 
 return RaelHubChapter4Module
