@@ -123,7 +123,7 @@ function RaelHubChapter4Module.AutoHeartsSaigomo(value)
               
               if HumanoidRootPart then
                 
-                HumanoidRootPart.CFrame = CFrame.new(HeartRoot.Positon + Vector3.new(0, 20, 0))
+                HumanoidRootPart.CFrame = CFrame.new(HeartRoot.Position + Vector3.new(0, 20, 0))
                 
               end
             end
