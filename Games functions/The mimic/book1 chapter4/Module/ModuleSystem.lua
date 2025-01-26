@@ -364,7 +364,7 @@ function RaelHubChapter4Module.EspObjects(value)
     
     local Crowbar = workspace:GetChildren()[29].Handle
     
-    if Value then
+    if value then
         
       for index, Key in KeysParts do
         shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", "Key " .. index)
