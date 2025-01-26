@@ -470,6 +470,112 @@ end
 
 
 
+function RaelHubChapter4Module.RecoverLife(value)
+  
+  if not RaelHubChapter4Module.CheckPart4() then
+    
+    return nil
+    
+  end
+  
+  getgenv().RecoverLife = value
+  
+  local function UpdateButterflyList()
+    
+    local Butterflies = workspace:FindFirstChild("Butterflies")
+    
+    local ListButterfly = {}
+    
+    if Butterflies then
+      for _, Model in pairs(Butterflies:GetChildren()) do
+        local Butterfly = Model:FindFirstChild("butterfly")
+        if Butterfly and Butterfly:IsA("BasePart") and Butterfly.Transparency == 0 then
+          table.insert(ListButterfly, Butterfly)
+        end
+      end
+      
+      return ListButterfly
+      
+    end
+  end
+  
+  local function TeleportToButterfly(max)
+    
+    local Counter = 0
+    
+     for _, Butterfly in ipairs(UpdateButterflyList()) do
+       
+      local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+      
+      if Counter == max then
+        break
+      end
+      
+      if HumanoidRootPart then
+        
+        local Prompt = Butterfly:FindFirstChild("ProximityPrompt")
+          
+        if Prompt then
+          
+          if getgenv().RecoverLife then
+            HumanoidRootPart.CFrame = CFrame.new(Butterfly.Position)
+          end
+          task.wait(0.5)
+          if getgenv().RecoverLife then
+            fireproximityprompt(Prompt)
+          end
+          
+          Counter = Counter + 1
+          
+        end
+      end
+    end
+  end
+  
+  task.spawn(function()
+  
+    while getgenv().RecoverLife do
+      
+      local Humanoid = shared.Character:FindFirstChild("Humanoid")
+      
+      if Humanoid and Humanoid.Health > 20 and Humanoid.Health < 65 then
+        
+        if #UpdateButterflyList() >= 1 then
+          
+          TeleportToButterfly(2)
+          
+        end
+        
+      elseif Humanoid and Humanoid.Health > 65 and  Humanoid.Health < 85 then
+        
+        if #UpdateButterflyList() >= 1 then
+          
+          TeleportToButterfly(1)
+          
+        end
+        
+      elseif Humanoid and Humanoid.Health > 0 and  Humanoid.Health < 20 then
+        
+        if #UpdateButterflyList() >= 1 then
+          
+          TeleportToButterfly(3)
+          
+        elseif #UpdateButterflyList() == 0 then
+          
+          local HumanoidRootPart = shared.Character:FindFirstChild("HuamnoidRootPart")
+          
+          if HumanoidRootPart then
+            
+            HumanoidRootPart.CFrame = CFrame.new(2652.878662109375, 274.9132385253906, 2814.821044921875)
+            
+          end
+        end
+      end
+      task.wait()
+    end
+  end)
+end
+
 warn("[Rael Hub] loaded functions")
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
