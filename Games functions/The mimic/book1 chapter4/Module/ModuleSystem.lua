@@ -32,6 +32,88 @@ function RaelHubChapter4Module.CheckPart4()
   end
 end
 
+function RaelHubChapter4Module.AutoWin()
+  if RaelHubChapter4Module.CheckPart1() then
+    local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+    if firetouchinterest then
+      local Game_Teleporter = workspace:FindFirstChild("Game Teleporter")
+      if Game_Teleporter and HumanoidRootPart then
+        firetouchinterest(HumanoidRootPart, Game_Teleporter, 0)
+        task.wait(0.1)
+        firetouchinterest(HumanoidRootPart, Game_Teleporter, 1)
+      end
+    else
+      
+      HumanoidRootPart.CFrame = CFrame.new(89.58648681640625, -50.999027252197266, -1415.93310546875)
+      
+    end
+  elseif RaelHubChapter4Module.CheckPart2() then
+    
+    local function CollectButterfly()
+      local Butterflies = workspace:FindFirstChild("Butterflies")
+      if Butterflies then
+        for _, Butterfly in ipairs(Butterflies:GetChildren()) do
+          local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+          local Prompt = Butterfly:FindFirstChild("ProximityPrompt")
+          if HumanoidRootPart and Prompt then
+            HumanoidRootPart.CFrame = CFrame.new(Butterfly.Position)
+            task.wait(0.3)
+            fireproximityprompt(Prompt)
+          end
+        end
+      end
+    end
+  
+    for _ = 1, 10 do
+      
+      CollectButterfly()
+      
+    end
+    
+  elseif RaelHubChapter4Module.CheckPart3() then
+    
+    local function CollectArms()
+      local GameInfo = workspace:FindFirstChild("GameInfo")
+      if GameInfo then
+        local PuzzleItems = GameInfo:FindFirstChild("PuzzleItems")
+        local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+        if PuzzleItems and HumanoidRootPart then
+          for _, Armor in ipairs(PuzzleItems:GetChildren()) do
+            local Prompt = Armor:FindFirstChild("ProximityPrompt")
+            if Prompt then
+              HumanoidRootPart.CFrame = CFrame.new(Armor.Position)
+              task.wait(0.3)
+              fireproximityprompt(Prompt)
+            end
+          end
+        end
+      end
+    end
+    
+    local function BurnArmors()
+      local Well = workspace:FindFirstChild("Well")
+      if Well then
+        local Burner = Well:FindFirstChild("Burner")
+        if Burner then
+          local Prompt = Burner:FindFirstChild("ProximityPrompt")
+          local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+          if HumanoidRootPart and Prompt then
+            for _ = 1, 6 do
+              HumanoidRootPart.CFrame = CFrame.new(Burner.Position)
+              fireproximityprompt(Prompt)
+              task.wait(0.3)
+            end
+          end
+        end
+      end
+    end
+    
+    CollectArms()
+    BurnArmors()
+    
+  end
+end
+
 
 
 function RaelHubChapter4Module.AutoClicker(value)
