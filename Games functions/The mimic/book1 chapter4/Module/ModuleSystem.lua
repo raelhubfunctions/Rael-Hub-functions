@@ -319,11 +319,42 @@ function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
   end)
 end
 
-
+function RaelHubChapter4Module.EspMonsters(value)
+  
+  local GameAI = workspace:FindFirstChild("GameAI")
+  
+  local function ExecuteEsp(name, distancevalue)
+    if value then
+      for _, Monster in ipairs(GameAI:GetChildren()) do
+        if Monster and Monster:IsA("Model") then
+          shared.RaelHubFunction.CreateEspDistance(Monster, Color3.fromRGB(255, 102, 102), name, distancevalue)
+        end
+      end
+    else
+      for _, Monster in ipairs(GameAI:GetChildren()) do
+        if Monster and Monster:IsA("Model") then
+          shared.RaelHubFunction.DisableEsp(Monster)
+        end
+      end
+    end
+  end
+  
+  if RaelHubChapter4Module.CheckPart1() then
+    ExecuteEsp("", false)
+  elseif RaelHubChapter4Module.CheckPart2() then
+    ExecuteEsp("Monster", true)
+  elseif RaelHubChapter4Module.CheckPart3() then
+    ExecuteEsp("Kusunoki", true)
+  elseif RaelHubChapter4Module.CheckPart4() then
+    ExecuteEsp("Saigomo", true)
+  end
+end
 
 warn("[Rael Hub] loaded functions")
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
 RaelHubChapter4Module.AutoHeartsSaigomo(false)
+RaelHubChapter4Module.EspMonsters(false)
+RaelHubChapter4Module.AutoKillSaigomoSimple(false)
 
 return RaelHubChapter4Module

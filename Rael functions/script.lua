@@ -684,4 +684,5 @@ function RaelHubFunction.StopFly()
   end
 end
 
+shared.RaelHubFunction = RaelHubFunction
 return RaelHubFunction
