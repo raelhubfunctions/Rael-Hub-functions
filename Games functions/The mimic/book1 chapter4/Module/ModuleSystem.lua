@@ -139,6 +139,25 @@ end
 
 
 
+function CheckSaigomo()
+  if not RaelHubChapter4Module.CheckPart4() then
+    
+    return nil
+    
+  end
+  
+  local BossBattle = Workspace:FindFirstChild("BossBattle")
+  if BossBattle then
+    local Saigomo = BossBattle:FindFirstChild("Saigomo")
+    if Saigomo then
+      return Saigomo
+    end
+  end
+  return nil
+end
+
+
+
 function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
   
   if not RaelHubChapter4Module.CheckPart4() then
@@ -150,15 +169,12 @@ function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
   getgenv().AutoKillSaigomoSimple = value
   
   local function TeleportUpSaigmo()
-    local BossBattle = Workspace:FindFirstChild("BossBattle")
-    if BossBattle then
-      local Saigomo = BossBattle:FindFirstChild("Saigomo")
-      if Saigomo and shared.Character then
-        local PlayerRoot = shared.Character:FindFirstChild("HumanoidRootPart")
-        local SaigomoRoot = Saigomo:FindFirstChild("HumanoidRootPart")
-        if PlayerRoot and SaigomoRoot then
-          PlayerRoot.CFrame = CFrame.new(SaigomoRoot.Position + Vector3.new(0, 27, 0))
-        end
+    local Saigomo = CheckSaigomo()
+    if Saigomo and shared.Character then
+      local PlayerRoot = shared.Character:FindFirstChild("HumanoidRootPart")
+      local SaigomoRoot = Saigomo:FindFirstChild("HumanoidRootPart")
+      if PlayerRoot and SaigomoRoot then
+        PlayerRoot.CFrame = CFrame.new(SaigomoRoot.Position + Vector3.new(0, 27, 0))
       end
     end
   end
@@ -166,14 +182,11 @@ function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
 
 
   local function modifyhitboxsaigomo(sizevector3)
-    local BossBattle = Workspace:FindFirstChild("BossBattle")
-    if BossBattle then
-      local Saigomo = BossBattle:FindFirstChild("Saigomo")
-      if Saigomo then
-        local SpiderHitbox = Saigomo:FindFirstChild("SpiderHitbox")
-        if SpiderHitbox then
-          SpiderHitbox.Size = sizevector3
-        end
+    local Saigomo = CheckSaigomo()
+    if Saigomo then
+      local SpiderHitbox = Saigomo:FindFirstChild("SpiderHitbox")
+      if SpiderHitbox then
+        SpiderHitbox.Size = sizevector3
       end
     end
   end
@@ -188,6 +201,9 @@ function RaelHubChapter4Module.AutoKillSaigomoSimple(value)
       task.wait()
       
     end
+    
+    modifyhitboxsaigomo(Vector3.new(12.02400016784668, 21, 21))  -- this is the original value ;-;
+    
   end)
 end
 
