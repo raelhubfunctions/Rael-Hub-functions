@@ -91,7 +91,7 @@ end
 
 
 
-function RaelHubChapter4Module.AutoHeartSaigomo(value)
+function RaelHubChapter4Module.AutoHeartsSaigomo(value)
   
   if not RaelHubChapter4Module.CheckPart4() then
     
@@ -139,6 +139,6 @@ end
 
 RaelHubChapter4Module.AutoClicker(false)
 RaelHubChapter4Module.EquipKatana(false)
-RaelHubChapter4Module.AutoHeartSaigomo(false)
+RaelHubChapter4Module.AutoHeartsSaigomo(false)
 
 return RaelHubChapter4Module
