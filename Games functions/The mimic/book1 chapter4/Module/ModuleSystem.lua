@@ -375,10 +375,10 @@ function RaelHubChapter4Module.EspObjects(value)
     else
       
       for index, Key in KeysParts do
-        RaelHubFunction.DisableEsp(Key)
+        shared.RaelHubFunction.DisableEsp(Key)
       end
       
-      RaelHubFunction.DisableEsp(Crowbar)
+      shared.RaelHubFunction.DisableEsp(Crowbar)
       
     end
     
@@ -405,7 +405,7 @@ function RaelHubChapter4Module.EspObjects(value)
     elseif Butterflies and not value then
       
       for index, Key in KeysParts do
-        RaelHubFunction.DisableEsp(Key)
+        shared.RaelHubFunction.DisableEsp(Key)
       end
       
       for _, butterfly in ipairs(Butterflies:GetChildren()) do
