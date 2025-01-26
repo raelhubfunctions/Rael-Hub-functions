@@ -3,6 +3,7 @@ local Players = game.Players
 local LocalPlayer = Players.LocalPlayer
 local Backpack = LocalPlayer.Backpack
 
+local TeleportService = game:GetService("TeleportService")
 local VirtualUser = game:GetService("VirtualUser")
 
 local RaelHubChapter4Module = {}
@@ -98,10 +99,10 @@ function RaelHubChapter4Module.AutoWin()
           local Prompt = Burner:FindFirstChild("ProximityPrompt")
           local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
           if HumanoidRootPart and Prompt then
-            for _ = 1, 6 do
+            for _ = 1, 7 do
               HumanoidRootPart.CFrame = CFrame.new(Burner.Position)
               fireproximityprompt(Prompt)
-              task.wait(0.3)
+              task.wait(0.5)
             end
           end
         end
@@ -114,7 +115,38 @@ function RaelHubChapter4Module.AutoWin()
   end
 end
 
+function RaelHubChapter4Module.TeleportToPart4()
+  if RaelHubChapter4Module.CheckPart1() then
+    local NormalID = 7251865082
+    local NightmareID = 7265396387
+    
+    if MapID == NormalID then
+      TeleportService:Teleport(7251867574, LocalPlayer)
+    elseif MapID == NightmareID then
+      TeleportService:Teleport(7265397848, LocalPlayer)
+    end
+  elseif RaelHubChapter4Module.CheckPart2() then
+    local NormalID = 7251866503
+    local NightmareID = 7265396805
+    
+    if MapID == NormalID then
+      TeleportService:Teleport(7251867574, LocalPlayer)
+    elseif MapID == NightmareID then
+      TeleportService:Teleport(7265397848, LocalPlayer)
+    end
+  elseif RaelHubChapter4Module.CheckPart3() then
+    local NormalID = 7251867155
+    local NightmareID = 7265397072
+    
+    if MapID == NormalID then
+      TeleportService:Teleport(7251867574, LocalPlayer)
+    elseif MapID == NightmareID then
+      TeleportService:Teleport(7265397848, LocalPlayer)
+    end
+  end
+end
 
+teleportToPlace()
 
 function RaelHubChapter4Module.AutoClicker(value)
   
