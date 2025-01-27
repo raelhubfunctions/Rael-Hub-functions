@@ -447,17 +447,31 @@ function RaelHubChapter4Module.EspObjects(value)
     end
   elseif RaelHubChapter4Module.CheckPart4() then
     
+    getgenv().EspObejct = value
+    
     local GameHearts = workspace:FindFirstChild("GameHearts")
     
-    if GameHearts and value then
+    if GameHearts and getgenv().EspObejct then
       
-      for _, Heart in ipairs(GameHearts:GetChildren()) do
+      while getgenv().EspObejct do
+      
+        for _, Heart in ipairs(GameHearts:GetChildren()) do
+          
+          if Heart:IsA("Model") and not Heart:FindFirstChild("Destroyed") then
+          
+            shared.RaelHubFunction.CreateEspDistance(Heart, Color3.fromRGB(148, 5, 9), "Heart", true)
+            
+          else
+            
+            shared.RaelHubFunction.DisableEsp(Heart)
+            
+          end
+        end
         
-        shared.RaelHubFunction.CreateEspDistance(Heart, Color3.fromRGB(148, 5, 9), "Heart", true)
-        
+        task.wait()
       end
       
-    elseif GameHearts and not value then
+    elseif GameHearts and not getgenv().EspObejct then
       
       for _, Heart in ipairs(GameHearts:GetChildren()) do
         
