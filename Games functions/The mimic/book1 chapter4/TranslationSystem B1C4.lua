@@ -266,9 +266,9 @@ function TranslationModule:GetTabs()
       
       shared.TranslationNamesEsps = {
         
-        [1] = RaelHubTradutor.Tradutor("Key", currentLanguage),
-        [2]  = RaelHubTradutor.Tradutor("Crowbar", currentLanguage),
-        [3]  = RaelHubTradutor.Tradutor("Armor", currentLanguage),
+        RaelHubTradutor.Tradutor("Key", currentLanguage),
+        RaelHubTradutor.Tradutor("Crowbar", currentLanguage),
+        RaelHubTradutor.Tradutor("Armor", currentLanguage),
         
       }
       
@@ -345,9 +345,9 @@ function TranslationModule:GetTabs()
       }
 
       shared.TranslationNamesEsps = {
-        [1] = "Key",
-        [2] = "Crowbar",
-        [3] = "Armor"
+        "Key",
+        "Crowbar",
+        "Armor"
       }
       
       local Translation_Credit = {
