@@ -134,7 +134,7 @@ elseif getgenv().RaelHubAutoTranslator == false then
 end
 
 local TranslationModule = {}
-local configFolder = "RaelHub B1C4" -- Pasta onde os arquivos de tradução serão salvos
+local configFolder = "RaelHub B" -- Pasta onde os arquivos de tradução serão salvos
 
 -- Serviço de localização do Roblox
 local LocalizationService = game:GetService("LocalizationService")
@@ -189,8 +189,12 @@ function TranslationModule:GetTabs()
       -- Se as traduções já existem para o idioma atual, carregar
       if savedConfig then
         task.wait(1)
-          getgenv().RaelHubScreenGuiLoad:Destroy()
-        return savedConfig.Tradution_Main, savedConfig.Translation_Player, savedConfig.Translation_Esp, Translation_Credit
+        getgenv().RaelHubScreenGuiLoad:Destroy()
+        
+        return savedConfig.Translation_Main,
+        savedConfig.Translation_Player,
+        savedConfig.Translation_Esp,
+        savedConfig.Translation_Credit
       else
         
         local text = RaelHubTradutor.Tradutor("This may take a few minutes.", currentLanguage)
