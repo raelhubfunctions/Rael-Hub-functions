@@ -452,7 +452,7 @@ function RaelHubChapter4Module.EspObjects(value)
     local GameHearts = workspace:FindFirstChild("GameHearts")
     local Butterflies = workspace:FindFirstChild("Butterflies")
     
-    if GameHearts and getgenv().EspObejct and Butterflies then
+    if GameHearts and Butterflies then
       
       while getgenv().EspObejct do
       
@@ -469,18 +469,23 @@ function RaelHubChapter4Module.EspObjects(value)
           end
         end
         
-        for _, Model in ipairs(Butterflies:GetChildren()) do
+        for _, Heath in ipairs(Butterflies:GetChildren()) do
           
-          local Butterfly = Model:FindFirstChild("butterfly")
+          if Heath:IsA("Model") then
           
-          if Butterfly.Transparency == 0 then
-          
-            shared.RaelHubFunction.CreateEspObject(Model, Color3.fromRGB(0, 255, 255), "71196298747032", "")
+            local butterfly = Heath:FindFirstChild("butterfly")
             
-          else
             
-            shared.RaelHubFunction.DisableEsp(Model)
             
+            if butterfly then
+              
+              if butterfly.Transparency == 0 then
+                shared.RaelHubFunction.CreateEspObject(butterfly, Color3.fromRGB(0, 255, 255), "71196298747032", "")
+              else
+                shared.RaelHubFunction.DisableEsp(butterfly)
+              end
+              
+            end
           end
         end
         
@@ -489,14 +494,23 @@ function RaelHubChapter4Module.EspObjects(value)
       end
         
       if not getgenv().EspObejct then
+        
         for _, Heart in ipairs(GameHearts:GetChildren()) do
           shared.RaelHubFunction.DisableEsp(Heart)
         end
-        for _, Model in ipairs(Butterflies:GetChildren()) do
-          shared.RaelHubFunction.DisableEsp(Model)
+        
+        for _, Heath in ipairs(Butterflies:GetChildren()) do
+          
+          if Heath:IsA("Model") then
+
+            local butterfly = Heath:FindFirstChild("butterfly")
+
+            if butterfly then
+              shared.RaelHubFunction.DisableEsp(butterfly)
+            end
+          end
         end
       end
-        
     end
   end
 end
