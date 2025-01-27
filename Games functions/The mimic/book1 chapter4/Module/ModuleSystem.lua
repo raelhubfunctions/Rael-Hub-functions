@@ -621,6 +621,9 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
       end
       task.wait()
     end
+    
+    _G.ValidityActionsValue = nil
+    
   end)
 end
 
