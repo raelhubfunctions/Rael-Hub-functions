@@ -470,14 +470,22 @@ end
 
 
 
-function RaelHubChapter4Module.RecoverLife(value)
-  if not RaelHubChapter4Module.CheckPart4() then return end
+function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
+  
+  if not RaelHubChapter4Module.CheckPart4() then
     
+    return nil
+    
+  end
+  
   getgenv().RecoverLife = value
-    
+  
   local function UpdateButterflyList()
+    
     local Butterflies = workspace:FindFirstChild("Butterflies")
+    
     local ListButterfly = {}
+    
     if Butterflies then
       for _, Model in pairs(Butterflies:GetChildren()) do
         local Butterfly = Model:FindFirstChild("butterfly")
@@ -485,49 +493,115 @@ function RaelHubChapter4Module.RecoverLife(value)
           table.insert(ListButterfly, Butterfly)
         end
       end
-    end
-    return ListButterfly
-  end
-    
-  local function TeleportToButterfly(max)
-    local Counter = 0
-    local ButterflyList = UpdateButterflyList()
-    
-    for _, Butterfly in ipairs(ButterflyList) do
-      if Counter == max then break end
       
+      return ListButterfly
+      
+    end
+  end
+  
+  local function TeleportToButterfly(max)
+    
+    local Counter = 0
+    
+     for _, Butterfly in ipairs(UpdateButterflyList()) do
+       
       local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+      
+      if Counter == max then
+        break
+      end
+      
       if HumanoidRootPart then
+        
         local Prompt = Butterfly:FindFirstChild("ProximityPrompt")
-        if Prompt and getgenv().RecoverLife then
-          HumanoidRootPart.CFrame = CFrame.lookAt(HumanoidRootPart.Position, Butterfly.Position)
+          
+        if Prompt then
+          
+          if getgenv().RecoverLife then
+            HumanoidRootPart.CFrame = CFrame.new(Butterfly.Position)
+          end
           task.wait(0.5)
-          fireproximityprompt(Prompt)
+          if getgenv().RecoverLife then
+            fireproximityprompt(Prompt)
+          end
+          
           Counter = Counter + 1
-        else break end
+          
+        end
       end
     end
   end
   
   task.spawn(function()
+  
     while getgenv().RecoverLife do
-      local Humanoid = shared.Character:FindFirstChild("Humanoid")
-      if not Humanoid then break end
-            
-      local Health = Humanoid.Health
-      local ButterflyList = UpdateButterflyList()
       
-      if Health > 20 and Health < 65 and #ButterflyList >= 1 then
-        TeleportToButterfly(2)
-      elseif Health > 65 and Health < 85 and #ButterflyList >= 1 then
-        TeleportToButterfly(1)
-      elseif Health > 0 and Health < 20 then
-        if #ButterflyList >= 1 then
-          TeleportToButterfly(3)
-        else
+      local Humanoid = shared.Character:FindFirstChild("Humanoid")
+      
+      if Humanoid and Humanoid.Health > 20 and Humanoid.Health < 65 then
+        
+        if #UpdateButterflyList() > 1 then
+          
+          if getgenv().RecoverLife then
+              
+            callback1()
+            TeleportToButterfly(2)
+            callback2()
+              
+          end
+          
+        end
+        
+      elseif Humanoid and Humanoid.Health > 65 and  Humanoid.Health < 85 then
+        
+        if #UpdateButterflyList() == 1 then
+          
+          if getgenv().RecoverLife then
+              
+            callback1()
+            TeleportToButterfly(1)
+            callback2()
+              
+          end
+          
+        end
+        
+      elseif Humanoid and Humanoid.Health > 0 and  Humanoid.Health < 20 then
+        
+        if #UpdateButterflyList() > 2 then
+          
+          if getgenv().RecoverLife then
+              
+              callback1()
+              TeleportToButterfly(3)
+              callback2()
+              
+          end
+          
+        elseif #UpdateButterflyList() == 0 then
+          
           local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+          
           if HumanoidRootPart then
-            HumanoidRootPart.CFrame = CFrame.new(2652.878662109375, 274.9132385253906, 2814.821044921875)
+            
+            if getgenv().RecoverLife then
+              HumanoidRootPart.CFrame = CFrame.new(2652.878662109375, 274.9132385253906, 2814.821044921875)
+            end
+            
+            repeat
+              
+              HumanoidRootPart.CFrame = CFrame.new(2652.878662109375, 274.9132385253906, 2814.821044921875)
+              task.wait()
+              
+            until #UpdateButterflyList() > 2 or not getgenv().RecoverLife  
+            
+            if getgenv().RecoverLife then
+              
+              callback1()
+              TeleportToButterfly(3)
+              callback2()
+              
+            end
           end
         end
       end
