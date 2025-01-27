@@ -354,9 +354,11 @@ function RaelHubChapter4Module.EspObjects(value)
   
   if not shared.TranslationNamesEsps then
     
-    shared.TranslationNamesEsps[1] = "Key"
-    shared.TranslationNamesEsps[2] = "Crowbar"
-    shared.TranslationNamesEsps[2] = "Armor"
+    shared.TranslationNamesEsps {
+      [1] = "Key",
+      [2] = "Crowbar",
+      [3] = "Armor"
+    }
     
   end
   
