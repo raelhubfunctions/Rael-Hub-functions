@@ -352,6 +352,14 @@ end
 
 function RaelHubChapter4Module.EspObjects(value)
   
+  if not shared.TranslationNamesEsps then
+    
+    shared.TranslationNamesEsps[1] = "Key"
+    shared.TranslationNamesEsps[2] = "Crowbar"
+    shared.TranslationNamesEsps[2] = "Armor"
+    
+  end
+  
   if RaelHubChapter4Module.CheckPart1() then
     
     local KeysParts = {
@@ -365,10 +373,10 @@ function RaelHubChapter4Module.EspObjects(value)
     if value then
         
       for index, Key in KeysParts do
-        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", "Key " .. index)
+        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", shared.TranslationNamesEsps[1] .. " " .. index)
       end
       
-      shared.RaelHubFunction.CreateEspObject(Crowbar, Color3.fromRGB(0, 255, 255), "122586788171758", "Crowbar")
+      shared.RaelHubFunction.CreateEspObject(Crowbar, Color3.fromRGB(0, 255, 255), "122586788171758", shared.TranslationNamesEsps[2])
       
     else
       
@@ -393,7 +401,7 @@ function RaelHubChapter4Module.EspObjects(value)
     if Butterflies and value then
       
       for index, Key in KeysParts do
-        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", "Key " .. index)
+        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", shared.TranslationNamesEsps[1] .. " " .. index)
       end
       
       for _, butterfly in ipairs(Butterflies:GetChildren()) do
@@ -427,7 +435,7 @@ function RaelHubChapter4Module.EspObjects(value)
         
         for _, Armor in ipairs(PuzzleItems:GetChildren()) do
           
-          shared.RaelHubFunction.CreateEspObject(Armor, Color3.fromRGB(0, 255, 255), "122586788171758", "Armor")
+          shared.RaelHubFunction.CreateEspObject(Armor, Color3.fromRGB(0, 255, 255), "122586788171758", shared.TranslationNamesEsps[3])
           
         end
         
