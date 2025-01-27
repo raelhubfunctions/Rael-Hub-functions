@@ -261,6 +261,7 @@ function TranslationModule:GetTabs()
       local Translation_Esp = {
         
         
+        toggle1 = RaelHubTradutor.Tradutor("Esp", currentLanguage),
         toggle1 = RaelHubTradutor.Tradutor("ESP Players", currentLanguage),
         toggle2 = RaelHubTradutor.Tradutor("ESP Monsters", currentLanguage),
         toggle3 = RaelHubTradutor.Tradutor("ESP Objects", currentLanguage)
