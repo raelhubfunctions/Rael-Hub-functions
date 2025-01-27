@@ -450,8 +450,9 @@ function RaelHubChapter4Module.EspObjects(value)
     getgenv().EspObejct = value
     
     local GameHearts = workspace:FindFirstChild("GameHearts")
+    local Butterflies = workspace:FindFirstChild("Butterflies")
     
-    if GameHearts and getgenv().EspObejct then
+    if GameHearts and getgenv().EspObejct and Butterflies then
       
       while getgenv().EspObejct do
       
@@ -468,16 +469,34 @@ function RaelHubChapter4Module.EspObjects(value)
           end
         end
         
+        for _, Model in ipairs(Butterflies:GetChildren()) do
+          
+          local Butterfly = Model:FindFirstChild("butterfly")
+          
+          if Butterfly:IsA("Model") and Butterfly.Transparency == 0 then
+          
+            shared.RaelHubFunction.CreateEspObject(Model, Color3.fromRGB(0, 255, 255), "71196298747032", "")
+            
+          else
+            
+            shared.RaelHubFunction.DisableEsp(Model)
+            
+          end
+        end
+        
         task.wait()
-      end
-      
-    elseif GameHearts and not getgenv().EspObejct then
-      
-      for _, Heart in ipairs(GameHearts:GetChildren()) do
-        
-        shared.RaelHubFunction.DisableEsp(Heart)
         
       end
+        
+        if not getgenv().EspObejct then
+          for _, Heart in ipairs(GameHearts:GetChildren()) do
+            shared.RaelHubFunction.DisableEsp(Heart)
+          end
+          for _, Model in ipairs(GameHearts:GetChildren()) do
+            shared.RaelHubFunction.DisableEsp(Model)
+          end
+        end
+        
     end
   end
 end
