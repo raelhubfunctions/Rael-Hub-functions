@@ -544,9 +544,9 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
           
           if getgenv().RecoverLife then
               
-            callback1()
+            if callback1 then callback1() end
             TeleportToButterfly(2)
-            callback2()
+            if callback2 then callback2() end
               
           end
           
@@ -558,9 +558,9 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
           
           if getgenv().RecoverLife then
               
-            callback1()
+            if callback1 then callback1() end
             TeleportToButterfly(1)
-            callback2()
+            if callback2 then callback2() end
               
           end
           
@@ -572,9 +572,9 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
           
           if getgenv().RecoverLife then
               
-              callback1()
-              TeleportToButterfly(3)
-              callback2()
+            if callback1 then callback1() end
+            TeleportToButterfly(3)
+            if callback2 then callback2() end
               
           end
           
@@ -597,9 +597,9 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
             
             if getgenv().RecoverLife then
               
-              callback1()
+              if callback1 then callback1() end
               TeleportToButterfly(3)
-              callback2()
+              if callback2 then callback2() end
               
             end
           end
