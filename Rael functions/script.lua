@@ -198,7 +198,15 @@ function RaelHubFunction.CreateEsp(objeto, cor, imageId, texto)
 end
 
 function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
-
+  
+  if objeto:FindFirstChild("RaelHubIcon") then
+    return
+  end
+  
+  if objeto:FindFirstChild("RaelHubDestaque") then
+    return
+  end
+  
   local highlight = Instance.new("Highlight")
   highlight.Name = "RaelHubDestaque"
   highlight.Adornee = objeto
