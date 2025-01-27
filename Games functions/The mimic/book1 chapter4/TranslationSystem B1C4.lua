@@ -134,7 +134,7 @@ elseif getgenv().RaelHubAutoTranslator == false then
 end
 
 local TranslationModule = {}
-local configFolder = "RaelHub B2C2" -- Pasta onde os arquivos de tradução serão salvos
+local configFolder = "RaelHub B1C4" -- Pasta onde os arquivos de tradução serão salvos
 
 -- Serviço de localização do Roblox
 local LocalizationService = game:GetService("LocalizationService")
