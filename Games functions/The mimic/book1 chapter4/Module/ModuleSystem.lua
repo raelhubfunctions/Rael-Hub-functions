@@ -5,6 +5,7 @@ local Backpack = LocalPlayer.Backpack
 
 local TeleportService = game:GetService("TeleportService")
 local VirtualUser = game:GetService("VirtualUser")
+local RunService = game:GetService("RunService")
 
 local RaelHubChapter4Module = {}
 
@@ -175,30 +176,27 @@ function RaelHubChapter4Module.EquipKatana(value)
     
   end
   
-  task.spawn(function()
-    while getgenv().EquipKatana do
+  if not _G.EquipKatanaService then
+    
+    _G.EquipKatanaService = RunService.Heartbeat:Connect(function()
       
-      if shared.Character then
-
-        local KatanaInCharacter = shared.Character:FindFirstChild("Katana")
-        local Humanoid = shared.Character:FindFirstChild("Humanoid")
+      if not shared.Character then return end
+      
+      local KatanaInCharacter = shared.Character:FindFirstChild("Katana")
+      local Humanoid = shared.Character:FindFirstChild("Humanoid")
         
-        if Humanoid and not KatanaInCharacter then
-          
-          local KatanaInBackpack = Backpack:FindFirstChild("Katana")
-          
-          if KatanaInBackpack then
-            
-            Humanoid:EquipTool(KatanaInBackpack)
-            
-          end
+      if Humanoid and not KatanaInCharacter then
+      
+        local KatanaInBackpack = Backpack:FindFirstChild("Katana", true)
+      
+        if KatanaInBackpack and KatanaInBackpack:IsA("Tool") and getgenv().EquipKatana then
+      
+          Humanoid:EquipTool(KatanaInBackpack)
+        
         end
       end
-      
-      task.wait()
-      
-    end
-  end)
+    end)
+  end
 end
 
 
@@ -615,12 +613,12 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
         
       elseif Humanoid and Humanoid.Health > 0 and  Humanoid.Health < 20 then
         
-        if #UpdateButterflyList() > 2 then
+        if #UpdateButterflyList() > 1 then
           
           if getgenv().RecoverLife then
               
             if callback1 then callback1() end
-            TeleportToButterfly(3)
+            TeleportToButterfly(2)
             if callback2 then callback2() end
               
           end
@@ -640,12 +638,12 @@ function RaelHubChapter4Module.RecoverLife(value, callback1, callback2)
               HumanoidRootPart.CFrame = CFrame.new(2652.878662109375, 274.9132385253906, 2814.821044921875)
               task.wait()
               
-            until #UpdateButterflyList() > 2 or not getgenv().RecoverLife  
+            until #UpdateButterflyList() > 1 or not getgenv().RecoverLife  
             
             if getgenv().RecoverLife then
               
               if callback1 then callback1() end
-              TeleportToButterfly(3)
+              TeleportToButterfly(2)
               if callback2 then callback2() end
               
             end
