@@ -33,8 +33,6 @@ function RaelHubChapter4Module.CheckPart4()
   end
 end
 
-return RaelHubChapter4Module
-
 function RaelHubChapter4Module.AutoWin()
   if RaelHubChapter4Module.CheckPart1() then
     local HumanoidRootPart = shared.Character:FindFirstChild("HumanoidRootPart")
