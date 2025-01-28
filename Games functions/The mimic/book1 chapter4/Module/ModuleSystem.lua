@@ -14,21 +14,26 @@ function RaelHubChapter4Module.CheckPart1()
     return true
   end
 end
+
 function RaelHubChapter4Module.CheckPart2()
-  if MapID == 7251866503 or 7265396805 then
+  if MapID == 7251866503 or MapID == 7265396805 then
     return true
   end
 end
+
 function RaelHubChapter4Module.CheckPart3()
   if MapID == 7251867155 or MapID == 7265397072 then
     return true
   end
 end
+
 function RaelHubChapter4Module.CheckPart4()
   if MapID == 7251867574 or MapID == 7265397848 then
     return true
   end
 end
+
+return RaelHubChapter4Module
 
 function RaelHubChapter4Module.AutoWin()
   if RaelHubChapter4Module.CheckPart1() then
@@ -391,15 +396,17 @@ function RaelHubChapter4Module.EspObjects(value)
     local Butterflies = workspace:FindFirstChild("Butterflies")
     
     local KeysParts = {
-      workspace:GetChildren()[23].Handle,
-      workspace:GetChildren()[22].Handle,
-      workspace:GetChildren()[10].Handle
+      workspace:GetChildren()[23]:FindFirstChild("Handle"),
+      workspace:GetChildren()[22]:FindFirstChild("Handle"),
+      workspace:GetChildren()[10]:FindFirstChild("Handle")
     }
     
     if Butterflies and value then
       
       for index, Key in KeysParts do
-        shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", shared.TranslationNamesEsps[1] .. " " .. index)
+        if Key then
+          shared.RaelHubFunction.CreateEspObject(Key, Color3.fromRGB(0, 255, 255), "117047144730308", shared.TranslationNamesEsps[1] .. " " .. index)
+        end
       end
       
       for _, butterfly in ipairs(Butterflies:GetChildren()) do
