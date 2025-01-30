@@ -425,10 +425,9 @@ function TranslationModule:GetTabs()
         section2 = "Make the car colorful",
         section3 = "Car list",
         section4 = "Spawns",
-        section5 = "Make the car lift",
-        section6 = "Do not sit in vehicles",
-        section7 = "Add sound ID to the car (gamepass)",
-        section8 = "Add sound ID to the car via playlist (gamepass)",
+        section5 = "Make the car go up",
+        section6 = "Add sound ID to the car (gamepass)",
+        section7 = "Add sound ID to the car via playlist (gamepass)",
         textboxtext1 = "Vehicle speed",
         textboxtext2 = "Music ID",
         toggle1 = "Colorful car",
@@ -436,26 +435,26 @@ function TranslationModule:GetTabs()
         toggle3 = "Spawn fire",
         toggle4 = "Spawn horn 1",
         toggle5 = "Spawn horn 2",
-        toggle6 = "Lift car",
-        toggle7 = "Do not sit in vehicles",
+        toggle6 = "Raise car",
         button1 = "Update car list",
         button2 = "Teleport to the car",
         dropdowncar = "Cars"
       }
-      
-      local Jogador = { 
+
+      local Player = { 
         name = "Player",
         section1 = "Send message in chat",
         section2 = "Player list",
-        section3 = "Player speed",
-        section4 = "Jump power",
-        section5 = "Pass through walls",
-        section6 = "Illuminate the map",
+        section3 = "Don't sit down",
+        section4 = "Player speed",
+        section5 = "Jump power",
+        section6 = "Pass through walls",
+        section7 = "Illuminate the map",
         dropdowntext = "Players",
         dropdownchoosemode = "Choose mode",
         dropdownchoosemodevalues = {
           "Bus",
-          "Couch"
+          "Sofa"
         },
         textboxtext = "Enter your text",
         textboxplaceholder = "My text",
@@ -463,20 +462,20 @@ function TranslationModule:GetTabs()
         button2 = "Kill player",
         button3 = "Pull player",
         button4 = "Teleport to player",
-        button5 = "Teleport to player with car",
+        button5 = "Teleport player with the car",
         slide = "Text delay",
         slidespeed = "Speed",
         slidejump = "Power",
         toggle1 = "Text spawn",
         toggle2 = "Spectate player",
-        toggle3 = "Teleport to player loop",
-        toggle4 = "Teleport to player with loop car",
-        toggle5 = "Enable speed",
-        toggle6 = "Enable jump power",
-        toggle7 = "Enable no clip",
-        toggle8 = "Fullbright"
+        toggle3 = "Loop teleport to player",
+        toggle4 = "Loop teleport to player with the car",
+        toggle5 = "Do not sit in vehicles or on couchs/strollers",
+        toggle6 = "Enable speed",
+        toggle7 = "Enable jump power",
+        toggle8 = "Enable no-clip",
+        toggle9 = "Fullbright"
       }
-      
       local Ferramenta = { 
         name = "Tool",
         section1 = "Equip tool",
