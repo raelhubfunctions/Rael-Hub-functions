@@ -350,7 +350,7 @@ function TranslationModule:GetTabs()
       local House = {
         name = "House",
         section1 = "Remove your ban from houses",
-        section2 = "List of houses",
+        section2 = "Functions to ban people from your home",
         section3 = "List of houses",
         section4 = "Add sound ID to your house (gamepass)",
         section5 = "Add sound ID to your house via player list (gamepass)",
