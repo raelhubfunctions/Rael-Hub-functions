@@ -198,4 +198,10 @@ GetIdBrookHaven.GetToolsNames = {
   ["Sniper"] = "Sniper"
 }
 
+GetIdBrookHaven.GetHandItemsIds = {
+  ["Urrible Teddy Bear"] = 3339372724,
+  ["Spell Magnate's Staff"] = 3210526113,
+  ["Oinan Steelhoof – Axe"] = 3240543366
+}
+
 return GetIdBrookHaven
