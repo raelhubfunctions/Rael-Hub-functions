@@ -256,9 +256,8 @@ function TranslationModule:GetTabs()
         section3 = "Lista de carros",
         section4 = "Spawns",
         section5 = "Fazer o carro subir",
-        section6 = "Não ficar sentando em veículos",
-        section7 = "Adicionar id de som no carro (gamepass)",
-        section8 = "Adicionar id de som no carro via playlist (gamepass)",
+        section6 = "Adicionar id de som no carro (gamepass)",
+        section7 = "Adicionar id de som no carro via playlist (gamepass)",
         textboxtext1 = "Velocidade do veículo",
         textboxtext2 = "Música id",
         toggle1 = "Carro colorido",
@@ -267,7 +266,6 @@ function TranslationModule:GetTabs()
         toggle4 = "Spawn buzina 1",
         toggle5 = "Spawn buzina 2",
         toggle6 = "Subir carro",
-        toggle7 = "Não se sentar em veículos",
         button1 = "Atualizar lista de carros",
         button2 = "Teleportar para o carro",
         dropdowncar = "Carros"
@@ -277,10 +275,11 @@ function TranslationModule:GetTabs()
         name = "Jogador",
         section1 = "Mandar mensagem no chat",
         section2 = "Lista de jogadores",
-        section3 = "Velocidade do jogador",
-        section4 = "Força do pulo",
-        section5 = "Atravessar as paredes",
-        section6 = "Iluminar o mapa",
+        section3 = "Não fica sentado em veículos e sofa/carrinhos",
+        section4 = "Velocidade do jogador",
+        section5 = "Força do pulo",
+        section6 = "Atravessar as paredes",
+        section7 = "Iluminar o mapa",
         dropdowntext = "Jogadores",
         dropdownchoosemode = "Escolher o modo",
         dropdownchoosemodevalues = {
@@ -301,10 +300,11 @@ function TranslationModule:GetTabs()
         toggle2 = "Spectatar jogador",
         toggle3 = "Teleportar para jogador loop",
         toggle4 = "Teleportar para o jogador com o carro loop",
-        toggle5 = "Ativar velocidade",
-        toggle6 = "Ativar velocidade de pulo",
-        toggle7 = "Ativar no clip",
-        toggle8 = "Fullbright"
+        toggle5 = "Não se sentar em veículos e sofá/carrinho",
+        toggle6 = "Ativar velocidade",
+        toggle7 = "Ativar velocidade de pulo",
+        toggle8 = "Ativar no clip",
+        toggle9 = "Fullbright"
       }
       
       local Ferramenta = { 
