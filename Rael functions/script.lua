@@ -692,5 +692,39 @@ function RaelHubFunction.StopFly()
   end
 end
 
+function RaelHubFunction.NoClip(value)
+  
+  getgenv.RaelHubNoclip = value
+  
+  local function EnableDisableCollide(vvalue)
+    
+    for _, Part in ipairs(Character:GetDescendants()) do
+      
+      if Part and Part:IsA("BasePart") then
+        
+        Part.CanCollide = vvalue
+        
+      end
+    end
+  end
+  
+  task.spawn(function()
+  
+    while getgenv.RaelHubNoclip do
+      
+      EnableDisableCollide(false)
+      task.wait()
+    end
+    
+    if not getgenv.RaelHubNoclip then
+      
+      EnableDisableCollide(true)
+      
+    end
+    
+  end)
+end
+
 shared.RaelHubFunction = RaelHubFunction
+
 return RaelHubFunction
