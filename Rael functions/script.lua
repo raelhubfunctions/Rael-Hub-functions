@@ -6,6 +6,7 @@ local TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local Camera = workspace.CurrentCamera
 local Players = game.Players
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -158,7 +159,7 @@ function RaelHubFunction.CreateNotification(texto, duracao)
 
     task.spawn(animateNotification)
 
-    workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(animateNotification)
+    Camera:GetPropertyChangedSignal("ViewportSize"):Connect(animateNotification)
 end
 
 function RaelHubFunction.CreateEsp(objeto, cor, imageId, texto)
@@ -440,13 +441,12 @@ end
 local AutoRunService = game:GetService("RunService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local player = LocalPlayer
-local camera = workspace.CurrentCamera
 
 local autoClicking = false
 
 function autoClicker()
-  local screenWidth = camera.ViewportSize.X
-  local screenHeight = camera.ViewportSize.Y
+  local screenWidth = Camera.ViewportSize.X
+  local screenHeight = Camera.ViewportSize.Y
   local cornerX = screenWidth - 1
   local cornerY = 1
 
@@ -732,18 +732,21 @@ function RaelHubFunction.SpectatePlayer(value, playername)
   local function spectateplayer()
     
     local player = Players:FindFirstChild(playername)
-    local playercharacter = player.Character
     
-    if not playercharacter then return end
-    
-    local TargetHumanoid = playercharacter:FindFirstChild("Humanoid")
-    
-    if TargetHumanoid then
+    if player then
       
-      Camera.CameraSubject = TargetHumanoid
+      local playercharacter = player.Character
+    
+      if not playercharacter then return end
       
+      local TargetHumanoid = playercharacter:FindFirstChild("Humanoid")
+      
+      if TargetHumanoid then
+        
+        Camera.CameraSubject = TargetHumanoid
+        
+      end
     end
-    
   end
   
   task.spawn(function()
