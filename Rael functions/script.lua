@@ -725,6 +725,48 @@ function RaelHubFunction.NoClip(value)
   end)
 end
 
+function RaelHubFunction.SpectatePlayer(value, playername)
+  
+  getgenv().RaelHubSpectatePlayer = value
+  
+  local function spectateplayer()
+    
+    local player = Players:FindFirstChild(playername)
+    local playercharacter = player.Character
+    
+    if not playercharacter then return end
+    
+    local TargetHumanoid = playercharacter:FindFirstChild("Humanoid")
+    
+    if TargetHumanoid then
+      
+      Camera.CameraSubject = TargetHumanoid
+      
+    end
+    
+  end
+  
+  task.spawn(function()
+  
+    while getgenv().RaelHubSpectatePlayer do
+      spectateplayer()
+      task.wait()
+    end
+    
+    if not getgenv().RaelHubSpectatePlayer then
+      
+      local Humanoid = Character:FindFirstChild("Humanoid")
+      
+      if Humanoid then
+        Camera.CameraSubject = Humanoid
+      end
+      
+    end
+  end)
+end
+
+
+
 shared.RaelHubFunction = RaelHubFunction
 
 return RaelHubFunction
