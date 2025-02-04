@@ -710,13 +710,13 @@ function RaelHubFunction.NoClip(value)
   
   task.spawn(function()
   
-    while getgenv.RaelHubNoclip do
+    while getgenv().RaelHubNoclip do
       
       EnableDisableCollide(false)
       task.wait()
     end
     
-    if not getgenv.RaelHubNoclip then
+    if not getgenv().RaelHubNoclip then
       
       EnableDisableCollide(true)
       
