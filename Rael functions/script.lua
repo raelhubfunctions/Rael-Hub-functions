@@ -694,7 +694,7 @@ end
 
 function RaelHubFunction.NoClip(value)
   
-  getgenv.RaelHubNoclip = value
+  getgenv().RaelHubNoclip = value
   
   local function EnableDisableCollide(vvalue)
     
