@@ -206,9 +206,12 @@ GetIdBrookHaven.GetHandItemsIds = {
 
 GetIdBrookHaven.GetSoundGunID = {
   
-  ["OoooOooooo"] = 12345667,
-  ["AAAaaah"] = 1763737373,
-  ["Scary"] = 1773738383
+  ["OoOoOOO"] = 9084006093,
+  ["AHHHHH"] = 7772283448,
+  ["BRUHH"] = 6349641063,
+  ["Wet Fart"] = 6445594239,
+  ["Minecraft XP"] = 6647877129,
+  ["Pipe"] = 6729922069
   
 }
 
