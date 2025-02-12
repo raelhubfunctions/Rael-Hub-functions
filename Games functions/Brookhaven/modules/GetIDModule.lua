@@ -204,7 +204,7 @@ GetIdBrookHaven.GetHandItemsIds = {
   ["Oinan Steelhoof – Axe"] = 3240543366
 }
 
-GetIdBrookHaven.GetSoundGunID {
+GetIdBrookHaven.GetSoundGunID = {
   
   ["OoooOooooo"] = 12345667,
   ["AAAaaah"] = 1763737373,
