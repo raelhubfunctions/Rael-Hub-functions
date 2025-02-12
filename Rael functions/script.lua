@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://pastebin.com/raw/h5Wp6zTE"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/zk9Dqw8W"))()
 
 local RaelHubFunction = {}
 
