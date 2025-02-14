@@ -2,6 +2,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/zk9Dqw8W"))()
 
 local RaelHubFunction = {}
 
+local VirtualUser = game:GetService("VirtualUser")
 local TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -438,37 +439,24 @@ function StopFly(bodyVelocity)
   end
 end
 
-local AutoRunService = game:GetService("RunService")
-local VirtualInputManager = game:GetService("VirtualInputManager")
-local player = LocalPlayer
-
-local autoClicking = false
-
-function autoClicker()
-  local screenWidth = Camera.ViewportSize.X
-  local screenHeight = Camera.ViewportSize.Y
-  local cornerX = screenWidth - 1
-  local cornerY = 1
-
-  while autoClicking do
-
-    VirtualInputManager:SendMouseButtonEvent(cornerX, cornerY, 0, true, game, 0)
-    VirtualInputManager:SendMouseButtonEvent(cornerX, cornerY, 0, false, game, 0)
-    AutoRunService.Heartbeat:Wait()
+function RaelHubFunction.Auto_Click_V1(value)
+  
+  getgenv().RaelHubAutoClickV1 = value
+  
+  local function Click()
+    VirtualUser:CaptureController()
+    VirtualUser:Button1Down(Vector2.new(1e4, 1e4))
+    task.wait(0.05)
   end
-end
-
-function RaelHubFunction.startAutoClicker()
-    if not autoClicking then
-        autoClicking = true
-        coroutine.wrap(autoClicker)()
+  
+  task.spawn(function()
+    while getgenv().RaelHubAutoClickV1 do
+      
+      Click()
+      task.wait()
+      
     end
-end
-
-function RaelHubFunction.stopAutoClicker()
-    if autoClicking then
-        autoClicking = false
-    end
+  end)
 end
 
 function RaelHubFunction.Criarchao(position, colicion, transparency, corRGB)
