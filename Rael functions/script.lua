@@ -36,7 +36,7 @@ if not _G.RaelHubMonitorRunService then
     if getgenv().RaelHubAimbotValue and getgenv().RaelHubAimbotPlayer and getgenv().RaelHubAimbotTarget then
       local Target_Part = getgenv().RaelHubAimbotPlayer:FindFirstChild(getgenv().RaelHubAimbotTarget, true)
       if Target_Part then
-        Camera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, Target_Part.Position)
+        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Target_Part.Position)
       end
     end
   end)
@@ -770,12 +770,12 @@ end
 
 function RaelHubFunction.AimbotPlayer(value, player, target)
   
-  local Target_Player = target
+  local Target_Part = target
   
-  if Target_Player == "Torso" then Target_Player = "HumanoidRootPart" end
+  if Target_Part == "Torso" then Target_Part = "HumanoidRootPart" end
   
   getgenv().RaelHubAimbotValue = value
-  getgenv().RaelHubAimbotTarget = Target_Player
+  getgenv().RaelHubAimbotTarget = Target_Part
   
   for _, Player in ipairs(Players:GetPlayers()) do
     if Player.Name == player then
