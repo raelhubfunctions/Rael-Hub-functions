@@ -32,17 +32,11 @@ if not _G.MonitorCharacter then
 end
 
 if not _G.RaelHubMonitorRunService then
-  
-  _G.RaelHubMonitorRunService = RunService.HeartBeat:Connect(function()
-    
+  _G.RaelHubMonitorRunService = RunService.Heartbeat:Connect(function()
     if getgenv().RaelHubAimbotValue and getgenv().RaelHubAimbotPlayer and getgenv().RaelHubAimbotTarget then
-      
       local Target_Part = getgenv().RaelHubAimbotPlayer:FindFirstChild(getgenv().RaelHubAimbotTarget, true)
-      
       if Target_Part then
-      
-        Camera.CFrame = CFrame.new(Camera.CFrame.Positon, Target_Part.Positon)
-        
+        Camera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, Target_Part.Position)
       end
     end
   end)
