@@ -31,6 +31,24 @@ if not _G.MonitorCharacter then
   
 end
 
+if not _G.RaelHubMonitorRunService then
+  
+  _G.RaelHubMonitorRunService = RunService.HeartBeat:Connect(function()
+    
+    if getgenv().RaelHubAimbotValue and getgenv().RaelHubAimbotPlayer and getgenv().RaelHubAimbotTarget then
+      
+      local Target_Part = getgenv().RaelHubAimbotPlayer:FindFirstChild(getgenv().RaelHubAimbotTarget, true)
+      
+      if Target_Part then
+      
+        Camera.CFrame = CFrame.new(Camera.CFrame.Positon, Target_Part.Positon)
+        
+      end
+    end
+  end)
+end
+  
+
 function RaelHubFunction.ShowCountText(text, count)
   
   if shared.ScreenGuiShowCountTextTime then
@@ -756,7 +774,27 @@ function RaelHubFunction.SpectatePlayer(value, playername)
   end)
 end
 
-
+function RaelHubFunction.AimbotPlayer(value, player, target)
+  
+  local Target_Player = target
+  
+  if Target_Player == "Torso" then Target_Player = "HumanoidRootPart" end
+  
+  getgenv().RaelHubAimbotValue = value
+  getgenv().RaelHubAimbotTarget = Target_Player
+  
+  for _, Player in ipairs(Players:GetPlayers()) do
+    if Player.Name == player then
+      
+      local Target_Character = Player.Character
+      
+      if Target_Character then
+        getgenv().RaelHubAimbotPlayer = Target_Character
+      end
+      break
+    end
+  end
+end
 
 shared.RaelHubFunction = RaelHubFunction
 
