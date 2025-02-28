@@ -233,7 +233,7 @@ function TranslationModule:GetTabs()
         section5 = RaelHubTradutor.Tradutor("Light the torch", currentLanguage),
         section6 = RaelHubTradutor.Tradutor("Pass the gate", currentLanguage),
         button1 = RaelHubTradutor.Tradutor("Esp GrinDemon", currentLanguage),
-        button2 = RaelHubTradutor.Tradutor("Aimbot GrinDemon", currentLanguage),
+        button2 = "Aimbot GrinDemon",
         button3 = RaelHubTradutor.Tradutor("Safe zone", currentLanguage),
         button4 = RaelHubTradutor.Tradutor("Collect items", currentLanguage),
         button5 = RaelHubTradutor.Tradutor("Ignite torch", currentLanguage),
@@ -354,7 +354,7 @@ function TranslationModule:GetTabs()
       local Tab_BossYurei = {
         name = RaelHubTradutor.Tradutor("Boss Yurei", currentLanguage),
         aimbotyureisection = RaelHubTradutor.Tradutor("Throw katana at yurei", currentLanguage),
-        aimbotyureibutton = RaelHubTradutor.Tradutor("Aimbot Yurei", currentLanguage),
+        aimbotyureibutton = "Aimbot Yurei",
         section1 = RaelHubTradutor.Tradutor("Katanas", currentLanguage),
         section2 = RaelHubTradutor.Tradutor("Cross all the trees", currentLanguage),
         section3 = RaelHubTradutor.Tradutor("Become immune to vines", currentLanguage),
