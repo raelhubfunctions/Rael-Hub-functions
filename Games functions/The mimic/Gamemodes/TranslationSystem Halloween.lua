@@ -243,7 +243,7 @@ function TranslationModule:GetTabs()
       local Tab_Credits = {
         name = RaelHubTradutor.Tradutor("Credits", currentLanguage),
         section = RaelHubTradutor.Tradutor("Script creator", currentLanguage),
-        descricao = RaelHubTradutor.Tradutor("Join my YouTube channel and Discord for new updates", currentLanguage),
+        description = RaelHubTradutor.Tradutor("Join my YouTube channel and Discord for new updates", currentLanguage),
         ContentNotify = RaelHubTradutor.Tradutor("The script has been copied to the desktop", currentLanguage)
       }
       
