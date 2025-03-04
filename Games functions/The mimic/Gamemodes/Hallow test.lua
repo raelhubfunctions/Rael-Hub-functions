@@ -221,7 +221,7 @@ function TranslationModule:GetTabs()
         player_fullbright_section = RaelHubTradutor.Tradutor("Light up your map", currentLanguage),
         player_list_dropdown = RaelHubTradutor.Tradutor("Players List:", currentLanguage),
         player_speed_slide = RaelHubTradutor.Tradutor("Speed:", currentLanguage),
-        tp_player_button = RaelHubTraedutor.Tradutor("Teleport for player", currentLanguage),
+        tp_player_button = RaelHubTradutor.Tradutor("Teleport for player", currentLanguage),
         spctate_player_button = RaelHubTraedutor.Tradutor("Spectate player", currentLanguage),
         player_speed_button = RaelHubTradutor.Tradutor("Enable speed", currentLanguage),
         player_fullbright_button = RaelHubTradutor.Tradutor("Fullbright", currentLanguage),
