@@ -222,10 +222,9 @@ function TranslationModule:GetTabs()
         player_list_dropdown = RaelHubTradutor.Tradutor("Players List:", currentLanguage),
         player_speed_slide = RaelHubTradutor.Tradutor("Speed:", currentLanguage),
         tp_player_button = RaelHubTradutor.Tradutor("Teleport for player", currentLanguage),
-        spctate_player_button = RaelHubTraedutor.Tradutor("Spectate player", currentLanguage),
+        spectate_player_button = RaelHubTradutor.Tradutor("Spectate player", currentLanguage),
         player_speed_button = RaelHubTradutor.Tradutor("Enable speed", currentLanguage),
         player_fullbright_button = RaelHubTradutor.Tradutor("Fullbright", currentLanguage),
-        
       }
       
       notification:createNotification(RaelHubTradutor.Tradutor('"Player" translation completed', currentLanguage), 5)
@@ -292,7 +291,7 @@ function TranslationModule:GetTabs()
         player_list_dropdown = "Players List:",
         player_speed_slide = "Speed:",
         tp_player_button = "Teleport for player",
-        spctate_player_button = "Spectate player",
+        spectate_player_button = "Spectate player",
         player_speed_button = "Enable speed",
         player_fullbright_button = "Fullbright",
       }
