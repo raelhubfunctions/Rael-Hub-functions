@@ -336,7 +336,8 @@ function TranslationModule:GetTabs()
         section3 = "Ficar pegando fogo",
         button1 = "Desbloquear gamepass de música",
         button2 = "Puxe todos os jogadores",
-        button3 = "Avatar fogo"
+        button3 = "Avatar fogo",
+        slidefire = "Tamanho do fogo"
       }
       
       local Mostrar = {
@@ -513,7 +514,8 @@ function TranslationModule:GetTabs()
         section3 = "Ficar pegando fogo",
         button1 = "Unlock music gamepass",
         button2 = "Pull all players",
-        button3 = "Avatar fire"
+        button3 = "Avatar fire",
+        slidefire = "Fire size"
       }
       local Mostrar = {
         name = "Esp",
