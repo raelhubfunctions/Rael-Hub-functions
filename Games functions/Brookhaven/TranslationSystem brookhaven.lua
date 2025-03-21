@@ -274,12 +274,10 @@ function TranslationModule:GetTabs()
       local Jogador = { 
         name = "Jogador",
         section1 = "Mandar mensagem no chat",
-        section2 = "Lista de jogadores",
-        section3 = "Não fica sentado em veículos e sofa/carrinhos",
-        section4 = "Velocidade do jogador",
-        section5 = "Força do pulo",
-        section6 = "Atravessar as paredes",
-        section7 = "Iluminar o mapa",
+        section2 = "Velocidade do jogador",
+        section3 = "Força do pulo",
+        section4 = "Atravessar as paredes",
+        section5 = "Iluminar o mapa",
         dropdowntext = "Jogadores",
         dropdownchoosemode = "Escolher o modo",
         dropdownchoosemodevalues = {
@@ -289,23 +287,14 @@ function TranslationModule:GetTabs()
         textboxtext = "Ensira seu texto",
         textboxplaceholder = "Meu texto",
         button1 = "Mandar texto",
-        button2 = "Matar jogador",
-        button3 = "Puxar jogador",
-        button4 = "Teleportar para jogador",
-        button5 = "Teleportar jogador com o carro",
-        uptdplayer = "Atualizar lista de jogandores",
         slide = "Delay do texto",
         slidespeed = "Velocidade",
         slidejump = "Poder",
         toggle1 = "Spawn de texto",
-        toggle2 = "Spectatar jogador",
-        toggle3 = "Teleportar para jogador loop",
-        toggle4 = "Teleportar para o jogador com o carro loop",
-        toggle5 = "Não se sentar em veículos e sofá/carrinho",
-        toggle6 = "Ativar velocidade",
-        toggle7 = "Ativar velocidade de pulo",
-        toggle8 = "Ativar no clip",
-        toggle9 = "Fullbright"
+        toggle2 = "Ativar velocidade",
+        toggle3 = "Ativar velocidade de pulo",
+        toggle4 = "Ativar no clip",
+        toggle5 = "Fullbright"
       }
       
       local Ferramenta = { 
@@ -322,6 +311,12 @@ function TranslationModule:GetTabs()
         buttonPlay = "Tocar música",
         togglePlay = "Tocar música loop"
       }
+      
+      local Trolar = {
+        name = "Troll"
+        
+      }
+      
       local Cliente = {
         name = "Cliente",
         section1 = "Gamepass",
@@ -345,7 +340,7 @@ function TranslationModule:GetTabs()
       
       getgenv().RaelHubScreenGuiLoad:Destroy()
       
-      return House, Clothes, Car, Jogador, Ferramenta, Cliente, Mostrar, Creditos
+      return House, Clothes, Car, Jogador, Trolar,  Ferramenta, Cliente, Mostrar, Creditos
     else
       
       local House = {
@@ -446,37 +441,49 @@ function TranslationModule:GetTabs()
         name = "Player",
         section1 = "Send message in chat",
         section2 = "Player list",
-        section3 = "Don't sit down",
-        section4 = "Player speed",
-        section5 = "Jump power",
-        section6 = "Pass through walls",
-        section7 = "Illuminate the map",
-        dropdowntext = "Players",
-        dropdownchoosemode = "Choose mode",
-        dropdownchoosemodevalues = {
-          "Bus",
-          "Sofa"
-        },
+        section3 = "Player speed",
+        section4 = "Jump power",
+        section5 = "Pass through walls",
+        section6 = "Illuminate the map",
         textboxtext = "Enter your text",
         textboxplaceholder = "My text",
         button1 = "Send text",
-        button2 = "Kill player",
-        button3 = "Pull player",
-        button4 = "Teleport to player",
-        button5 = "Teleport player with the car",
-        uptdplayer = "Update player list",
         slide = "Text delay",
         slidespeed = "Speed",
         slidejump = "Power",
         toggle1 = "Text spawn",
-        toggle2 = "Spectate player",
-        toggle3 = "Loop teleport to player",
-        toggle4 = "Loop teleport to player with the car",
-        toggle5 = "Do not sit in vehicles or on couchs/strollers",
-        toggle6 = "Enable speed",
-        toggle7 = "Enable jump power",
-        toggle8 = "Enable no-clip",
-        toggle9 = "Fullbright"
+        toggle2 = "Enable speed",
+        toggle3 = "Enable jump power",
+        toggle4 = "Enable no-clip",
+        toggle5 = "Fullbright"
+      }
+      local Trolar = {
+        name = "Troll",
+        list_player_section = "Lista de jogadores",
+        kill_pull_section = "Matar e puxar jogador",
+        fling_section = "Arremessar o jogador",
+        tp_sp_section = "Teleportar e spectar jogador ",
+        anti_seat_section = "Modos de anti se sentar",
+        
+        list_player_dropdown = "Jogadores",
+        choose_mode_dropdown = "Escolher modo",
+        
+        dropdown_modes1 = {"Ônibus", "Sofá"},
+        dropdown_modes2 = {"Ônibus", "Sofá", "Barco"},
+        
+        uptdplayer_button = "Atualizar lista de jogadores",
+        teleporte_button = "Teleportar para jogador",
+        teleporteC_button = "Teleportar para jogador com carro",
+        
+        killplayer_toggle = "Matar jogador",
+        pullplayer_toggle = "Puxar jogador",
+        flingplayer_toggle = "Arremessar jogador",
+        spectar_toggle = "Spectar jogador",
+        
+        antiseatV_toggle = "Anti seat: Veículos",
+        antiseatT_toggle = "Anti seat: Tools",
+        antiseatAll_toggle = "Anti seat: Tudo"
+        
       }
       local Ferramenta = { 
         name = "Tool",
@@ -515,7 +522,7 @@ function TranslationModule:GetTabs()
       
       getgenv().RaelHubScreenGuiLoad:Destroy()
       
-      return House, Clothes, Car, Jogador, Ferramenta, Cliente, Mostrar, Creditos
+      return House, Clothes, Car, Jogador, Trolar, Ferramenta, Cliente, Mostrar, Creditos
       
     end
 end
