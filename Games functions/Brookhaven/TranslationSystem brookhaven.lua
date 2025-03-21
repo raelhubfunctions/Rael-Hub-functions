@@ -272,29 +272,46 @@ function TranslationModule:GetTabs()
       }
       
       local Jogador = { 
-        name = "Jogador",
-        section1 = "Mandar mensagem no chat",
-        section2 = "Velocidade do jogador",
-        section3 = "Força do pulo",
-        section4 = "Atravessar as paredes",
-        section5 = "Iluminar o mapa",
-        dropdowntext = "Jogadores",
-        dropdownchoosemode = "Escolher o modo",
-        dropdownchoosemodevalues = {
-          "Ônibus",
-          "Sofa"
-        },
-        textboxtext = "Ensira seu texto",
-        textboxplaceholder = "Meu texto",
-        button1 = "Mandar texto",
-        slide = "Delay do texto",
+        name = "Player",
+        section1 = "Velocidade do jogador",
+        section2 = "Potência de pulo do jogador",
+        section3 = "Pode atravessar as paredes",
+        section4 = "Iluminar o mapa",
         slidespeed = "Velocidade",
-        slidejump = "Poder",
-        toggle1 = "Spawn de texto",
-        toggle2 = "Ativar velocidade",
-        toggle3 = "Ativar velocidade de pulo",
-        toggle4 = "Ativar no clip",
-        toggle5 = "Fullbright"
+        slidejump = "Potência",
+        toggle1 = "Ativar velocidade",
+        toggle2 = "Ativar potência de pulo",
+        toggle3 = "Ativar no-clip",
+        toggle4 = "Ativar Fullbright"
+      }
+      
+      local Trolar = {
+        name = "Troll",
+        list_player_section = "Lista de jogadores",
+        kill_pull_section = "Matar e puxar jogador",
+        fling_section = "Arremessar o jogador",
+        tp_sp_section = "Teleportar e spectar jogador ",
+        anti_seat_section = "Modos de anti se sentar",
+        
+        list_player_dropdown = "Jogadores",
+        choose_mode_dropdown = "Escolher modo",
+        
+        dropdown_modes1 = {"Ônibus", "Sofá"},
+        dropdown_modes2 = {"Ônibus", "Sofá", "Barco"},
+        
+        uptdplayer_button = "Atualizar lista de jogadores",
+        teleporte_button = "Teleportar para jogador",
+        teleporteC_button = "Teleportar para jogador com carro",
+        
+        killplayer_toggle = "Matar jogador",
+        pullplayer_toggle = "Puxar jogador",
+        flingplayer_toggle = "Arremessar jogador",
+        spectar_toggle = "Spectar jogador",
+        
+        antiseatV_toggle = "Anti seat: Veículos",
+        antiseatT_toggle = "Anti seat: Tools",
+        antiseatAll_toggle = "Anti seat: Tudo"
+        
       }
       
       local Ferramenta = { 
@@ -310,11 +327,6 @@ function TranslationModule:GetTabs()
         buttonEquip = "Equipe item",
         buttonPlay = "Tocar música",
         togglePlay = "Tocar música loop"
-      }
-      
-      local Trolar = {
-        name = "Troll"
-        
       }
       
       local Cliente = {
@@ -439,51 +451,43 @@ function TranslationModule:GetTabs()
 
       local Jogador = { 
         name = "Player",
-        section1 = "Send message in chat",
-        section2 = "Player list",
-        section3 = "Player speed",
-        section4 = "Jump power",
-        section5 = "Pass through walls",
-        section6 = "Illuminate the map",
-        textboxtext = "Enter your text",
-        textboxplaceholder = "My text",
-        button1 = "Send text",
-        slide = "Text delay",
+        section1 = "Player speed",
+        section2 = "Jump power",
+        section3 = "Pass through walls",
+        section4 = "Illuminate the map",
         slidespeed = "Speed",
         slidejump = "Power",
-        toggle1 = "Text spawn",
-        toggle2 = "Enable speed",
-        toggle3 = "Enable jump power",
-        toggle4 = "Enable no-clip",
-        toggle5 = "Fullbright"
+        toggle1 = "Enable speed",
+        toggle2 = "Enable jump power",
+        toggle3 = "Enable no-clip",
+        toggle4 = "Fullbright"
       }
       local Trolar = {
         name = "Troll",
-        list_player_section = "Lista de jogadores",
-        kill_pull_section = "Matar e puxar jogador",
-        fling_section = "Arremessar o jogador",
-        tp_sp_section = "Teleportar e spectar jogador ",
-        anti_seat_section = "Modos de anti se sentar",
+        list_player_section = "Player list",
+        kill_pull_section = "Kill and pull player",
+        fling_section = "Fling player",
+        tp_sp_section = "Teleport and spectate player",
+        anti_seat_section = "Anti-sit modes",
         
-        list_player_dropdown = "Jogadores",
-        choose_mode_dropdown = "Escolher modo",
+        list_player_dropdown = "Players",
+        choose_mode_dropdown = "Choose mode",
         
-        dropdown_modes1 = {"Ônibus", "Sofá"},
-        dropdown_modes2 = {"Ônibus", "Sofá", "Barco"},
+        dropdown_modes1 = {"Bus", "Sofa"},
+        dropdown_modes2 = {"Bus", "Sofa", "Boat"},
         
-        uptdplayer_button = "Atualizar lista de jogadores",
-        teleporte_button = "Teleportar para jogador",
-        teleporteC_button = "Teleportar para jogador com carro",
+        uptdplayer_button = "Update player list",
+        teleporte_button = "Teleport to player",
+        teleporteC_button = "Teleport to player with car",
         
-        killplayer_toggle = "Matar jogador",
-        pullplayer_toggle = "Puxar jogador",
-        flingplayer_toggle = "Arremessar jogador",
-        spectar_toggle = "Spectar jogador",
+        killplayer_toggle = "Kill player",
+        pullplayer_toggle = "Pull player",
+        flingplayer_toggle = "Fling player",
+        spectar_toggle = "Spectate player",
         
-        antiseatV_toggle = "Anti seat: Veículos",
+        antiseatV_toggle = "Anti seat: Vehicles",
         antiseatT_toggle = "Anti seat: Tools",
-        antiseatAll_toggle = "Anti seat: Tudo"
-        
+        antiseatAll_toggle = "Anti seat: Everything"
       }
       local Ferramenta = { 
         name = "Tool",
