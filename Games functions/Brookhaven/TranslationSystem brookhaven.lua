@@ -333,8 +333,10 @@ function TranslationModule:GetTabs()
         name = "Cliente",
         section1 = "Gamepass",
         section2 = "Puxe os jogadores para perto de você",
+        section3 = "Ficar pegando fogo",
         button1 = "Desbloquear gamepass de música",
-        button2 = "Puxe todos os jogadores"
+        button2 = "Puxe todos os jogadores",
+        button3 = "Avatar fogo"
       }
       
       local Mostrar = {
@@ -508,8 +510,10 @@ function TranslationModule:GetTabs()
         name = "Client",
         section1 = "Gamepass",
         section2 = "Pull players towards you",
+        section3 = "Ficar pegando fogo",
         button1 = "Unlock music gamepass",
-        button2 = "Pull all players"
+        button2 = "Pull all players",
+        button3 = "Avatar fire"
       }
       local Mostrar = {
         name = "Esp",
