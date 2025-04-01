@@ -8,7 +8,7 @@ function RaelHubLoadScreenGui(textvalue)
   local imageLabel = Instance.new("ImageLabel")
   imageLabel.Size = UDim2.new(0.7, 0, 0.6, 0)
   imageLabel.Position = UDim2.new(0.15, 0, 0.2, 0)
-  imageLabel.Image = "rbxassetid://84663543883498"
+  imageLabel.Image = "rbxassetid://18665679839"
   imageLabel.BackgroundTransparency = 1
   imageLabel.ScaleType = Enum.ScaleType.Stretch
   imageLabel.Parent = getgenv().RaelHubScreenGuiLoad
@@ -78,7 +78,7 @@ function RaelHubLoadScreenGui(textvalue)
 
   -- Som ao iniciar (opcional)
   local startSound = Instance.new("Sound")
-  startSound.SoundId = "rbxassetid://6114974207"
+  startSound.SoundId = "rbxassetid://84663543883498"
   startSound.Volume = 1
   startSound.Parent = getgenv().RaelHubScreenGuiLoad
   startSound:Play()
