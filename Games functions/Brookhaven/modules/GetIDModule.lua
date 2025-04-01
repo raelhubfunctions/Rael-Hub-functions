@@ -211,7 +211,13 @@ GetIdBrookHaven.GetSoundGunID = {
   ["BRUHH"] = 6349641063,
   ["Wet Fart"] = 6445594239,
   ["Minecraft XP"] = 6647877129,
-  ["Pipe"] = 6729922069
+  ["Pipe"] = 6729922069,
+  ["Toma jack"] = 132603645477541,
+  ["Sai daí, lava prato"] = 101232400175829,
+  ["Rapido! EU NÂO QUERO MORRER!!"] = 7611924192580,
+  ["I ghost the down cool"] = 84663543883498,
+  ["Pede ifood, pede"] = 133843750864059,
+  ["Cérebro burro"] = 82284055473737
   
 }
 
