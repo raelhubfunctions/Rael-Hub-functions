@@ -177,78 +177,181 @@ function TranslationModule:GetTabs()
     
     if getgenv().RaelHubAutoTranslator and currentLanguage == "pt" then
 
-      local House = { name = "المنزل", section1 = "إزالة الحظر عن المنازل", section2 = "وظائف لحظر الأشخاص من منزلك", section3 = "قائمة المنازل", section4 = "إضافة معرف الصوت إلى منزلك (تصريح اللعبة)", section5 = "إضافة معرف الصوت إلى منزلك عبر قائمة اللاعبين (تصريح اللعبة)", toggle1 = "إزالة الحظر تلقائيًا", toggle2 = "حظر اللاعب من منزلك (تكرار)", toggle3 = "حظر الجميع من منزلك (تكرار)", toggle4 = "العبور من باب المنزل", toggle5 = "ظهور جرس الباب", toggle6 = "ظهور صوت طرق الباب", toggle7 = "ظهور الأضواء", button1 = "إزالة الحظر", button2 = "حظر اللاعب من منزلك", button3 = "حظر الجميع من منزلك", button4 = "تحديث قائمة المنازل", button5 = "الحصول على الإذن", button6 = "الانتقال إلى المنزل", button7 = "الانتقال إلى الخزنة", button8 = "تشغيل الموسيقى", button9 = "حفظ قائمة التشغيل", button10 = "تحميل قائمة التشغيل", dropdowntext1 = "المنازل", dropdowntext2 = "معرفات الموسيقى", textboxtext1 = "معرف الموسيقى", textboxtext2 = "أدخل رابط Pastebin الخاص بك", textboxdescription = "دليل على قناة رايل هب" }
 
-local Clothes = { name = "الملابس", section1 = "تلوين اسم الشخصية", section2 = "تلوين الوصف الشخصي", section3 = "تلوين الشخصية", section4 = "حجم الشخصية", section5 = "قائمة اللاعبين", section6 = "قائمة أجزاء الجسم", section7 = "قائمة الدومينوس", section8 = "قائمة الفالكيري", section9 = "قائمة قبعات Sparkle Time Fedora", section10 = "قائمة الجنيات", section11 = "قائمة عناصر الصوت", section12 = "قائمة العناصر المحمولة", toggle1 = "اسم ملون", toggle2 = "وصف ملون", toggle3 = "شخصية ملونة", equipedbutton = "تجهيز الجزء", equipedbutton2 = "تجهيز العنصر", button1 = "تصغير اللاعب", button2 = "إعادة حجم اللاعب الطبيعي", button3 = "نسخ مظهر اللاعب", button4 = "نسخ مظهر أقرب لاعب", button5 = "نسخ مظهر لاعب عشوائي", dropdownplayertext = "قائمة اللاعبين", dropdowncopytype = "اختيار النوع", dropdownhandle = "الرأس", dropdownleftarm = "الذراع اليسرى", dropdownrigtharm = "الذراع اليمنى", dropdowntorso = "الجذع", dropdownleftleg = "الساق اليسرى", dropdownrigthleg = "الساق اليمنى", dropdowndominus = "دومينوس", dropdownvalkyrie = "فالكيري", dropdownstf = "Sparkle Time Fedora", dropdownfairy = "جنيات", dropdownsong = "عناصر الصوت", dropdownhanditem = "العناصر المحمولة" }
-
-local Car = { name = "السيارات", section1 = "تعديل سرعة السيارة", section2 = "تلوين السيارة", section3 = "قائمة السيارات", section4 = "نقاط الظهور", section5 = "رفع السيارة", section6 = "إضافة معرف الصوت إلى السيارة (تصريح اللعبة)", section7 = "إضافة معرف الصوت إلى السيارة عبر قائمة التشغيل (تصريح اللعبة)", textboxtext1 = "سرعة السيارة", textboxtext2 = "معرف الموسيقى", toggle1 = "سيارة ملونة", toggle2 = "سحب السيارة", toggle3 = "ظهور النار", toggle4 = "ظهور بوق السيارة 1", toggle5 = "ظهور بوق السيارة 2", toggle6 = "رفع السيارة", button1 = "تحديث قائمة السيارات", button2 = "الانتقال إلى السيارة", dropdowncar = "السيارات" }
-
-local Jogador = { name = "اللاعب", section1 = "سرعة اللاعب", section2 = "قوة قفز اللاعب", section3 = "القدرة على العبور من الجدران", section4 = "إضاءة الخريطة", slidespeed = "السرعة", slidejump = "القوة", toggle1 = "تفعيل السرعة", toggle2 = "تفعيل قوة القفز", toggle3 = "تفعيل العبور من الجدران", toggle4 = "تفعيل الإضاءة الكاملة" }
-
-local Trolar = {
-        name = "مقلب",
-        list_player_section = "قائمة اللاعبين",
-        kill_pull_section = "قتل وسحب اللاعب",
-        fling_section = "رمي اللاعب",
-        tp_sp_section = "الانتقال والمراقبة",
-        anti_seat_section = "وضعيات منع الجلوس",
-
-        list_player_dropdown = "اللاعبون",
-        choose_mode_dropdown = "اختر الوضع",
-
-        dropdown_modes1 = {"حافلة", "أريكة"},
-        dropdown_modes2 = {"حافلة", "أريكة", "قارب"},
-
-        uptdplayer_button = "تحديث قائمة اللاعبين",
-        teleporte_button = "الانتقال إلى اللاعب",
-        teleporteC_button = "الانتقال إلى اللاعب مع السيارة",
-
-        killplayer_toggle = "قتل اللاعب",
-        pullplayer_toggle = "سحب اللاعب",
-        flingplayer_toggle = "رمي اللاعب",
-        spectar_toggle = "مراقبة اللاعب",
-
-        antiseatV_toggle = "منع الجلوس: المركبات",
-        antiseatT_toggle = "منع الجلوس: الأدوات",
-        antiseatAll_toggle = "منع الجلوس: الكل"
+      local House = {
+        name = "Casa",
+        section1 = "Remover seu ban nas casas",
+        section2 = "Funções para banir o pessoal da sua casa",
+        section3 = "Lista de casas",
+        section4 = "Adicionar id de som na sua casa (gamepass)",
+        section5 = "Adicionar id de som na sua casa via playerlist (gamepass)",
+        toggle1 = "Remover o ban automáticamente",
+        toggle2 = "Banir o jogador da sua casa (loop)",
+        toggle3 = "Banir todo mundo da sua casa (loop)",
+        toggle4 = "Atravessar a porta da casa",
+        toggle5 = "Spawn campinha",
+        toggle6 = "Spawn bater porta",
+        toggle7 = "Spawn luzes",
+        button1 = "Remover ban",
+        button2 = "Banir o jogador da sua casa",
+        button3 = "Banir todo mundo da sua casa",
+        button4 = "Atulizar lista das casas",
+        button5 = "Pegar permissão",
+        button6 = "Teleportar para a casa",
+        button7 = "Teleportar para o cofre",
+        button8 = "Tocar a música",
+        button9 = "Salvar a playlist",
+        button10 = "Carrgar a playlist",
+        dropdowntext1 = "Casas",
+        dropdowntext2 = "Musicas ids",
+        textboxtext1 = "Musica Id",
+        textboxtext2 = "Ensira seu pastebin",
+        textboxdescription = "Tutorial no canal rael hub"
       }
 
-local Ferramenta = { 
-        name = "أداة",
-        section1 = "تجهيز الأداة",
-        section2 = "تجهيز الأسلحة",
-        section3 = "إضافة صوت السلاح عبر المعرف",
-        section4 = "قائمة معرفات الصوت",
-        ToolDropdownName = "أسماء الأدوات",
-        ToolGunDropdownName = "أسماء الأسلحة",
-        SoundIDDropdownName = "معرفات الصوت",
-        SoundIDTextBoxName = "أدخل معرف الصوت",
-        buttonEquip = "تجهيز العنصر",
-        buttonPlay = "تشغيل الموسيقى",
-        togglePlay = "تشغيل الموسيقى بشكل متكرر"
+      local Clothes = {  
+        name = "Roupas",  
+        section1 = "Deixar o nome do personagem colorido",  
+        section2 = "Deixar o bio do personagem colorido",  
+        section3 = "Deixar o personagem colorido",  
+        section4 = "Tamanho do personagem",  
+        section5 = "Lista de jogadores",  
+        section6 = "Lista de partes do corpo do personagem",  
+        section7 = "Lista de Dominus",  
+        section8 = "Lista de Valquírias",  
+        section9 = "Lista de Sparkle time fedora",  
+        section10 = "Lista de Fadas",  
+        section11 = "Lista de itens de som",  
+        section12 = "Lista de itens para mão",  
+        toggle1 = "Nome colorido",  
+        toggle2 = "Bio colorido",  
+        toggle3 = "Personagem colorido",  
+        equipedbutton = "Equipar parte",  
+        equipedbutton2 = "Equipar item",  
+        button1 = "Deixar o jogador pequeno",  
+        button2 = "Deixar o jogador de tamanho normal",  
+        button3 = "Copiar skin do jogador",  
+        button4 = "Copie a skin do jogador mais próximo",  
+        button5 = "Copie a skin de um jogador aleatório",  
+        dropdownplayertext = "Lista de jogadores",  
+        dropdowncopytype = "Escolha do tipo",  
+        dropdownhandle = "Cabeça",  
+        dropdownleftarm = "Braço esquerdo",  
+        dropdownrigtharm = "Braço direito",  
+        dropdowntorso = "Tronco",  
+        dropdownleftleg = "Pé esquerdo",  
+        dropdownrigthleg = "Pé direito",  
+        dropdowndominus = "Dominus",  
+        dropdownvalkyrie = "Valquírias",  
+        dropdownstf = "Sparkle time fedora",  
+        dropdownfairy = "fadas",  
+        dropdownsong = "Song itens",  
+        dropdownhanditem = "Itens de mão"  
+          
+      }  
+        
+      local Car = {  
+        name = "Carros",  
+        section1 = "Modificar a velocidade do veículo",  
+        section2 = "Deixar o carro colorido",  
+        section3 = "Lista de carros",  
+        section4 = "Spawns",  
+        section5 = "Fazer o carro subir",  
+        section6 = "Adicionar id de som no carro (gamepass)",  
+        section7 = "Adicionar id de som no carro via playlist (gamepass)",  
+        textboxtext1 = "Velocidade do veículo",  
+        textboxtext2 = "Música id",  
+        toggle1 = "Carro colorido",  
+        toggle2 = "Puxar carro",  
+        toggle3 = "Spawn fogo",  
+        toggle4 = "Spawn buzina 1",  
+        toggle5 = "Spawn buzina 2",  
+        toggle6 = "Subir carro",  
+        button1 = "Atualizar lista de carros",  
+        button2 = "Teleportar para o carro",  
+        dropdowncar = "Carros"  
+      }  
+        
+      local Jogador = {   
+        name = "Player",  
+        section1 = "Velocidade do jogador",  
+        section2 = "Potência de pulo do jogador",  
+        section3 = "Pode atravessar as paredes",  
+        section4 = "Iluminar o mapa",  
+        slidespeed = "Velocidade",  
+        slidejump = "Potência",  
+        toggle1 = "Ativar velocidade",  
+        toggle2 = "Ativar potência de pulo",  
+        toggle3 = "Ativar no-clip",  
+        toggle4 = "Ativar Fullbright"  
+      }  
+        
+      local Trolar = {  
+        name = "Troll",  
+        list_player_section = "Lista de jogadores",  
+        kill_pull_section = "Matar e puxar jogador",  
+        fling_section = "Arremessar o jogador",  
+        tp_sp_section = "Teleportar e spectar jogador ",  
+        anti_seat_section = "Modos de anti se sentar",  
+          
+        list_player_dropdown = "Jogadores",  
+        choose_mode_dropdown = "Escolher modo",  
+          
+        dropdown_modes1 = {"Ônibus", "Sofá"},  
+        dropdown_modes2 = {"Ônibus", "Sofá", "Barco"},  
+          
+        uptdplayer_button = "Atualizar lista de jogadores",  
+        teleporte_button = "Teleportar para jogador",  
+        teleporteC_button = "Teleportar para jogador com carro",  
+          
+        killplayer_toggle = "Matar jogador",  
+        pullplayer_toggle = "Puxar jogador",  
+        flingplayer_toggle = "Arremessar jogador",  
+        spectar_toggle = "Spectar jogador",  
+          
+        antiseatV_toggle = "Anti seat: Veículos",  
+        antiseatT_toggle = "Anti seat: Tools",  
+        antiseatAll_toggle = "Anti seat: Tudo"  
+          
+      }  
+        
+      local Ferramenta = {   
+        name = "Tool",  
+        section1 = "Equipar tool",  
+        section2 = "Equipar armas",  
+        section3 = "Adicionar som de arma através do id",  
+        section4 = "Lista de ids de som",  
+        ToolDropdownName = "Tools names",  
+        ToolGunDropdownName = "Armas names",  
+        SoundIDDropdownName = "Sounds ids",  
+        SoundIDTextBoxName = "Colocar id de som",  
+        buttonEquip = "Equipe item",  
+        buttonPlay = "Tocar música",  
+        togglePlay = "Tocar música loop"  
+      }  
+        
+      local Cliente = {  
+        name = "Cliente",  
+        section1 = "Gamepass",  
+        section2 = "Puxe os jogadores para perto de você",  
+        section3 = "Ficar pegando fogo",  
+        button1 = "Desbloquear gamepass de música",  
+        button2 = "Puxe todos os jogadores",  
+        button3 = "Avatar fogo",  
+        slidefire = "Tamanho do fogo"  
+      }  
+        
+      local Mostrar = {  
+        name = "Esp",  
+        toggle1 = "Esp player",  
+        toggle2 = "Esp Veículo"  
+      }  
+        
+      local Creditos = {  
+        name = "Creditos",  
+        descricao = "Entre no meu discord e se inscreva no meu canal do YouTube"  
       }
 
-local Cliente = {
-        name = "العميل",
-        section1 = "تصريح اللعبة",
-        section2 = "سحب اللاعبين نحوك",
-        section3 = "الاحتراق المستمر",
-        button1 = "فتح تصريح موسيقى اللعبة",
-        button2 = "سحب جميع اللاعبين",
-        button3 = "احتراق الشخصية",
-        slidefire = "حجم النار"
-      }
-
-local Mostrar = {
-        name = "إسب",
-        toggle1 = "إظهار اللاعب",
-        toggle2 = "إظهار المركبة"
-      }
-
-local Creditos = { name = "الاعتمادات", descricao = "انضم إلى خادمي في Discord واشترك في قناتي على YouTube" }
-
-
-      
       task.wait(0.5)
       
       getgenv().RaelHubScreenGuiLoad:Destroy()
@@ -256,75 +359,177 @@ local Creditos = { name = "الاعتمادات", descricao = "انضم إلى �
       return House, Clothes, Car, Jogador, Trolar,  Ferramenta, Cliente, Mostrar, Creditos
     else
       
-      local House = { name = "المنزل", section1 = "إزالة الحظر عن المنازل", section2 = "وظائف لحظر الأشخاص من منزلك", section3 = "قائمة المنازل", section4 = "إضافة معرف الصوت إلى منزلك (تصريح اللعبة)", section5 = "إضافة معرف الصوت إلى منزلك عبر قائمة اللاعبين (تصريح اللعبة)", toggle1 = "إزالة الحظر تلقائيًا", toggle2 = "حظر اللاعب من منزلك (تكرار)", toggle3 = "حظر الجميع من منزلك (تكرار)", toggle4 = "العبور من باب المنزل", toggle5 = "ظهور جرس الباب", toggle6 = "ظهور صوت طرق الباب", toggle7 = "ظهور الأضواء", button1 = "إزالة الحظر", button2 = "حظر اللاعب من منزلك", button3 = "حظر الجميع من منزلك", button4 = "تحديث قائمة المنازل", button5 = "الحصول على الإذن", button6 = "الانتقال إلى المنزل", button7 = "الانتقال إلى الخزنة", button8 = "تشغيل الموسيقى", button9 = "حفظ قائمة التشغيل", button10 = "تحميل قائمة التشغيل", dropdowntext1 = "المنازل", dropdowntext2 = "معرفات الموسيقى", textboxtext1 = "معرف الموسيقى", textboxtext2 = "أدخل رابط Pastebin الخاص بك", textboxdescription = "دليل على قناة رايل هب" }
-
-local Clothes = { name = "الملابس", section1 = "تلوين اسم الشخصية", section2 = "تلوين الوصف الشخصي", section3 = "تلوين الشخصية", section4 = "حجم الشخصية", section5 = "قائمة اللاعبين", section6 = "قائمة أجزاء الجسم", section7 = "قائمة الدومينوس", section8 = "قائمة الفالكيري", section9 = "قائمة قبعات Sparkle Time Fedora", section10 = "قائمة الجنيات", section11 = "قائمة عناصر الصوت", section12 = "قائمة العناصر المحمولة", toggle1 = "اسم ملون", toggle2 = "وصف ملون", toggle3 = "شخصية ملونة", equipedbutton = "تجهيز الجزء", equipedbutton2 = "تجهيز العنصر", button1 = "تصغير اللاعب", button2 = "إعادة حجم اللاعب الطبيعي", button3 = "نسخ مظهر اللاعب", button4 = "نسخ مظهر أقرب لاعب", button5 = "نسخ مظهر لاعب عشوائي", dropdownplayertext = "قائمة اللاعبين", dropdowncopytype = "اختيار النوع", dropdownhandle = "الرأس", dropdownleftarm = "الذراع اليسرى", dropdownrigtharm = "الذراع اليمنى", dropdowntorso = "الجذع", dropdownleftleg = "الساق اليسرى", dropdownrigthleg = "الساق اليمنى", dropdowndominus = "دومينوس", dropdownvalkyrie = "فالكيري", dropdownstf = "Sparkle Time Fedora", dropdownfairy = "جنيات", dropdownsong = "عناصر الصوت", dropdownhanditem = "العناصر المحمولة" }
-
-local Car = { name = "السيارات", section1 = "تعديل سرعة السيارة", section2 = "تلوين السيارة", section3 = "قائمة السيارات", section4 = "نقاط الظهور", section5 = "رفع السيارة", section6 = "إضافة معرف الصوت إلى السيارة (تصريح اللعبة)", section7 = "إضافة معرف الصوت إلى السيارة عبر قائمة التشغيل (تصريح اللعبة)", textboxtext1 = "سرعة السيارة", textboxtext2 = "معرف الموسيقى", toggle1 = "سيارة ملونة", toggle2 = "سحب السيارة", toggle3 = "ظهور النار", toggle4 = "ظهور بوق السيارة 1", toggle5 = "ظهور بوق السيارة 2", toggle6 = "رفع السيارة", button1 = "تحديث قائمة السيارات", button2 = "الانتقال إلى السيارة", dropdowncar = "السيارات" }
-
-local Jogador = { name = "اللاعب", section1 = "سرعة اللاعب", section2 = "قوة قفز اللاعب", section3 = "القدرة على العبور من الجدران", section4 = "إضاءة الخريطة", slidespeed = "السرعة", slidejump = "القوة", toggle1 = "تفعيل السرعة", toggle2 = "تفعيل قوة القفز", toggle3 = "تفعيل العبور من الجدران", toggle4 = "تفعيل الإضاءة الكاملة" }
-
-local Trolar = {
-        name = "مقلب",
-        list_player_section = "قائمة اللاعبين",
-        kill_pull_section = "قتل وسحب اللاعب",
-        fling_section = "رمي اللاعب",
-        tp_sp_section = "الانتقال والمراقبة",
-        anti_seat_section = "وضعيات منع الجلوس",
-
-        list_player_dropdown = "اللاعبون",
-        choose_mode_dropdown = "اختر الوضع",
-
-        dropdown_modes1 = {"حافلة", "أريكة"},
-        dropdown_modes2 = {"حافلة", "أريكة", "قارب"},
-
-        uptdplayer_button = "تحديث قائمة اللاعبين",
-        teleporte_button = "الانتقال إلى اللاعب",
-        teleporteC_button = "الانتقال إلى اللاعب مع السيارة",
-
-        killplayer_toggle = "قتل اللاعب",
-        pullplayer_toggle = "سحب اللاعب",
-        flingplayer_toggle = "رمي اللاعب",
-        spectar_toggle = "مراقبة اللاعب",
-
-        antiseatV_toggle = "منع الجلوس: المركبات",
-        antiseatT_toggle = "منع الجلوس: الأدوات",
-        antiseatAll_toggle = "منع الجلوس: الكل"
+      local House = {
+        name = "House",
+        section1 = "Remove your ban from houses",
+        section2 = "Functions to ban people from your house",
+        section3 = "House list",
+        section4 = "Add sound ID to your house (gamepass)",
+        section5 = "Add sound ID to your house via player list (gamepass)",
+        toggle1 = "Automatically remove ban",
+        toggle2 = "Ban player from your house (loop)",
+        toggle3 = "Ban everyone from your house (loop)",
+        toggle4 = "Pass through the house door",
+        toggle5 = "Spawn doorbell",
+        toggle6 = "Spawn door knocking",
+        toggle7 = "Spawn lights",
+        button1 = "Remove ban",
+        button2 = "Ban player from your house",
+        button3 = "Ban everyone from your house",
+        button4 = "Update house list",
+        button5 = "Get permission",
+        button6 = "Teleport to house",
+        button7 = "Teleport to the safe",
+        button8 = "Play music",
+        button9 = "Save playlist",
+        button10 = "Load playlist",
+        dropdowntext1 = "Houses",
+        dropdowntext2 = "Music IDs",
+        textboxtext1 = "Music ID",
+        textboxtext2 = "Enter your pastebin",
+        textboxdescription = "Tutorial on Rael Hub channel"
       }
 
-local Ferramenta = { 
-        name = "أداة",
-        section1 = "تجهيز الأداة",
-        section2 = "تجهيز الأسلحة",
-        section3 = "إضافة صوت السلاح عبر المعرف",
-        section4 = "قائمة معرفات الصوت",
-        ToolDropdownName = "أسماء الأدوات",
-        ToolGunDropdownName = "أسماء الأسلحة",
-        SoundIDDropdownName = "معرفات الصوت",
-        SoundIDTextBoxName = "أدخل معرف الصوت",
-        buttonEquip = "تجهيز العنصر",
-        buttonPlay = "تشغيل الموسيقى",
-        togglePlay = "تشغيل الموسيقى بشكل متكرر"
+      local Clothes = {  
+        name = "Clothes",  
+        section1 = "Make the character's name colorful",  
+        section2 = "Make the character's bio colorful",  
+        section3 = "Make the character colorful",  
+        section4 = "Character size",  
+        section5 = "Player list",  
+        section6 = "Character body parts list",  
+        section7 = "Dominus list",  
+        section8 = "Valkyrie list",  
+        section9 = "Sparkle Time Fedora list",  
+        section10 = "Fairy list",  
+        section11 = "Sound item list",  
+        section12 = "Hand item list",  
+        toggle1 = "Colorful name",  
+        toggle2 = "Colorful bio",  
+        toggle3 = "Colorful character",  
+        equipedbutton = "Equip part",  
+        equipedbutton2 = "Equip item",  
+        button1 = "Make the player small",  
+        button2 = "Make the player normal size",  
+        button3 = "Copy player's skin",  
+        button4 = "Copy the nearest player's skin",  
+        button5 = "Copy a random player's skin",  
+        dropdownplayertext = "Player list",  
+        dropdowncopytype = "Choose type",  
+        dropdownhandle = "Head",  
+        dropdownleftarm = "Left arm",  
+        dropdownrigtharm = "Right arm",  
+        dropdowntorso = "Torso",  
+        dropdownleftleg = "Left leg",  
+        dropdownrigthleg = "Right leg",  
+        dropdowndominus = "Dominus",  
+        dropdownvalkyrie = "Valkyries",  
+        dropdownstf = "Sparkle Time Fedora",  
+        dropdownfairy = "Fairies",  
+        dropdownsong = "Song items",  
+        dropdownhanditem = "Hand items"  
+      }  
+    
+      local Car = {  
+        name = "Cars",  
+        section1 = "Modify vehicle speed",  
+        section2 = "Make the car colorful",  
+        section3 = "Car list",  
+        section4 = "Spawns",  
+        section5 = "Make the car go up",  
+        section6 = "Add sound ID to the car (gamepass)",  
+        section7 = "Add sound ID to the car via playlist (gamepass)",  
+        textboxtext1 = "Vehicle speed",  
+        textboxtext2 = "Music ID",  
+        toggle1 = "Colorful car",  
+        toggle2 = "Pull car",  
+        toggle3 = "Spawn fire",  
+        toggle4 = "Spawn horn 1",  
+        toggle5 = "Spawn horn 2",  
+        toggle6 = "Raise car",  
+        button1 = "Update car list",  
+        button2 = "Teleport to car",  
+        dropdowncar = "Cars"  
+      }  
+    
+      local Player = {  
+        name = "Player",  
+        section1 = "Player speed",  
+        section2 = "Player jump power",  
+        section3 = "Can pass through walls",  
+        section4 = "Illuminate the map",  
+        slidespeed = "Speed",  
+        slidejump = "Power",  
+        toggle1 = "Enable speed",  
+        toggle2 = "Enable jump power",  
+        toggle3 = "Enable no-clip",  
+        toggle4 = "Enable Fullbright"  
+      }  
+    
+      local Troll = {  
+        name = "Troll",  
+        list_player_section = "Player list",  
+        kill_pull_section = "Kill and pull player",  
+        fling_section = "Throw the player",  
+        tp_sp_section = "Teleport and spectate player",  
+        anti_seat_section = "Anti-sit modes",  
+          
+        list_player_dropdown = "Players",  
+        choose_mode_dropdown = "Choose mode",  
+          
+        dropdown_modes1 = {"Bus", "Sofa"},  
+        dropdown_modes2 = {"Bus", "Sofa", "Boat"},  
+          
+        uptdplayer_button = "Update player list",  
+        teleporte_button = "Teleport to player",  
+        teleporteC_button = "Teleport to player with car",  
+          
+        killplayer_toggle = "Kill player",  
+        pullplayer_toggle = "Pull player",  
+        flingplayer_toggle = "Throw player",  
+        spectar_toggle = "Spectate player",  
+          
+        antiseatV_toggle = "Anti-seat: Vehicles",  
+        antiseatT_toggle = "Anti-seat: Tools",  
+        antiseatAll_toggle = "Anti-seat: All"  
+      }  
+    
+      local Tool = {  
+        name = "Tool",  
+        section1 = "Equip tool",  
+        section2 = "Equip weapons",  
+        section3 = "Add weapon sound via ID",  
+        section4 = "Sound ID list",  
+        ToolDropdownName = "Tool names",  
+        ToolGunDropdownName = "Weapon names",  
+        SoundIDDropdownName = "Sound IDs",  
+        SoundIDTextBoxName = "Enter sound ID",  
+        buttonEquip = "Equip item",  
+        buttonPlay = "Play music",  
+        togglePlay = "Play music loop"  
+      }  
+    
+      local Client = {  
+        name = "Client",  
+        section1 = "Gamepass",  
+        section2 = "Pull players closer to you",  
+        section3 = "Stay on fire",  
+        button1 = "Unlock music gamepass",  
+        button2 = "Pull all players",  
+        button3 = "Avatar fire",  
+        slidefire = "Fire size"  
+      }  
+    
+      local Esp = {  
+        name = "Esp",  
+        toggle1 = "Esp player",  
+        toggle2 = "Esp Vehicle"  
+      }  
+    
+      local Credits = {  
+        name = "Credits",  
+        descricao = "Join my Discord and subscribe to my YouTube channel"  
       }
-
-local Cliente = {
-        name = "العميل",
-        section1 = "تصريح اللعبة",
-        section2 = "سحب اللاعبين نحوك",
-        section3 = "الاحتراق المستمر",
-        button1 = "فتح تصريح موسيقى اللعبة",
-        button2 = "سحب جميع اللاعبين",
-        button3 = "احتراق الشخصية",
-        slidefire = "حجم النار"
-      }
-
-local Mostrar = {
-        name = "إسب",
-        toggle1 = "إظهار اللاعب",
-        toggle2 = "إظهار المركبة"
-      }
-
-local Creditos = { name = "الاعتمادات", descricao = "انضم إلى خادمي في Discord واشترك في قناتي على YouTube" }
       
       task.wait(0.5)
       
