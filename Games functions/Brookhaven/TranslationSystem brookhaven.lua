@@ -459,7 +459,7 @@ function TranslationModule:GetTabs()
         dropdowncar = "Cars"  
       }  
     
-      local Player = {  
+      local Jogador = {  
         name = "Player",  
         section1 = "Player speed",  
         section2 = "Player jump power",  
@@ -473,7 +473,7 @@ function TranslationModule:GetTabs()
         toggle4 = "Enable Fullbright"  
       }  
     
-      local Troll = {  
+      local Trolar = {  
         name = "Troll",  
         list_player_section = "Player list",  
         kill_pull_section = "Kill and pull player",  
@@ -501,7 +501,7 @@ function TranslationModule:GetTabs()
         antiseatAll_toggle = "Anti-seat: All"  
       }  
     
-      local Tool = {  
+      local Ferramenta = {  
         name = "Tool",  
         section1 = "Equip tool",  
         section2 = "Equip weapons",  
@@ -516,7 +516,7 @@ function TranslationModule:GetTabs()
         togglePlay = "Play music loop"  
       }  
     
-      local Client = {  
+      local Cliente = {  
         name = "Client",  
         section1 = "Gamepass",  
         section2 = "Pull players closer to you",  
@@ -527,13 +527,13 @@ function TranslationModule:GetTabs()
         slidefire = "Fire size"  
       }  
     
-      local Esp = {  
+      local Mostrar = {  
         name = "Esp",  
         toggle1 = "Esp player",  
         toggle2 = "Esp Vehicle"  
       }  
     
-      local Credits = {  
+      local Creditos = {  
         name = "Credits",  
         descricao = "Join my Discord and subscribe to my YouTube channel"  
       }
