@@ -2,9 +2,13 @@ function RaelHubLoadScreenGui(textvalue)
   local player = game.Players.LocalPlayer
   local playerGui = player:WaitForChild("PlayerGui")
 
+  -- Cria a tela de carregamento
   getgenv().RaelHubScreenGuiLoad = Instance.new("ScreenGui")
+  getgenv().RaelHubScreenGuiLoad.Name = "HB20"
   getgenv().RaelHubScreenGuiLoad.Parent = playerGui
-
+  getgenv().RaelHubScreenGuiLoad.ResetOnSpawn = false
+  
+  -- Imagem de fundo (opcional)
   local imageLabel = Instance.new("ImageLabel")
   imageLabel.Size = UDim2.new(0.7, 0, 0.6, 0)
   imageLabel.Position = UDim2.new(0.15, 0, 0.2, 0)
@@ -13,20 +17,22 @@ function RaelHubLoadScreenGui(textvalue)
   imageLabel.ScaleType = Enum.ScaleType.Stretch
   imageLabel.Parent = getgenv().RaelHubScreenGuiLoad
 
+  -- Cria o TextLabel
   local title = Instance.new("TextLabel")
   title.Size = UDim2.new(0.6, 0, 0.1, 0)
   title.AnchorPoint = Vector2.new(0.5, 0.5)
-  title.Position = UDim2.new(0.5, 0, 0.5, 0)
+  title.Position = UDim2.new(0.5, 0, 0.5, 0) -- Posição centralizada
   title.BackgroundTransparency = 1
   title.Text = textvalue
-  title.TextColor3 = Color3.fromRGB(16, 235, 138)
+  title.TextColor3 = Color3.fromRGB(16, 235, 138) -- Cor do texto
   title.Font = Enum.Font.ArialBold
   title.TextScaled = true
-  title.TextTransparency = 1
+  title.TextTransparency = 1 -- Começa invisível
   title.Parent = getgenv().RaelHubScreenGuiLoad
 
 
 
+  -- Função para fazer o fade in
   local function fadeInText(duration, object)
     local increment = 0.05
     local step = increment / duration
@@ -36,6 +42,7 @@ function RaelHubLoadScreenGui(textvalue)
     end
   end
 
+  -- Função para fazer o fade out
   local function fadeOutText(duration, object)
     local increment = 0.05
     local step = increment / duration
@@ -78,7 +85,7 @@ function RaelHubLoadScreenGui(textvalue)
 
   -- Som ao iniciar (opcional)
   local startSound = Instance.new("Sound")
-  startSound.SoundId = "rbxassetid://84663543883498"
+  startSound.SoundId = "rbxassetid://6114974207"
   startSound.Volume = 1
   startSound.Parent = getgenv().RaelHubScreenGuiLoad
   startSound:Play()
@@ -118,11 +125,11 @@ else
   warn("RaelHubAutoTranslator already exists, keeping the current value.")
 end
 
-if false then
+if getgenv().RaelHubAutoTranslator then
   local RaelHubText1 = RaelHubTradutor.Tradutor("THANK YOU FOR USING RAEL HUB")
   RaelHubLoadScreenGui(RaelHubText1)
-elseif true then
-  local RaelHubText1 = "I ghost the down cool 🔥"
+elseif getgenv().RaelHubAutoTranslator == false then
+  local RaelHubText1 = "THANK YOU FOR USING RAEL HUB"
   RaelHubLoadScreenGui(RaelHubText1)
 end
 
