@@ -42,7 +42,7 @@ function TranslationModule:GetTabs()
       
     end
     
-    RaelHubLoadModule.setValueBar({Text="Loading translations"}, 0.7)
+    RaelHubLoadModule.setValueBar({Text="Saving the translations"}, 0.7)
     
     local Main = {
       name = TranslateText("Main"),
@@ -98,7 +98,7 @@ function TranslationModule:GetTabs()
       Creditos = Creditos
     }
     
-    RaelHubLoadModule.SaveTranslation(nameScript, versionTranslation, updatedConfig)
+    TranslationFunctions.SaveTranslation(nameScript, versionTranslation, updatedConfig)
     
     TranslationLogs("Translation completed successfully")
     

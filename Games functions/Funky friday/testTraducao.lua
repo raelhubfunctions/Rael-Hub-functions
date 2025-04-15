@@ -7,9 +7,9 @@ function Module.GetPlayerLanguage()
 		return LocalizationService.RobloxLocaleId
 	end)
 	if result then
-		return code:sub(1, 2) -- Pega só os dois primeiros caracteres, tipo "en"
+		return code:sub(1, 2)
 	else
-		return "en" -- Padrão caso dê erro
+		return "en"
 	end
 end
 
@@ -19,7 +19,7 @@ function Module.SaveTranslation(nameFolder, version, TableTranslation)
 	if not isfolder(nameFolder) then
 		makefolder(nameFolder)
 	end
-	local fileName = nameFolder .. "/" .. language .. " " .. version .. ".json"
+	local fileName = nameFolder .. "/" .. language .. version .. ".json"
 	local json = HttpService:JSONEncode(TableTranslation)
 	writefile(fileName, json)
 end
