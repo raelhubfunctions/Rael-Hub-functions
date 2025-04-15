@@ -32,4 +32,22 @@ function Module.LoadTranslation(nameFolder, version)
   end
 end
 
+function Module.startVerification()
+  if getgenv().RaelHubAutoTranslator == nil then
+    getgenv().RaelHubAutoTranslator = true
+    warn("RaelHubAutoTranslator was created and set to true.")
+  else
+    warn("RaelHubAutoTranslator already exists, keeping the current value.")
+  end
+end
+
+function Module.ReturnLoadedTranslations()
+  local TableValues = {}
+  for _, Table in pairs(versionTranslation) do
+    table.insert(TableValues, Table)
+    print(Table)
+  end
+  return table.unpack(TableValues)
+end
+
 return Module
