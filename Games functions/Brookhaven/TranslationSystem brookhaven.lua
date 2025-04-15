@@ -246,7 +246,7 @@ function TranslationModule:GetTabs()
 
       task.wait(0.5)
       
-      getgenv().RaelHubScreenGuiLoad:Destroy()
+      GuiModule.Destroy()
       
       return House, Clothes, Car, Jogador, Trolar,  Ferramenta, Cliente, Mostrar, Creditos
     else
@@ -425,7 +425,7 @@ function TranslationModule:GetTabs()
       
       task.wait(0.5)
       
-      getgenv().RaelHubScreenGuiLoad:Destroy()
+      GuiModule.Destroy()
       
       return House, Clothes, Car, Jogador, Trolar, Ferramenta, Cliente, Mostrar, Creditos
       
