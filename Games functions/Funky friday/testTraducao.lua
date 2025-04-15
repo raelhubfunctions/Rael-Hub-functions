@@ -15,9 +15,9 @@ end
 
 local language = Module.GetPlayerLanguage()
 
-function Module.SaveTranslation(nameFolder, version)
+function Module.SaveTranslation(nameFolder, version, TableTranslation)
   local fileName = nameFolder .. "/" .. language .. " " .. version .. ".json"
-  local json = HttpService:JSONEncode(configTable)
+  local json = HttpService:JSONEncode(TableTranslation)
   writefile(fileName, json)
 end
 

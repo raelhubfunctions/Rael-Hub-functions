@@ -97,7 +97,9 @@ function TranslationModule:GetTabs()
       Mostrar = Mostrar,
       Creditos = Creditos
     }
-
+    
+    Module.SaveTranslation(nameScript, versionTranslation, updatedConfig)
+    
     TranslationLogs("Translation completed successfully")
     
     RaelHubLoadModule.setValueBar({Text="Finishing"}, 1)
