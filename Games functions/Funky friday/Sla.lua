@@ -98,7 +98,7 @@ function TranslationModule:GetTabs()
       Creditos = Creditos
     }
     
-    Module.SaveTranslation(nameScript, versionTranslation, updatedConfig)
+    RaelHubLoadModule.SaveTranslation(nameScript, versionTranslation, updatedConfig)
     
     TranslationLogs("Translation completed successfully")
     

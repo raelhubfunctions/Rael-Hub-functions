@@ -16,6 +16,9 @@ end
 local language = Module.GetPlayerLanguage()
 
 function Module.SaveTranslation(nameFolder, version, TableTranslation)
+  if not isfolder(nameFolder) then
+    makerfolder(nameFolder)
+  end
   local fileName = nameFolder .. "/" .. language .. " " .. version .. ".json"
   local json = HttpService:JSONEncode(TableTranslation)
   writefile(fileName, json)
