@@ -1,4 +1,6 @@
-return function LoadTableTranslation()
+local Modules = {}
+
+function Modules.LoadTableTranslation()
   
   RaelHubLoadModule.setValueBar({Text="Translating the script"}, 0.7)
     
@@ -65,3 +67,5 @@ return function LoadTableTranslation()
     
   return Main, Jogador, Mostrar, Creditos
 end
+
+return Modules

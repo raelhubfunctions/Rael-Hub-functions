@@ -2,6 +2,9 @@ local TranslationFunctions = loadstring(game:HttpGet("https://raw.githubusercont
 local NotificationManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20notification%20system/script.lua"))()
 local RaelHubTradutor = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20Translation%20API/script.lua"))()
 local RaelHubLoadModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/rael-hub-gui/refs/heads/main/Module.lua"))()
+local WordTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Funky%20friday/Translation%20Module/Translation%20table.lua"))()
+
+
 
 local TranslationModule = {}
 local Game_Name = "Funky Friday"
@@ -24,7 +27,7 @@ end
 
 function TranslationModule:GetTabs()
   
-  local TranslationsTable = TranslationFunctions.LoadTranslation("Rael Hub " .. Game_Name, Version_Script)
+  local TableTranslation = TranslationFunctions.LoadTranslation("Rael Hub " .. Game_Name, Version_Script)
   local TranslateText = RaelHubTradutor.Tradutor
   
   if getgenv().RaelHubAutoTranslator then
@@ -33,12 +36,12 @@ function TranslationModule:GetTabs()
     
     if not ExecutorSupport then return end
     
-    if TranslationsTable then
+    if TableTranslation then
       LoadingTranslationsText()
-      return TranslationFunctions.ReturnLoadedTranslations(TranslationsTable)
+      return TranslationFunctions.ReturnLoadedTranslations(TableTranslation)
     end
     
-    
+    LoadTableTranslation()
     
   elseif getgenv().RaelHubAutoTranslator == false then
       
