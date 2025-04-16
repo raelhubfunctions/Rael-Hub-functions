@@ -9,7 +9,7 @@ function Module.GetPlayerLanguage()
 	if result then
 		return code:sub(1, 2)
 	else
-		return "en"
+		return "en" -- 
 	end
 end
 
@@ -25,7 +25,7 @@ function Module.SaveTranslation(nameFolder, version, TableTranslation)
 end
 
 function Module.LoadTranslation(nameFolder, version)
-	local fileName = nameFolder .. "/" .. language .. " " .. version .. ".json"
+	local fileName = nameFolder .. "/" .. language .. version .. ".json"
 	if isfile(fileName) then
 		local json = readfile(fileName)
 		return HttpService:JSONDecode(json)

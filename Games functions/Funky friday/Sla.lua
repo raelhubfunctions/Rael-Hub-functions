@@ -4,8 +4,8 @@ local RaelHubTradutor = loadstring(game:HttpGet("https://raw.githubusercontent.c
 local RaelHubLoadModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/rael-hub-gui/refs/heads/main/Module.lua"))()
 
 local TranslationModule = {}
-local nameScript = "Rael Hub Funky Friday"
-local versionTranslation = "V1"
+local Game_Name = "Funky Friday"
+local Version_Script = "V1"
 local notification = NotificationManager.new()
 local currentLanguage = TranslationFunctions.GetPlayerLanguage()
 TranslationFunctions.startVerification()
@@ -26,7 +26,7 @@ end
 
 function TranslationModule:GetTabs()
   
-  local versionTranslation = TranslationFunctions.LoadTranslation(nameScript, versionTranslation)
+  local TranslationsTable = TranslationFunctions.LoadTranslation("Rael Hub " .. Game_Name, Version_Script)
   local TranslateText = RaelHubTradutor.Tradutor
   
   if getgenv().RaelHubAutoTranslator then
@@ -35,11 +35,11 @@ function TranslationModule:GetTabs()
     
     if not ExecutorSupport then return end
     
-    if versionTranslation then
-      
+    if TranslationsTable then
+      print(TranslationsTable)
       LoadingTranslationsText()
-      return TranslationFunctions.ReturnLoadedTranslations()
-      
+      return TranslationFunctions.ReturnLoadedTranslations(TranslationsTable)
+    
     end
     
     RaelHubLoadModule.setValueBar({Text="Saving the translations"}, 0.7)
@@ -98,7 +98,7 @@ function TranslationModule:GetTabs()
       Creditos = Creditos
     }
     
-    TranslationFunctions.SaveTranslation(nameScript, versionTranslation, updatedConfig)
+    TranslationFunctions.SaveTranslation("Rael Hub " .. Game_Name, Version_Script, updatedConfig)
     
     TranslationLogs("Translation completed successfully")
     
