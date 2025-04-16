@@ -19,13 +19,13 @@ function Module.SaveTranslation(nameFolder, version, TableTranslation)
 	if not isfolder(nameFolder) then
 		makefolder(nameFolder)
 	end
-	local fileName = nameFolder .. "/" .. language .. version .. ".json"
+	local fileName = nameFolder .. "/" .. language .. " version " .. version .. ".json"
 	local json = HttpService:JSONEncode(TableTranslation)
 	writefile(fileName, json)
 end
 
 function Module.LoadTranslation(nameFolder, version)
-	local fileName = nameFolder .. "/" .. language .. version .. ".json"
+	local fileName = nameFolder .. "/" .. language .. " version " .. version .. ".json"
 	if isfile(fileName) then
 		local json = readfile(fileName)
 		return HttpService:JSONDecode(json)

@@ -39,7 +39,6 @@ function TranslationModule:GetTabs()
       print(TranslationsTable)
       LoadingTranslationsText()
       return TranslationFunctions.ReturnLoadedTranslations(TranslationsTable)
-    
     end
     
     RaelHubLoadModule.setValueBar({Text="Saving the translations"}, 0.7)
