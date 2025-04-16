@@ -29,7 +29,7 @@ function TranslationModule:GetTabs()
   
   if getgenv().RaelHubAutoTranslator then
     
-    local ExecutorSupport = RaelHubLoadModule.RunInterface({Executors = {"xeno", "solara", "jjexploit"}})
+    local ExecutorSupport = RaelHubLoadModule.RunInterface()
     
     if not ExecutorSupport then return end
     
@@ -104,7 +104,9 @@ function TranslationModule:GetTabs()
     return Main, Jogador, Mostrar, Creditos
     
   elseif getgenv().RaelHubAutoTranslator == false then
-      
+    
+    local ExecutorSupport = RaelHubLoadModule.RunInterface()
+    
     local Main = {
       name = "Main",
       section1 = "Autoplay for you",
