@@ -153,4 +153,4 @@ function TranslationModule:GetTabs()
   end
 end
 
-TranslationModule:GetTabs()
+return TranslationModule
