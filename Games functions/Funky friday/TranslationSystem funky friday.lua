@@ -1,4 +1,4 @@
-local TranslationFunctions = loadstring(readfile("sla.lua"))()
+local TranslationFunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/TranslationFunctions.lua"))()
 local NotificationManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20notification%20system/script.lua"))()
 local RaelHubTradutor = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20Translation%20API/script.lua"))()
 local RaelHubLoadModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/rael-hub-gui/refs/heads/main/Module.lua"))()
