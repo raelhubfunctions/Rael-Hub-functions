@@ -183,9 +183,14 @@ GetIdBrookHaven.GetSparkleTimeFedoraIds = {
 
 GetIdBrookHaven.GetClothes3dIds = {
   ["Chinelo Adidas"] = 13336755067,
+  ["Chinelo Preto"] = 13336738534,
+  ["Chinelo Branco"] = 13336764113,
   ["Garras de Anime Branco"] = 14942141376,
   ["Garras de Anime Negras"] = 15153876013,
-  ["Machado de 8 bits azul"] = 14055019006
+  ["Machado de 8 bits azul"] = 14055019006,
+  ["Tung Tung Sahur"] = 116926833176436,
+  ["Galinha do mine"] = 91756266312256,
+  ["Vilager do mine"] = 18247835673
 }
 
 GetIdBrookHaven.GetGunsNames = {
