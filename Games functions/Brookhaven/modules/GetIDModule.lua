@@ -181,6 +181,10 @@ GetIdBrookHaven.GetSparkleTimeFedoraIds = {
   Bluesteel_Fedora = 98346834
 }
 
+GetIdBrookHaven.GetClothes3dIds = {
+  ["Chinelo Adidas"] = 13336755067
+}
+
 GetIdBrookHaven.GetGunsNames = {
   ["Glock"] = "Glock",
   ["GlockBrown"] = "GlockBrown",
