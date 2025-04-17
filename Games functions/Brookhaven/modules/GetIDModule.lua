@@ -182,7 +182,10 @@ GetIdBrookHaven.GetSparkleTimeFedoraIds = {
 }
 
 GetIdBrookHaven.GetClothes3dIds = {
-  ["Chinelo Adidas"] = 13336755067
+  ["Chinelo Adidas"] = 13336755067,
+  ["Garras de Anime Branco"] = 14942141376,
+  ["Garras de Anime Negras"] = 15153876013,
+  ["Machado de 8 bits azul"] = 14055019006
 }
 
 GetIdBrookHaven.GetGunsNames = {
@@ -218,7 +221,6 @@ GetIdBrookHaven.GetSoundGunID = {
   ["Pipe"] = 6729922069,
   ["Toma jack"] = 132603645477541,
   ["Sai daí, lava prato"] = 101232400175829,
-  ["Rapido! EU NÂO QUERO MORRER!!"] = 7611924192580,
   ["I ghost the down cool"] = 84663543883498,
   ["Pede ifood, pede"] = 133843750864059,
   ["Cérebro burro"] = 82284055473737
