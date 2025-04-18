@@ -190,7 +190,11 @@ GetIdBrookHaven.GetClothes3dIds = {
   ["Machado de 8 bits azul"] = 14055019006,
   ["Tung Tung Sahur"] = 116926833176436,
   ["Galinha do mine"] = 91756266312256,
-  ["Vilager do mine"] = 18247835673
+  ["Terno de Sid"] = 87442757321244,
+  ["Shrek Wazowski"] = 83299976508675,
+  ["Rato Dançando Meme"] = 86990565981438,
+  ["Traje de Rato Fofo Triste"] = 16844527194,
+  ["Terno de frango"] = 16883061747
 }
 
 GetIdBrookHaven.GetGunsNames = {
