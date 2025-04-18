@@ -194,7 +194,15 @@ GetIdBrookHaven.GetClothes3dIds = {
   ["Shrek Wazowski"] = 83299976508675,
   ["Rato Dançando Meme"] = 86990565981438,
   ["Traje de Rato Fofo Triste"] = 16844527194,
-  ["Terno de frango"] = 16883061747
+  ["Terno de frango"] = 16883061747,
+  ["Guardião do mine"] = 18161752527,
+  ["Golem de Ferro"] = 18119148103,
+  ["Kirby com uma faca"] = 17900017198,
+  ["Terno de Gato El Gato"] = 16874021714,
+  ["Hamster"] = 17447001515,
+  ["Huh Traje de Gato"] = 15928857314
+  
+
 }
 
 GetIdBrookHaven.GetGunsNames = {
