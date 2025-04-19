@@ -200,9 +200,26 @@ GetIdBrookHaven.GetClothes3dIds = {
   ["Kirby com uma faca"] = 17900017198,
   ["Terno de Gato El Gato"] = 16874021714,
   ["Hamster"] = 17447001515,
-  ["Huh Traje de Gato"] = 15928857314
-  
-
+  ["Huh Traje de Gato"] = 15928857314,
+  ["Bombardio Crocodilo"] = 101715679276356,
+  ["Bailarina capputina"] = 76674651747540,
+  ["Terno de Jockey de Galinha"] = 129001872982438,
+  ["Thomas o trem"] = 80468697076178,
+  ["Dinossauro"] = 11941741105,
+  ["Pou noel"] = 15742966010,
+  ["Coco bizarro"] = 77013984520332,
+  ["Tubarão gordo"] = 99459753608381,
+  ["Pernalonga gordo"] = 71797333686800,
+  ["Moto Moto"] = 73215892129281,
+  ["Rato Ratatouille"] = 108557570415453,
+  ["Terno de frango"] = 71251793812515,
+  ["Peppa pig"] = 92979204778377,
+  ["Xícara com perna do roblox"] = 123094879526338,
+  ["Gato clássico pequeno"] = 101562463096243,
+  ["Pombo Grande"] = 110197191891686,
+  ["Peixe Realista"] = 74872768740196,
+  ["Panda de Meme Chinês"] = 84185180890650,
+  ["Chimpanzé Banananini"] = 71346899738354
 }
 
 GetIdBrookHaven.GetGunsNames = {
