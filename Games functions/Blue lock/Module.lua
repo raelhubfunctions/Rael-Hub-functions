@@ -1,13 +1,14 @@
 local RaelHubBlueLockRivals = {}
-local Players = game.Players
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
 local Camera = workspace.CurrentCamera
 local LocalPlayer = Players.LocalPlayer
 local PlayerStats = LocalPlayer.PlayerStats
 local Character = LocalPlayer.Character
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 
 getgenv().StaminaINF = false
 getgenv().GrabBall = false
@@ -17,7 +18,7 @@ getgenv().EnableSpeedMethodTwo = false
 getgenv().InfiniteJumpEnabled = false
 getgenv().TPSpeed = 0.3
 
-shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Blue%20lock/Module.lua"))()
+shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/script.lua"))()
 
 --[[if not _G.AimbotRunService then
 
