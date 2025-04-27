@@ -20,7 +20,7 @@ getgenv().TPSpeed = 0.3
 
 shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/script.lua"))()
 
---[[if not _G.AimbotRunService then
+if not _G.AimbotRunService then
 
 
   _G.AimbotRunService = RunService.RenderStepped:Connect(function()
@@ -60,35 +60,20 @@ if not _G.INFJumpService then
   end)
   
 end
-]]
-function RaelHubBlueLockRivals.StaminaINF(type, value)
+
+function RaelHubBlueLockRivals.StaminaINF(value)
   getgenv().StaminaINF = value
   
   while getgenv().StaminaINF do
-    if type == "Remote" then
-      
-      task.spawn(function()
-        
-        ReplicatedStorage:WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("StaminaService"):WaitForChild("RE"):WaitForChild("DecreaseStamina"):FireServer(0/0)
-        
-      end)
-      
-      task.wait(0.5)
-      
-    elseif type == "PlayerStats" then
-      
-      local Stamina = PlayerStats:FindFirstChild("Stamina")
-      
-      if Stamina then
-        Stamina.Value = 100
-      end
-      
+    local Stamina = PlayerStats:FindFirstChild("Stamina")
+    if Stamina then
+      Stamina.Value = 100
     end
     task.wait()
   end
 end
 
---[[function RaelHubBlueLockRivals.GrabBall(value)
+function RaelHubBlueLockRivals.GrabBall(value)
   getgenv().GrabBall = value
   task.spawn(function()
     while getgenv().GrabBall do
@@ -112,9 +97,9 @@ function RaelHubBlueLockRivals.EnableSpeedMethodTwo(value, speedvalue)
   
   
   
-end]]
+end
 
---[[function RaelHubBlueLockRivals.EnableSpeedMethodOne(value, speedvalue)
+function RaelHubBlueLockRivals.EnableSpeedMethodOne(value, speedvalue)
   
   getgenv().EnableSpeedMethodOne = value
   
@@ -183,6 +168,6 @@ function RaelHubBlueLockRivals.INFJump(value)
   
   getgenv().InfiniteJumpEnabled = value
   
-end]]
+end
 
 return RaelHubBlueLockRivals
