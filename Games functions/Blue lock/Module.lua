@@ -1,9 +1,9 @@
 local RaelHubBlueLockRivals = {}
 local Players = game.Players
+local Camera = workspace.CurrentCamera
 local LocalPlayer = Players.LocalPlayer
 local PlayerStats = LocalPlayer.PlayerStats
 local Character = LocalPlayer.Character
-local Camera = workspace.CurrentCamera
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -17,21 +17,9 @@ getgenv().EnableSpeedMethodTwo = false
 getgenv().InfiniteJumpEnabled = false
 getgenv().TPSpeed = 0.3
 
-shared.Character = LocalPlayer.Character
 shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Blue%20lock/Module.lua"))()
 
-if not _G.CharacterFunction then
-
-  _G.CharacterFunction = LocalPlayer.CharacterAdded:Connect(function(newCharacter)
-    if newCharacter.Name == "Character" then
-      Character = newCharacter
-      shared.Character = newCharacter
-    end
-  end)
-
-end
-
-if not _G.AimbotRunService then
+--[[if not _G.AimbotRunService then
 
 
   _G.AimbotRunService = RunService.RenderStepped:Connect(function()
@@ -71,7 +59,7 @@ if not _G.INFJumpService then
   end)
   
 end
-
+]]
 function RaelHubBlueLockRivals.StaminaINF(type, value)
   getgenv().StaminaINF = value
   
@@ -99,7 +87,7 @@ function RaelHubBlueLockRivals.StaminaINF(type, value)
   end
 end
 
-function RaelHubBlueLockRivals.GrabBall(value)
+--[[function RaelHubBlueLockRivals.GrabBall(value)
   getgenv().GrabBall = value
   task.spawn(function()
     while getgenv().GrabBall do
@@ -123,9 +111,9 @@ function RaelHubBlueLockRivals.EnableSpeedMethodTwo(value, speedvalue)
   
   
   
-end
+end]]
 
-function RaelHubBlueLockRivals.EnableSpeedMethodOne(value, speedvalue)
+--[[function RaelHubBlueLockRivals.EnableSpeedMethodOne(value, speedvalue)
   
   getgenv().EnableSpeedMethodOne = value
   
@@ -194,6 +182,6 @@ function RaelHubBlueLockRivals.INFJump(value)
   
   getgenv().InfiniteJumpEnabled = value
   
-end
+end]]
 
 return RaelHubBlueLockRivals
