@@ -18,7 +18,7 @@ getgenv().InfiniteJumpEnabled = false
 getgenv().TPSpeed = 0.3
 
 shared.Character = LocalPlayer.Character
-shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/Raelhub/Rael-hub-function/refs/heads/main/function/RaelHubFunctionV2/script.txt"))()
+shared.RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Blue%20lock/Module.lua"))()
 
 if not _G.CharacterFunction then
 
