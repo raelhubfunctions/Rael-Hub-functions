@@ -257,7 +257,10 @@ GetIdBrookHaven.GetSoundGunID = {
   ["Sai daí, lava prato"] = 101232400175829,
   ["I ghost the down cool"] = 84663543883498,
   ["Pede ifood, pede"] = 133843750864059,
-  ["Cérebro burro"] = 82284055473737
+  ["Cérebro burro"] = 82284055473737,
+  ["Gemidão"] = 106835463235574,
+  ["Slk não compensa"] = 78442476709262,
+  ["Compre online na shopee"] = 8747441609
   
 }
 
