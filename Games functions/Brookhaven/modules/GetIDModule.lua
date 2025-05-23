@@ -264,4 +264,31 @@ GetIdBrookHaven.GetSoundGunID = {
   
 }
 
+GetIdBrookHaven.GetSoundTrollID = {
+  ["Disturbing sound"] = 6821054463,
+  ["Disturbing sound 2"] = 137177653817621,
+  ["Sound tuber93"] = 103215672097028,
+  ["Sound sonicexe"] = 930613220,
+  ["Sound sonicexe 2"] = 18131809532,
+  ["Screaming sound"] = 6250446601,
+  ["Screaming sound 2"] = 18925320031,
+  ["Screaming sound 3"] = 5710016194,
+  ["Screaming sound 4"] = 270145703,
+  ["OoOoOOO"] = 9084006093,
+  ["AHHHHH"] = 7772283448,
+  ["BRUHH"] = 6349641063,
+  ["Wet Fart"] = 6445594239,
+  ["Minecraft XP"] = 6647877129,
+  ["Pipe"] = 6729922069,
+  ["Toma jack"] = 132603645477541,
+  ["Sai daí, lava prato"] = 101232400175829,
+  ["I ghost the down cool"] = 84663543883498,
+  ["Pede ifood, pede"] = 133843750864059,
+  ["Cérebro burro"] = 82284055473737,
+  ["Gemidão"] = 106835463235574,
+  ["Slk não compensa"] = 78442476709262,
+  ["Compre online na shopee"] = 8747441609
+  
+}
+
 return GetIdBrookHaven
