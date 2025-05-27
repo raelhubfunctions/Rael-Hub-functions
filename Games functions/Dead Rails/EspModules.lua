@@ -1,16 +1,24 @@
+local Workspace = game:GetService("Workspace")
 local EspModules = {}
 local RaelHubFunction = shared.RaelHubFunction
 
 function EspModules.EspEntities(value)
     getgenv().EspEntities = value
-    
-    --workspace.Baseplates.Baseplate.CenterBaseplate.Animals:GetChildren()[6]Model_Wolf
 
     while getgenv().EspEntities do
       local NightEnemies = workspace:FindFirstChild("NightEnemies")
+      local RuntimeEntities = workspace:FindFirstChild("RuntimeEntities")
       local RuntimeItems = workspace:FindFirstChild("RuntimeItems")
+      local ZombiePart = workspace:FindFirstChild("ZombiePart", true)
+
       if NightEnemies then
         for _, entitie in ipairs(NightEnemies:GetChildren()) do
+          RaelHubFunction.CreateEspDistance(entitie, Color3.fromRGB(244, 0, 0), entitie.Name, true)
+        end
+      end
+
+      if RuntimeEntities then
+        for _, entitie in ipairs(RuntimeEntities:GetChildren()) do
           RaelHubFunction.CreateEspDistance(entitie, Color3.fromRGB(244, 0, 0), entitie.Name, true)
         end
       end
@@ -30,7 +38,6 @@ function EspModules.EspEntities(value)
           end
         end
       end
-
       
       if ZombiePart then
         local Zombies = ZombiePart:FindFirstChild("Zombies")
@@ -62,6 +69,7 @@ function EspModules.EspEntities(value)
     
     -- Desativar esp
     local NightEnemies = workspace:FindFirstChild("NightEnemies")
+    local RuntimeEntities = workspace:FindFirstChild("RuntimeEntities")
     local RuntimeItems = workspace:FindFirstChild("RuntimeItems")
     local ZombiePart = workspace:FindFirstChild("ZombiePart", true)
     if NightEnemies then
@@ -78,6 +86,12 @@ function EspModules.EspEntities(value)
           RaelHubFunction.DisableEsp(zombie)
           
         end
+      end
+    end
+
+    if RuntimeEntities then
+      for _, entitie in ipairs(RuntimeEntities:GetChildren()) do
+        RaelHubFunction.DisableEsp(entitie)
       end
     end
 
@@ -120,10 +134,14 @@ function EspModules.Espitens(value)
       local RuntimeItems = workspace:FindFirstChild("RuntimeItems")
       if RuntimeItems then
         for _, item in ipairs(RuntimeItems:GetChildren()) do
-          if item.Name == "GoldBar" and not item:GetAttribute("rael") then
+          if item.Name == "GoldBar" then
             RaelHubFunction.CreateEspDistance(item, Color3.fromRGB(251, 246, 0), item.Name, true)
-          elseif item.Name ~= "GoldBar" and item.Name ~= "Model_Runner" and item:GetAttribute("rael") then
+          elseif item.Name == "SilverBar" then
+            RaelHubFunction.CreateEspDistance(item, Color3.fromRGB(241, 241, 241), item.Name, true)
+          elseif item.Name ~= "GoldBar" and item.Name ~= "Model_Runner" and item.Name ~= "SilverBar" then
             RaelHubFunction.CreateEspDistance(item, Color3.fromRGB(0, 230, 251), item.Name, true)
+          elseif item:GetAttribute("rael") then
+            RaelHubFunction.DisableEsp(item)
           end
         end
       end
