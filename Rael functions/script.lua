@@ -1,4 +1,5 @@
 local RaelHubFunction = {}
+local flyFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Roblox-fly-module/refs/heads/main/Module.lua"))()
 
 local VirtualUser = game:GetService("VirtualUser")
 local TextChatService = game:GetService("TextChatService")
@@ -787,6 +788,10 @@ function RaelHubFunction.AimbotPlayer(value, player, target)
       break
     end
   end
+end
+
+function RaelHubFunction.fly(speed)
+  flyFunction(speed)
 end
 
 shared.RaelHubFunction = RaelHubFunction
