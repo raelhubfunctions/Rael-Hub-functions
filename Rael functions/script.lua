@@ -790,8 +790,8 @@ function RaelHubFunction.AimbotPlayer(value, player, target)
   end
 end
 
-function RaelHubFunction.fly(speed)
-  flyFunction(speed)
+function RaelHubFunction.fly(speed, value)
+  flyFunction(speed, value)
 end
 
 shared.RaelHubFunction = RaelHubFunction
