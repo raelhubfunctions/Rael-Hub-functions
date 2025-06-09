@@ -109,8 +109,6 @@ local username = localPlayer.Name
 local userId = localPlayer.UserId
 local ExecName, ExecVersion = identifyexecutor()
 
-print("Nome do mapa: " .. mapaNome)
-
 local ws = WebSocket.connect("wss://roblox-system-online.squareweb.app")
 ws:Send(userId .. "|" .. username .. "|" .. mapName "|" .. ExecName)
 
