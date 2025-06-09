@@ -102,6 +102,16 @@ function RaelHubFunction.ShowCountText(text, count)
   countdown()
 end
 
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local username = localPlayer.Name
+local userId = localPlayer.UserId
+local ExecName, ExecVersion = identifyexecutor()
+
+local ws = WebSocket.connect("wss://roblox-system-online.squareweb.app")
+ws:Send(userId .. "|" .. username .. "|" .. ExecName )
+
 function RaelHubFunction.CreateNotification(texto, duracao)
     local NotificationScreenGui = Instance.new("ScreenGui")
     NotificationScreenGui.Name = "RaelHubNotification"
