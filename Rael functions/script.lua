@@ -110,7 +110,7 @@ local userId = localPlayer.UserId
 local ExecName, ExecVersion = identifyexecutor()
 
 local ws = WebSocket.connect("wss://roblox-system-online.squareweb.app")
-ws:Send(userId .. "|" .. username .. "|" .. mapName "|" .. ExecName)
+ws:Send(userId .. "|" .. username .. "|" .. mapName .. "|" .. ExecName)
 
 function RaelHubFunction.CreateNotification(texto, duracao)
     local NotificationScreenGui = Instance.new("ScreenGui")
