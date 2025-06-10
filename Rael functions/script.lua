@@ -41,7 +41,7 @@ if not _G.RaelHubMonitorRunService then
   end)
 end
   
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
+pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))() end)
 
 function RaelHubFunction.ShowCountText(text, count)
   
