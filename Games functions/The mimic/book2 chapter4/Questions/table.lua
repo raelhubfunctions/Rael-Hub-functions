@@ -34,7 +34,7 @@ local answerCheatSheet = {
     },
     {
         Question = "I was once a curious girl",
-        response = " Hiachi Masashige"
+        response = "Hiachi Masashige"
     }
 }
 
