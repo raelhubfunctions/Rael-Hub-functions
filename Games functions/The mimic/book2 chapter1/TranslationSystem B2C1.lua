@@ -87,16 +87,7 @@ function TranslationModule:GetTabs()
         paragrafo = "Join my YouTube channel and Discord for new updates."
     }
 
-    return {
-        Tab_Oficine,
-        Tab_Sisters,
-        Tab_Nagisa,
-        Tab_PhasesFrame,
-        Tab_VelaFase,
-        Tab_Other,
-        Tab_Creditos
-    }
-
+    return Tab_Oficine, Tab_Sisters, Tab_Nagisa, Tab_PhasesFrame, Tab_VelaFase, Tab_Others, Tab_Creditos
 end
 
 return TranslationModule
