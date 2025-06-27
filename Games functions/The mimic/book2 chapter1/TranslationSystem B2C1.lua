@@ -74,7 +74,7 @@ function TranslationModule:GetTabs()
         NavioVelaText = "Candle "
     }
 
-    local Tab_Other = {
+    local Tab_Others = {
         name = "Others",
         section1 = "Show where the player is",
         button1 = "ESP player",
