@@ -1,5 +1,6 @@
 local RaelHubFunction = {}
 local flyFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/flyModule.lua"))()
+local fireproximityprompt = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/Executor%20support/fireproximityprompt.lua"))()
 
 local VirtualUser = game:GetService("VirtualUser")
 local TextChatService = game:GetService("TextChatService")
