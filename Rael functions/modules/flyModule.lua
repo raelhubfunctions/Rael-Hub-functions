@@ -246,8 +246,8 @@ function flyModule.flymodel2(value, speed)
             gHandler.CFrame = Camera.CFrame
 
             local finalVelocity = Vector3.zero
-            finalVelocity = finalVelocity + Camera.CFrame.RightVector * moveVec.X * speed * 10
-            finalVelocity = finalVelocity - Camera.CFrame.LookVector * moveVec.Z * speed * 10
+            finalVelocity = finalVelocity + Camera.CFrame.RightVector * moveVec.X * (getgenv().flyModeSpeed or speed) * 10
+            finalVelocity = finalVelocity - Camera.CFrame.LookVector * moveVec.Z * (getgenv().flyModeSpeed or speed) * 10
             vHandler.Velocity = finalVelocity
 
         elseif not vHandler and not gHandler then
