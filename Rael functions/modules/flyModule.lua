@@ -1,3 +1,4 @@
+local module = {}
 local UserInputService = game:GetService("UserInputService")
 local speaker = game:GetService("Players").LocalPlayer
 local chr = game.Players.LocalPlayer.Character
@@ -5,7 +6,7 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
 getgenv().flyModeSpeed = 1
 
-local function flymode(value, speeds)
+function module.flymodel1(value, speeds)
 
 	if value == nil then
 		if getgenv().isFlyActive == nil then getgenv().isFlyActive = false end
@@ -201,4 +202,72 @@ local function flymode(value, speeds)
 	end
 end
 
-return flymode
+function module.flymodel2(value, speed)
+    if not shared.Character then return end
+
+    if value == nil then
+        if getgenv().isFlyActive == nil then getgenv().isFlyActive = false end
+        getgenv().isFlyActive = not getgenv().isFlyActive
+    else
+        getgenv().isFlyActive = value
+    end
+
+    if not getgenv().isFlyActive then
+        local humanoid = shared.Character:FindFirstChild("Humanoid")
+        local rootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+        if humanoid and rootPart then
+            local vHandler = rootPart:FindFirstChild("VelocityHandler")
+            local gHandler = rootPart:FindFirstChild("GyroHandler")
+            if vHandler then vHandler:Destroy() end
+            if gHandler then gHandler:Destroy() end
+            humanoid.PlatformStand = false
+        end
+        return
+    end
+
+    while getgenv().isFlyActive do
+        if not shared.Character then continue end
+
+        local Camera = workspace.CurrentCamera
+        local PlayerScripts = game.Players.LocalPlayer:FindFirstChild("PlayerScripts")
+        local humanoid = shared.Character:FindFirstChildOfClass("Humanoid")
+        local rootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+        if not PlayerScripts or not humanoid or not rootPart then continue end
+
+        local vHandler = rootPart:FindFirstChild("VelocityHandler")
+        local gHandler = rootPart:FindFirstChild("GyroHandler")
+
+        if vHandler and gHandler then
+            local moveVec = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector()
+            
+            vHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+            gHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+            humanoid.PlatformStand = true
+            gHandler.CFrame = Camera.CFrame
+
+            local finalVelocity = Vector3.zero
+            finalVelocity = finalVelocity + Camera.CFrame.RightVector * moveVec.X * speed * 10
+            finalVelocity = finalVelocity - Camera.CFrame.LookVector * moveVec.Z * speed * 10
+            vHandler.Velocity = finalVelocity
+
+        elseif not vHandler and not gHandler then
+            local bv = Instance.new("BodyVelocity")
+            local bg = Instance.new("BodyGyro")
+
+            bv.Name = "VelocityHandler"
+            bv.Parent = rootPart
+            bv.MaxForce = Vector3.zero
+            bv.Velocity = Vector3.zero
+
+            bg.Name = "GyroHandler"
+            bg.Parent = rootPart
+            bg.MaxTorque = Vector3.zero
+            bg.P = 1000
+            bg.D = 50
+        end
+
+        task.wait()
+    end
+end
+
+return module
