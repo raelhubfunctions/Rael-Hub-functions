@@ -1,5 +1,5 @@
 local RaelHubFunction = {}
-local flyFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/flyModule.lua"))()
+local flyModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/flyModule.lua"))()
 local fireproximityprompt = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/Executor%20support/fireproximityprompt.lua"))()
 
 local VirtualUser = game:GetService("VirtualUser")
@@ -801,7 +801,11 @@ function RaelHubFunction.AimbotPlayer(value, player, target)
 end
 
 function RaelHubFunction.fly(value, speed)
-  flyFunction(value, speed)
+  flyModule.flymodel1(value, speed)
+end
+
+function RaelHubFunction.flyV2(value, speed)
+  flyModule.flymodel2(value, speed)
 end
 
 shared.RaelHubFunction = RaelHubFunction
