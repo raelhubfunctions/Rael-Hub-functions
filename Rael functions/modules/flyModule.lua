@@ -1,4 +1,4 @@
-local module = {}
+local flyModule = {}
 local UserInputService = game:GetService("UserInputService")
 local speaker = game:GetService("Players").LocalPlayer
 local chr = game.Players.LocalPlayer.Character
@@ -6,7 +6,7 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
 getgenv().flyModeSpeed = 1
 
-function module.flymodel1(value, speeds)
+function flyModule.flymodel1(value, speeds)
 
 	if value == nil then
 		if getgenv().isFlyActive == nil then getgenv().isFlyActive = false end
@@ -202,7 +202,7 @@ function module.flymodel1(value, speeds)
 	end
 end
 
-function module.flymodel2(value, speed)
+function flyModule.flymodel2(value, speed)
     if not shared.Character then return end
 
     if value == nil then
@@ -270,4 +270,4 @@ function module.flymodel2(value, speed)
     end
 end
 
-return module
+return flyModule
