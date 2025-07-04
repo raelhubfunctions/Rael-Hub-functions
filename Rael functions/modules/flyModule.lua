@@ -225,49 +225,52 @@ function flyModule.flymodel2(value, speed)
         return
     end
 
-    while getgenv().isFlyActive do
-        if not shared.Character then continue end
+    task.spawn(function()
+        while getgenv().isFlyActive do
+            if shared.Character then
 
-        local Camera = workspace.CurrentCamera
-        local PlayerScripts = game.Players.LocalPlayer:FindFirstChild("PlayerScripts")
-        local humanoid = shared.Character:FindFirstChildOfClass("Humanoid")
-        local rootPart = shared.Character:FindFirstChild("HumanoidRootPart")
-        if not PlayerScripts or not humanoid or not rootPart then continue end
+                local Camera = workspace.CurrentCamera
+                local PlayerScripts = game.Players.LocalPlayer:FindFirstChild("PlayerScripts")
+                local humanoid = shared.Character:FindFirstChildOfClass("Humanoid")
+                local rootPart = shared.Character:FindFirstChild("HumanoidRootPart")
+                if PlayerScripts and humanoid and rootPart then
 
-        local vHandler = rootPart:FindFirstChild("VelocityHandler")
-        local gHandler = rootPart:FindFirstChild("GyroHandler")
+                    local vHandler = rootPart:FindFirstChild("VelocityHandler")
+                    local gHandler = rootPart:FindFirstChild("GyroHandler")
 
-        if vHandler and gHandler then
-            local moveVec = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector()
-            
-            vHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
-            gHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
-            humanoid.PlatformStand = true
-            gHandler.CFrame = Camera.CFrame
+                    if vHandler and gHandler then
+                        local moveVec = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector()
+                        
+                        vHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+                        gHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+                        humanoid.PlatformStand = true
+                        gHandler.CFrame = Camera.CFrame
 
-            local finalVelocity = Vector3.zero
-            finalVelocity = finalVelocity + Camera.CFrame.RightVector * moveVec.X * (getgenv().flyModeSpeed or speed) * 10
-            finalVelocity = finalVelocity - Camera.CFrame.LookVector * moveVec.Z * (getgenv().flyModeSpeed or speed) * 10
-            vHandler.Velocity = finalVelocity
+                        local finalVelocity = Vector3.zero
+                        finalVelocity = finalVelocity + Camera.CFrame.RightVector * moveVec.X * (getgenv().flyModeSpeed or speed) * 10
+                        finalVelocity = finalVelocity - Camera.CFrame.LookVector * moveVec.Z * (getgenv().flyModeSpeed or speed) * 10
+                        vHandler.Velocity = finalVelocity
 
-        elseif not vHandler and not gHandler then
-            local bv = Instance.new("BodyVelocity")
-            local bg = Instance.new("BodyGyro")
+                    elseif not vHandler and not gHandler then
+                        local bv = Instance.new("BodyVelocity")
+                        local bg = Instance.new("BodyGyro")
 
-            bv.Name = "VelocityHandler"
-            bv.Parent = rootPart
-            bv.MaxForce = Vector3.zero
-            bv.Velocity = Vector3.zero
+                        bv.Name = "VelocityHandler"
+                        bv.Parent = rootPart
+                        bv.MaxForce = Vector3.zero
+                        bv.Velocity = Vector3.zero
 
-            bg.Name = "GyroHandler"
-            bg.Parent = rootPart
-            bg.MaxTorque = Vector3.zero
-            bg.P = 1000
-            bg.D = 50
+                        bg.Name = "GyroHandler"
+                        bg.Parent = rootPart
+                        bg.MaxTorque = Vector3.zero
+                        bg.P = 1000
+                        bg.D = 50
+                    end
+                end
+            end
+            task.wait()
         end
-
-        task.wait()
-    end
+    end)
 end
 
 return flyModule
