@@ -60,8 +60,8 @@ local translation = {
     ["Name"] = "Bring",
     ["Bring the players"] = "Bring the player",
     ["Bring player"] = "Bring player",
-    ["Couch  [method 1]"] = "Couch  [method 1]",
-    ["Couch  [method 2]"] = "Couch  [method 2]"
+    ["Couch [method 1]"] = "Couch [method 1]",
+    ["Couch [method 2]"] = "Couch [method 2]"
 
   },
 
@@ -72,6 +72,7 @@ local translation = {
     ["Fling player"] = "Kill player",
     ["Fling players with your ball aura"] = "Fling players with your ball aura",
     ["Fling players with your ball aura (Do not use with fly)"] = "Fling players with your ball aura (Do not use with fly)",
+    ["Ball radius"] = "Ball radius",
     ["Fling Car"] = "Fling Car",
     ["Fling Car [BETA]"] = "Fling Car [BETA]"
 
