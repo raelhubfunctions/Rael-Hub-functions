@@ -1,12 +1,23 @@
 local module = {}
+
 local LocalizationService = game:GetService("LocalizationService")
-local playerLanguage = LocalizationService.RobloxLocaleId
-local translationsAvailable = {"en-us", "pt-br"}
+local playerLanguage = string.lower(LocalizationService.RobloxLocaleId)
+local translationsAvailable = { "en-us", "pt-br" }
 
 local function ImportaTranslation(language)
-    local url = "https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Brookhaven/brookhaven%20troll/translation%20system/languages/" .. language .. "lua"
-    local content = loadstring(game:HttpGet(url))()
-    return content
+
+    local url = "https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Games%20functions/Brookhaven/brookhaven%20troll/translation%20system/languages/" .. language .. ".lua"
+    local success, content = pcall(function()
+        return loadstring(game:HttpGet(url))()
+    end)
+
+    if success then
+        return content
+    else
+        warn("Erro ao importar tradução para: " .. language)
+        return {}
+    end
+    
 end
 
 function module:GetTranslationTable()
