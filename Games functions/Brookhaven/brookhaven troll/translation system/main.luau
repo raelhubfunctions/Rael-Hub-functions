@@ -14,7 +14,7 @@ local function ImportaTranslation(language)
     if success then
         return content
     else
-        warn("Erro ao importar tradução para: " .. language)
+        warn("Error importing translation for:" .. language)
         return {}
     end
     
