@@ -1,6 +1,7 @@
-local translation = { 
+local translation = {
+  
   TLocalPlayer = {
-    ["Name"] = "Jogador Local",
+    ["Name"] = "JogadorLocal",
     ["Make your player fly"] = "Fazer seu jogador voar",
     ["Fly speed"] = "Velocidade de voo",
     ["Enable speed"] = "Ativar velocidade (Você pode pressionar F para voar)",
@@ -47,8 +48,8 @@ local translation = {
     ["Name"] = "Trazer",
     ["Bring the players"] = "Trazer os jogadores",
     ["Bring player"] = "Trazer jogador",
-    ["Couch  [method 1]"] = "Sofá [método 1]",
-    ["Couch  [method 2]"] = "Sofá [método 2]"
+    ["Couch [method 1]"] = "Sofá [método 1]",
+    ["Couch [method 2]"] = "Sofá [método 2]"
   },
 
   TFling = {
@@ -56,7 +57,8 @@ local translation = {
     ["Fling the players"] = "Arremessar os jogadores",
     ["Fling player"] = "Arremessar jogador",
     ["Fling players with your ball aura"] = "Arremessar jogadores com sua aura de bola",
-    ["Fling players with your ball aura (Do not use with fly)"] = "Arremessar jogadores com sua aura de bola (Não use com fly KAKKAKA)",
+    ["Fling players with your ball aura (Do not use with fly)"] = "Arremessar jogadores com sua aura de bola (Não use com voo)",
+    ["Ball radius"] = "Raio da bola",
     ["Fling Car"] = "Arremessar Carro",
     ["Fling Car [BETA]"] = "Arremessar Carro [BETA]"
   },
@@ -67,15 +69,15 @@ local translation = {
     ["Play audio"] = "Tocar áudio",
     ["Play audio loop"] = "Tocar áudio em loop",
     ["Add an id"] = "Adicionar um ID",
-    ["Audio all through roblox ids"] = "Áudio geral através de IDs do Roblox",
+    ["Audio all through roblox ids"] = "Áudio geral por IDs do Roblox",
     ["Enter a valid id"] = "Digite um ID válido"
   },
 
   TLagServer = {
     ["Name"] = "Lag no servidor",
-    ["Lag Server [Bomb]"] = "Lagar servidor [Bomba]",
-    ["Lag Server [Laptop]"] = "Lagar servidor [Notebook]",
-    ["Lag Server [Basketball]"] = "Lagar servidor [Basquete]",
+    ["Lag Server [Bomb]"] = "Lag no Servidor [Bomba]",
+    ["Lag Server [Laptop]"] = "Lag no Servidor [Notebook]",
+    ["Lag Server [Basketball]"] = "Lag no Servidor [Basquete]",
     ["Return to normal (rejoin)"] = "Voltar ao normal (reentrar)"
   },
   
@@ -93,6 +95,7 @@ local translation = {
     ["Ball"] = "Bola",
     ["List of cars in the game"] = "Lista de carros no jogo"
   }
+
 }
 
 return translation
