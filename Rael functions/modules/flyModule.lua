@@ -10,14 +10,18 @@ function flyModule.flymodel1(value, speeds)
 
 	if value == nil then
 		if getgenv().isFlyActive == nil then getgenv().isFlyActive = false end
+    shared.isLoaderFly = getgenv().isFlyActive
 		getgenv().isFlyActive = not getgenv().isFlyActive
 	else
+    shared.isLoaderFly = getgenv().isFlyActive
 		getgenv().isFlyActive = value
 	end
 	
 	getgenv().flyModeSpeed = speeds
 
 	if not getgenv().isFlyActive then
+
+    if not shared.isLoaderFly then return end
 
 		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
 		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
