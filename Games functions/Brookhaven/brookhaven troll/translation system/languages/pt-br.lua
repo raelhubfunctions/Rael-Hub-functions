@@ -12,8 +12,8 @@ local translation = {
     ["Enable Noclip"] = "Ativar Noclip",
     
 
-    ["Stay when locking player"] = "Ficar ao travar jogador",
-    ["Anti lock player"] = "Anti travamento de jogador",
+    ["Stay when locking player"] = "Não seja travado pelo travar player",
+    ["Anti lock player"] = "Anti travar player",
     
 
     ["Anti seat"] = "Anti sentar",
