@@ -104,10 +104,10 @@ local translation = {
   },
 
   TLagServer = {
-    ["Name"] = "Travamento de servidor",
-    ["Lag Server [Bomb]"] = "Travar servidor [Bomba]",
-    ["Lag Server [Laptop]"] = "Travar servidor [Laptop]",
-    ["Lag Server [Basketball]"] = "Travar servidor [Basquete]",
+    ["Name"] = "Lag de servidor",
+    ["Lag Server [Bomb]"] = "Lag servidor [Bomba]",
+    ["Lag Server [Laptop]"] = "Lag servidor [Laptop]",
+    ["Lag Server [Basketball]"] = "Lag servidor [Basquete]",
     ["Return to normal (rejoin)"] = "Voltar ao normal (reentrar)"
   },
   
