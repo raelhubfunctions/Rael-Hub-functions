@@ -11,7 +11,11 @@ local translation = {
     ["Player cross things"] = "Player cross things",
     ["Enable Noclip"] = "Enable Noclip",
     
+
+    ["Stay when locking player"] = "Stay when locking player",
+    ["Anti lock player"] = "Anti lock player",
     
+
     ["Anti seat"] = "Anti seat",
     ["Anti seat Vehicle"] = "Anti seat Vehicle",
     ["Anti seat Tool"] = "Anti seat Tool",
@@ -47,6 +51,14 @@ local translation = {
     ["Enter the player's nickname"] = "Enter the player's nickname",
     
   },
+
+  TLockPlayer = {
+    ["Name"] = "Lock players",
+    ["Lock all players"] = "Lock all players",
+    ["Lock Players"] = "Lock Players",
+    ["Lock Player"] = "Lock Player"
+    
+  },
   
   TKill = {
 
@@ -68,7 +80,7 @@ local translation = {
   TFling = {
 
     ["Name"] = "Fling",
-    ["Fling the players"] = "Kill the player",
+    ["Fling the players"] = "Fling the player",
     ["Fling player"] = "Kill player",
     ["Fling players with your ball aura"] = "Fling players with your ball aura",
     ["Fling players with your ball aura (Do not use with fly)"] = "Fling players with your ball aura (Do not use with fly)",
