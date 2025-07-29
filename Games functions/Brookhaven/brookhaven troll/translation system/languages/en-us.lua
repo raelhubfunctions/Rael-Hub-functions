@@ -89,7 +89,7 @@ local translation = {
     ["Fling Car"] = "Fling Car",
     ["Fling Car [BETA]"] = "Fling Car [BETA]",
     ["Fling all the players"] = "Fling all the players",
-    ["Fling All"] = "Fling All"
+    ["Fling All"] = "Fling all"
 
 
   },
