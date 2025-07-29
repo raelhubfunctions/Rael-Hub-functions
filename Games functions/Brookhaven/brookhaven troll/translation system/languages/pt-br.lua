@@ -86,7 +86,9 @@ local translation = {
     ["Fling players with your ball aura (Do not use with fly)"] = "Arremessar jogadores com sua aura de bola (Não use com voo)",
     ["Ball radius"] = "Raio da bola",
     ["Fling Car"] = "Arremessar carro",
-    ["Fling Car [BETA]"] = "Arremessar carro [BETA]"
+    ["Fling Car [BETA]"] = "Arremessar carro [BETA]",
+    ["Fling all the players"] = "Arremessar todos os jogadores",
+    ["Fling All"] = "Arremessar jogadores"
 
   },
 
