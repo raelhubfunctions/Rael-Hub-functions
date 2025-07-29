@@ -79,6 +79,7 @@ local translation = {
 
   TFling = {
 
+
     ["Name"] = "Fling",
     ["Fling the players"] = "Fling the player",
     ["Fling player"] = "Kill player",
@@ -86,7 +87,10 @@ local translation = {
     ["Fling players with your ball aura (Do not use with fly)"] = "Fling players with your ball aura (Do not use with fly)",
     ["Ball radius"] = "Ball radius",
     ["Fling Car"] = "Fling Car",
-    ["Fling Car [BETA]"] = "Fling Car [BETA]"
+    ["Fling Car [BETA]"] = "Fling Car [BETA]",
+    ["Fling all the players"] = "Fling all the players",
+    ["Fling All"] = "Fling All"
+
 
   },
 
@@ -105,11 +109,15 @@ local translation = {
   },
 
   TLagServer = {
+
+
     ["Name"] = "Lag server",
     ["Lag Server [Bomb]"] = "Lag Server [Bomb]",
     ["Lag Server [Laptop]"] = "Lag Server [Laptop]",
     ["Lag Server [Basketball]"] = "Lag Server [Basketball]",
     ["Return to normal (rejoin)"] = "Return to normal (rejoin)"
+
+
   },
   
   RepeatedWords = {
