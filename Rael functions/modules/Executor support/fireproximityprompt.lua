@@ -34,7 +34,7 @@ local placaIdFunctions = {
 
 }
 
-if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and getgenv().isFireproximityPrompt then
+if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and not getgenv().isFireproximityPrompt then
     warn("[Rael Hub sUNC] Your ".. getNameExecutor .." now has definitive support for the fireproximityprompt function")
     getgenv().isFireproximityPrompt = true
 
