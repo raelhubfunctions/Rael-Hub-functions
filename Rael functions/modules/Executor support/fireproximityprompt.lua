@@ -1,5 +1,38 @@
 local badExecutors = {"Xeno", "Solara"}
 local getNameExecutor, getVersionEXecutor = identifyexecutor()
+local plcaId = game.PlaceId
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local PlayerScripts = LocalPlayer:WaitForChild("PlayerScripts")
+
+local placaIdFunctions = {
+
+    ["8056702588"] = {
+
+        Active = function()
+
+            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
+            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
+            if not cameraScript then return end
+
+            cameraScript.Enabled = false
+
+        end,
+
+        Disabled = function()
+
+            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
+            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
+            if not cameraScript then return end
+
+            cameraScript.Enabled = true
+
+        end
+
+    }
+
+}
 
 if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and not getgenv().isFireproximityPrompt then
     warn("[Rael hub] Your ".. getNameExecutor .." now has definitive support for the fireproximityprompt function")
@@ -15,6 +48,9 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
         local oldCameraType = camera.CameraType
 
         local success, err = pcall(function()
+
+            if placaIdFunctions[tostring(plcaId)] then placaIdFunctions[tostring(plcaId)].Active(); task.wait(0.3) end
+
             prompt.Enabled = true
             prompt.HoldDuration = 0
             prompt.RequiresLineOfSight = false
@@ -51,6 +87,8 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
         prompt.MaxActivationDistance = oldMaxDistance
         camera.CFrame = oldCameraCFrame
         camera.CameraType = oldCameraType
+
+        if placaIdFunctions[tostring(plcaId)] then placaIdFunctions[tostring(plcaId)].Disabled(); task.wait(0.3) end
 
         if not success then
             warn("[Rael Hub] an error occurred with fireproximityprompt", err)
