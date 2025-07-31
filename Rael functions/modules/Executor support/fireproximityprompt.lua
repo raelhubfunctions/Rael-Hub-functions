@@ -34,8 +34,8 @@ local placaIdFunctions = {
 
 }
 
-if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and not getgenv().isFireproximityPrompt then
-    warn("[Rael hub] Your ".. getNameExecutor .." now has definitive support for the fireproximityprompt function")
+if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and getgenv().isFireproximityPrompt then
+    warn("[Rael Hub sUNC] Your ".. getNameExecutor .." now has definitive support for the fireproximityprompt function")
     getgenv().isFireproximityPrompt = true
 
     getgenv().fireproximityprompt = function(prompt)
@@ -49,7 +49,11 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
 
         local success, err = pcall(function()
 
-            if placaIdFunctions[tostring(plcaId)] then placaIdFunctions[tostring(plcaId)].Active(); task.wait(0.3) end
+            if placaIdFunctions[tostring(plcaId)] then 
+                placaIdFunctions[tostring(plcaId)].Active()
+                warn("[Rael Hub sUNC] function active")
+                task.wait(1)
+            end
 
             prompt.Enabled = true
             prompt.HoldDuration = 0
@@ -88,10 +92,18 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
         camera.CFrame = oldCameraCFrame
         camera.CameraType = oldCameraType
 
-        if placaIdFunctions[tostring(plcaId)] then placaIdFunctions[tostring(plcaId)].Disabled(); task.wait(0.3) end
+        if placaIdFunctions[tostring(plcaId)] then 
+            placaIdFunctions[tostring(plcaId)].Disabled()
+            warn("[Rael Hub sUNC] function disabled")
+            task.wait(1)
+        end
 
         if not success then
-            warn("[Rael Hub] an error occurred with fireproximityprompt", err)
+            warn("[Rael Hub sUNC] an error occurred with fireproximityprompt", err)
+            return false
         end
+
+        return true
+
     end
 end
