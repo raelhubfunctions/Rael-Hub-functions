@@ -1,3 +1,5 @@
+if shared.RaelHubFunction then return shared.RaelHubFunction end
+
 local RaelHubFunction = {}
 local flyModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/flyModule.lua"))()
 local fireproximityprompt = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/Executor%20support/fireproximityprompt.lua"))()
