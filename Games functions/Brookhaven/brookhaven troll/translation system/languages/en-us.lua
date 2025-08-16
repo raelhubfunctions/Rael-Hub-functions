@@ -11,6 +11,8 @@ local translation = {
     ["Player cross things"] = "Player cross things",
     ["Enable Noclip"] = "Enable Noclip",
     
+    ["Freeze player (effective to avoid being thrown)"] = "Freeze player (effective to avoid being thrown)",
+    ["Freeze player"] = "Freeze player",
 
     ["Stay when locking player"] = "Stay when locking player",
     ["Anti lock player"] = "Anti lock player",
