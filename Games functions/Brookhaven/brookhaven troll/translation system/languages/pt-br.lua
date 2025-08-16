@@ -11,7 +11,9 @@ local translation = {
     ["Player cross things"] = "Jogador atravessar objetos",
     ["Enable Noclip"] = "Ativar Noclip",
     
-
+    ["Freeze player (effective to avoid being thrown)"] = "Congelar jogador (eficaz para evitar ser arremessado)",
+    ["Freeze player"] = "Congelar jogador",
+ 
     ["Stay when locking player"] = "Não seja travado pelo travar player",
     ["Anti lock player"] = "Anti travar player",
     
