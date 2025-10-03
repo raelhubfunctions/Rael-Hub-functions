@@ -53,49 +53,20 @@ for index: number, link: string in pairs(links) do
     end)
 end
 
-function raelhubfunctions.CreateEsp(object: BasePart | HumanoidRootPart, color: Color3, imageId: string, text: string)
-  
-  if object and (object:IsA("BasePart") or object:IsA("HumanoidRootPart")) then 
-    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
-    return
-  end
-
-  local highlight: Highlight = Instance.new("Highlight")
-  highlight.Name = "raelhubhighlight"
-  highlight.Adornee = object
-  highlight.FillColor = color or Color3.fromRGB(255, 255, 255)
-  highlight.Parent = object
-
-  local billboard: BillboardGui = Instance.new("BillboardGui")
-  billboard.Name = "raelhubicon"
-  billboard.Adornee = object:FindFirstChild("BasePart", true)
-  billboard.Size = UDim2.new(0, 30, 0, 30)
-  billboard.StudsOffset = Vector3.new(0, 0, 0)
-  billboard.AlwaysOnTop = true
-  billboard.Parent = object
-
-  local imageLabel: ImageLabel = Instance.new("ImageLabel")
-  imageLabel.Size = UDim2.new(1, 0, 1, 0)
-  imageLabel.BackgroundTransparency = 1
-  imageLabel.Image = "rbxassetid://" .. imageId or "12905962634"
-  imageLabel.Parent = billboard
-  
-  local textLabel: TextLabel = Instance.new("TextLabel")
-  textLabel.Size = UDim2.new(1, 0, 1, 0)
-  textLabel.BackgroundTransparency = 1
-  textLabel.Text = text or "Instance"
-  textLabel.Position = UDim2.new(0, 0, 0, 20)
-  textLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
-  textLabel.TextSize = 13
-  textLabel.Font = Enum.Font.GothamBold
-  textLabel.Parent = billboard
-end
-
 function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, imageId: string, text: string)
   
   if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
-    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
+    warn("[Rael hub error] the raelhubicon or raelhubhighlight exist")
     return 
+  end
+
+  local objectPart: BasePart | MeshPart;
+
+  for _, part: BasePart | MeshPart in ipairs(object:GetDescendants()) do
+    if part.Name == "HumanoidRootPart" or part:IsA("BasePart") or part:IsA("MeshPart") then 
+      objectPart = part
+      break
+    end
   end
   
   local highlight: Highlight = Instance.new("Highlight")
@@ -106,7 +77,7 @@ function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, image
 
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
-  billboard.Adornee = object:FindFirstChild("BasePart", true)
+  billboard.Adornee = objectPart
   billboard.Size = UDim2.new(0, 30, 0, 30)
   billboard.StudsOffset = Vector3.new(0, 0, 0)
   billboard.AlwaysOnTop = true
@@ -132,9 +103,20 @@ end
 function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, text: string, showDistance: boolean)
 
   if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
-    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
+    warn("[Rael hub error] the raelhubicon or raelhubhighlight exist")
     return 
   end
+
+  local objectPart: BasePart | MeshPart;
+
+  for _, part: BasePart | MeshPart in ipairs(object:GetDescendants()) do
+    if part.Name == "HumanoidRootPart" or part:IsA("BasePart") or part:IsA("MeshPart") then 
+      objectPart = part
+      break
+    end
+  end
+
+  if not objectPart then warn("[Rael hub error] the basepart was not found in the", object); return end
 
   local raelhubhighlight: Highlight = Instance.new("Highlight")
   raelhubhighlight.Name = "raelhubhighlight"
@@ -142,27 +124,9 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
   raelhubhighlight.FillColor = color or Color3.fromRGB(255, 255, 255)
   raelhubhighlight.Parent = object
 
-  local targetBasePart: BasePart;
-
-  if object:IsA("BasePart") then
-    targetBasePart = object
-  else
-    for _, descendant in ipairs(object:GetDescendants()) do
-      if descendant.Name == "HumanoidRootPart" and descendant:IsA("BasePart") then
-        targetBasePart = descendant
-        break
-      elseif descendant:IsA("BasePart") then
-        targetBasePart = descendant
-        break
-      end
-    end
-  end
-
-  if not targetBasePart then warn("[Rael hub error] the basepart was not found in the " .. object .. " model"); return end
-
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
-  billboard.Adornee = targetBasePart
+  billboard.Adornee = objectPart
   billboard.Size = UDim2.new(0, 50, 0, 50)
   billboard.StudsOffset = Vector3.new(0, 0, 0)
   billboard.AlwaysOnTop = true
@@ -192,10 +156,10 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
 
   RunService.RenderStepped:Connect(function()
     local targetRoot: BasePart = Character:FindFirstChild("HumanoidRootPart")
-    if not targetRoot and not targetBasePart then return end
+    if not targetRoot and not objectPart then return end
 
     local playerPos = Character.HumanoidRootPart.Position
-    local objectPos = targetBasePart.Position
+    local objectPos = objectPart.Position
     local distance = (playerPos - objectPos).Magnitude
       
     distanceLabel.Text = "Distance: " .. math.floor(distance) .. " studs"
