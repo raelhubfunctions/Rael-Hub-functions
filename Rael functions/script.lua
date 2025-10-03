@@ -191,157 +191,68 @@ function raelhubfunctions.DisableEsp(object: Instance)
   
 end
 
-function raelhubfunctions.PlayersEspDisabled()
-  local players = game:GetService("Players")
-        
-  for _, jogador in ipairs(players:GetPlayers()) do
-    local personagem = jogador.Character
-
-    if personagem then
-      raelhubfunctions.DisableEsp(personagem)
-    end
-  end
-end
-
-function raelhubfunctions.EspPlayer()
-  while RaelHubEspState do
-    raelhubfunctions.PlayersEspActive()
-    task.wait(1) -- Atraso para evitar execução rápida demais
-  end
-  raelhubfunctions.PlayersEspDisabled() -- Desativa o ESP se o estado mudar para false
-end
-
-function raelhubfunctions.EspMonstroActive(Monstros)
-  for _, Monstro in ipairs(Monstros) do
-    if Monstro then
-        raelhubfunctions.CreateEsp(Monstro, Color3.fromRGB(255, 102, 102), "88229448947616", "")
-    else
-      print("Nenhum monstro encontrado.")
-    end
-  end
-end
-
-function raelhubfunctions.EspMonstroDisabled(Monstros)
-  for _, Monstro in ipairs(Monstros) do
-    if Monstro then
-        raelhubfunctions.DisableEsp(Monstro)
-    else
-      print("Nenhum monstro encontrado.")
-    end
-  end
-end
-
-local FlyRun = game:GetService("RunService")
-local connection
-
-function raelhubfunctions.FlyTo(destination, speed)
-  if Character then
-    local humanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
-    local humanoid = Character:FindFirstChildOfClass("Humanoid")
-
-    if humanoidRootPart and humanoid then
-     humanoid.Jump = true
-
-      wait(0.2)
-
-      local bodyVelocity = Instance.new("BodyVelocity")
-      bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
-      bodyVelocity.Velocity = (destination - humanoidRootPart.Position).unit * speed
-      bodyVelocity.Parent = humanoidRootPart
-      
-      connection = FlyRun.Stepped:Connect(function()
-        if (destination - humanoidRootPart.Position).magnitude < 5 then
-          bodyVelocity:Destroy()
-          humanoidRootPart.CFrame = CFrame.new(destination)
-          StopFly()
-        end
-      end)
-
-      return bodyVelocity
-    end
-  end
-end
-
-function StopFly(bodyVelocity)
-  if connection then
-    connection:Disconnect()
-    connection = nil
-  end
-
-  if bodyVelocity then
-    bodyVelocity:Destroy()
-  end
-end
-
-function raelhubfunctions.Auto_Click_V1(value)
+function raelhubfunctions.Auto_Click_V1(value: boolean)
   
-  getgenv().RaelHubAutoClickV1 = value
+  _env.RaelHubAutoClickV1 = value
   
-  local function Click()
+  local function mouseClick()
     VirtualUser:CaptureController()
     VirtualUser:Button1Down(Vector2.new(1e4, 1e4))
     task.wait(0.05)
   end
   
   task.spawn(function()
-    while getgenv().RaelHubAutoClickV1 do
-      
-      Click()
+    while _env.RaelHubAutoClickV1 do
+      mouseClick()
       task.wait()
-      
     end
   end)
 end
 
-function raelhubfunctions.Criarchao(position, colicion, transparency, corRGB)
-    -- Cria uma pasta no Workspace para armazenar as partes
-    local pasta = game.Workspace:FindFirstChild("RaelHubFloor") or Instance.new("Folder")
-    pasta.Name = "RaelHubFloor"
-    pasta.Parent = game.Workspace
+function raelhubfunctions.Criarchao(position: Vector3, colicion: boolean, transparency: number, corRGB: Color3)
 
-    -- Cria o mini chão
-    local part = Instance.new("Part")
-    part.Size = Vector3.new(10, 1, 10) -- Define o tamanho do mini chão (quadrado)
-    part.Position = position -- Define a posição do mini chão
-    part.Anchored = true -- Faz o mini chão ficar parado no lugar
-    part.Color = corRGB -- Usa a cor RGB passada como parâmetro
-    part.Transparency = transparency -- Define a transparência
-    part.Parent = pasta -- Armazena o mini chão dentro da pasta
+  local folderParts: Folder = workspace:FindFirstChild("RaelHubFloor") or Instance.new("Folder")
+  folderParts.Name = "RaelHubFloor"
+  folderParts.Parent = workspace
 
-    -- Função para criar uma barreira
-    local function createBarrier(position, size)
-        local barrier = Instance.new("Part")
-        barrier.Size = size
-        barrier.Position = position
-        barrier.Anchored = true
-        barrier.CanCollide = true
-        barrier.Transparency = 1 -- Define a barreira como totalmente transparente
-        barrier.Color = Color3.fromRGB(0, 0, 255) -- Barreiras com cor azul
-        barrier.Parent = pasta -- Armazena as barreiras dentro da pasta
+  local part: BasePart = Instance.new("Part")
+  part.Size = Vector3.new(10, 1, 10)
+  part.Position = position
+  part.Anchored = true
+  part.Color = corRGB
+  part.Transparency = transparency
+  part.Parent = folderParts
+
+  local function createBarrier(position: Vector3, size: number)
+    local barrier: BasePart = Instance.new("Part")
+    barrier.Size = size
+    barrier.Position = position
+    barrier.Anchored = true
+    barrier.CanCollide = true
+    barrier.Transparency = 1
+    barrier.Color = Color3.fromRGB(0, 0, 255)
+    barrier.Parent = folderParts
+  end
+
+  local barrierThickness: number = 1
+  local barrierHeight: number = 10
+
+  local barrierPositions: { Vector3 } = {
+    Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z - part.Size.Z / 2 - barrierThickness / 2),
+    Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z + part.Size.Z / 2 + barrierThickness / 2),
+    Vector3.new(part.Position.X - part.Size.X / 2 - barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z),
+    Vector3.new(part.Position.X + part.Size.X / 2 + barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z),
+  }
+
+  if colicion then
+    for _, pos in ipairs(barrierPositions) do
+      if pos.Z == part.Position.Z then
+        createBarrier(pos, Vector3.new(barrierThickness, barrierHeight, part.Size.Z))
+      else
+        createBarrier(pos, Vector3.new(part.Size.X, barrierHeight, barrierThickness))
+      end
     end
-
-    -- Tamanho das barreiras
-    local barrierThickness = 1
-    local barrierHeight = 10
-
-    -- Posições das barreiras ao redor do mini chão
-    local barrierPositions = {
-        Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z - part.Size.Z / 2 - barrierThickness / 2), -- Frente
-        Vector3.new(part.Position.X, part.Position.Y + barrierHeight / 2, part.Position.Z + part.Size.Z / 2 + barrierThickness / 2), -- Trás
-        Vector3.new(part.Position.X - part.Size.X / 2 - barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z), -- Esquerda
-        Vector3.new(part.Position.X + part.Size.X / 2 + barrierThickness / 2, part.Position.Y + barrierHeight / 2, part.Position.Z), -- Direita
-    }
-
-    -- Cria as barreiras
-    if colicion then
-        for _, pos in ipairs(barrierPositions) do
-            if pos.Z == part.Position.Z then
-                createBarrier(pos, Vector3.new(barrierThickness, barrierHeight, part.Size.Z)) -- Barreiras laterais
-            else
-                createBarrier(pos, Vector3.new(part.Size.X, barrierHeight, barrierThickness)) -- Barreiras frente e trás
-            end
-        end
-    end
+  end
 end
 
 function raelhubfunctions.ESPPlayers(value: boolean, method: string)
@@ -436,7 +347,7 @@ end
 
 function raelhubfunctions.freezeplayer(time: number, sync: boolean)
   
-    local rootPlayer = (Character and Character:FindFirstChild("HumanoidRootPart"))
+    local rootPlayer: BasePart = (Character and Character:FindFirstChild("HumanoidRootPart"))
     if not rootPlayer then return warn("[Rael hub error] the rootPlayer not exist") end
 
     if not sync then
@@ -456,10 +367,10 @@ end
 
 function raelhubfunctions.FlyToPosition(targetPosition: Vector3, speed: number)
   
-    local rootPlayer = (Character and Character:FindFirstChild("HumanoidRootPart"))
+    local rootPlayer: BasePart = (Character and Character:FindFirstChild("HumanoidRootPart"))
     if not rootPlayer then return warn("[Rael hub error] the rootPlayer not exist") end 
 
-    local bodyVelocity = Instance.new("BodyVelocity")
+    local bodyVelocity: BodyVelocity = Instance.new("BodyVelocity")
     bodyVelocity.Name = "Fly to position"
     bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
     bodyVelocity.Velocity = (targetPosition - rootPlayer.Position).unit * speed
