@@ -118,11 +118,21 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
   end
 
   local objectPart: BasePart | MeshPart;
+  local objects: { Instance } = object:GetDescendants()
 
-  for _, part: BasePart | MeshPart in ipairs(object:GetDescendants()) do
-    if part.Name == "HumanoidRootPart" or part:IsA("BasePart") or part:IsA("MeshPart") then 
+  for _, part: BasePart | MeshPart in ipairs(objects) do
+    if part.Name == "HumanoidRootPart" and part:IsA("BasePart") or part:IsA("MeshPart")then
       objectPart = part
       break
+    end
+  end
+  
+  if not objectPart then
+    for _, part: BasePart | MeshPart in ipairs(objects) do
+      if part:IsA("BasePart") or part:IsA("MeshPart") then
+        objectPart = part
+        break
+      end
     end
   end
 
