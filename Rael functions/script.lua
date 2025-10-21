@@ -17,6 +17,7 @@ local Camera: Camera = workspace.CurrentCamera
 local Chat: TextChannel = TextChatService.ChatInputBarConfiguration.TargetTextChannel
 local LocalPlayer: Player = Players.LocalPlayer
 local Character: Model = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HumanoidRootPart: BasePart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
 shared.configLight = shared.configLight or {
     ["Ambient"] = Light.Ambient,
@@ -34,9 +35,14 @@ end
 shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 if not shared.connections["monitorCharacter"] then
-  shared.connections["monitorCharacter"] = LocalPlayer.CharacterAdded:Connect(function(newcharacter)
+  shared.connections["monitorCharacter"] = LocalPlayer.CharacterAdded:Connect(function()
+
+    local newcharacter: Model = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    HumanoidRootPart = newcharacter:WaitForChild("HumanoidRootPart", 3)
+    
     Character = newcharacter
     shared.Character = newcharacter
+    
   end)
 end
 
