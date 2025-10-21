@@ -64,7 +64,7 @@ function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, image
   local objects: { Instance } = object:GetDescendants()
 
   for _, part: BasePart | MeshPart in ipairs(objects) do
-    if part.Name == "HumanoidRootPart" and part:IsA("BasePart") or part:IsA("MeshPart")then
+    if part.Name == "HumanoidRootPart" and (part:IsA("BasePart") or part:IsA("MeshPart")) then
       objectPart = part
       break
     end
@@ -121,7 +121,7 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
   local objects: { Instance } = object:GetDescendants()
 
   for _, part: BasePart | MeshPart in ipairs(objects) do
-    if part.Name == "HumanoidRootPart" and part:IsA("BasePart") or part:IsA("MeshPart")then
+    if part.Name == "HumanoidRootPart" and (part:IsA("BasePart") or part:IsA("MeshPart")) then
       objectPart = part
       break
     end
