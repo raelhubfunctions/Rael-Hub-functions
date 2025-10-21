@@ -56,7 +56,6 @@ end
 function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, imageId: string, text: string)
   
   if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
-    warn("[Rael hub error] the raelhubicon or raelhubhighlight exist")
     return 
   end
 
@@ -113,7 +112,6 @@ end
 function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, text: string, showDistance: boolean)
 
   if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
-    warn("[Rael hub error] the raelhubicon or raelhubhighlight exist")
     return 
   end
 
