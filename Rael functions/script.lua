@@ -62,7 +62,7 @@ end
 function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, imageId: string, text: string)
   
   if object:FindFirstChild("raelhubicon") or object:FindFirstChild("raelhubhighlight") then 
-    return 
+    return
   end
 
   local objectPart: BasePart | MeshPart;
@@ -74,7 +74,7 @@ function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, image
       break
     end
   end
-  
+    
   if not objectPart then
     for _, part: BasePart | MeshPart in ipairs(objects) do
       if part:IsA("BasePart") or part:IsA("MeshPart") then
@@ -84,11 +84,15 @@ function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, image
     end
   end
 
-  local highlight: Highlight = Instance.new("Highlight")
-  highlight.Name = "raelhubhighlight"
-  highlight.Adornee = object
-  highlight.FillColor = color or Color3.fromRGB(255, 255, 255)
-  highlight.Parent = object
+  local raelhubhighlight: Highlight = Instance.new("Highlight")
+  raelhubhighlight.Name = "raelhubhighlight"
+  raelhubhighlight.Adornee = object
+  raelhubhighlight.FillColor = color or Color3.fromRGB(255, 255, 255)
+  raelhubhighlight.Parent = object
+
+  local isNotPart: boolean = (not objectPart and (object:IsA("BasePart") or object:IsA("MeshPart")))
+  if isNotPart then objectPart = object end
+  if not isNotPart then return end
 
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
@@ -140,13 +144,15 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
     end
   end
 
-  if not objectPart then warn("[Rael hub error] the basepart was not found in the", object); return end
-
   local raelhubhighlight: Highlight = Instance.new("Highlight")
   raelhubhighlight.Name = "raelhubhighlight"
   raelhubhighlight.Adornee = object
   raelhubhighlight.FillColor = color or Color3.fromRGB(255, 255, 255)
   raelhubhighlight.Parent = object
+
+  local isNotPart: boolean = (not objectPart and (object:IsA("BasePart") or object:IsA("MeshPart")))
+  if isNotPart then objectPart = object end
+  if not isNotPart then return end
 
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
