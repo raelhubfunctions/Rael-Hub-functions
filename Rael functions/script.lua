@@ -92,7 +92,7 @@ function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, image
 
   local isNotPart: boolean = (not objectPart and (object:IsA("BasePart") or object:IsA("MeshPart")))
   if isNotPart then objectPart = object end
-  if not isNotPart then return end
+  if not objectPart then return end
 
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
@@ -152,7 +152,7 @@ function raelhubfunctions.CreateEspDistance(object: Instance, color: Color3, tex
 
   local isNotPart: boolean = (not objectPart and (object:IsA("BasePart") or object:IsA("MeshPart")))
   if isNotPart then objectPart = object end
-  if not isNotPart then return end
+  if not objectPart then return end
 
   local billboard: BillboardGui = Instance.new("BillboardGui")
   billboard.Name = "raelhubicon"
