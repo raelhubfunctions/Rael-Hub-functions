@@ -4,7 +4,7 @@ local raelhubfunctions = {}
 local mainDir: string = "https://raw.githubusercontent.com/raelhubfunctions/Rael-Hub-functions"
 local moduleDir: string = mainDir .. "/refs/heads/main/Rael%20functions/modules/"
 local flyModule = loadstring(game:HttpGet(moduleDir .. "flyModule.lua"))()
-local fireproximityprompt = loadstring(game:HttpGet(moduleDir .. "Executor%20support/fireproximityprompt.lua"))()
+local fireproximityprompt = loadstring(game:HttpGet(moduleDir .. "executor-support/fireproximityprompt.lua"))()
 
 local VirtualUser: VideoPlayer = game:GetService("VirtualUser")
 local TextChatService: TextChatService = game:GetService("TextChatService")
@@ -20,9 +20,9 @@ local Character: Model = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wai
 local HumanoidRootPart: BasePart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
 shared.configLight = shared.configLight or {
-    ["Ambient"] = Light.Ambient,
-    ["ColorShift_Bottom"] = Light.ColorShift_Bottom,
-    ["ColorShift_Top"] = Light.ColorShift_Top
+  ["Ambient"] = Light.Ambient,
+  ["ColorShift_Bottom"] = Light.ColorShift_Bottom,
+  ["ColorShift_Top"] = Light.ColorShift_Top
 }
 
 shared.connections = shared.connections or {}
@@ -50,6 +50,7 @@ local links: { string } = {
     "https://nexviewsservice.shardweb.app/services/rael_hub/start",
     "https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau",
     moduleDir .. "sendModule.lua",
+    moduleDir .. "connection.lua"
 }
 
 for index: number, link: string in pairs(links) do
