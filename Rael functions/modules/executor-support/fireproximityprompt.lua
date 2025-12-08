@@ -1,6 +1,7 @@
+local _env = getgenv()
 local badExecutors = {"Xeno", "Solara"}
-local getNameExecutor, getVersionEXecutor = identifyexecutor()
-local plcaId = game.PlaceId
+local execName, exeVersion = (_env.identifyexecutor or function() return "Solara", "version?" end)()
+local placeId = game.PlaceId
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
@@ -34,11 +35,11 @@ local placaIdFunctions = {
 
 }
 
-if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) and not getgenv().isFireproximityPrompt then
-    warn("[Rael Hub sUNC] Your ".. getNameExecutor .." now has definitive support for the fireproximityprompt function")
-    getgenv().isFireproximityPrompt = true
+if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.isFireproximityPrompt then
+    warn("[Rael Hub sUNC] Your ".. execName .." now has definitive support for the fireproximityprompt function")
+    _env.isFireproximityPrompt = true
 
-    getgenv().fireproximityprompt = function(prompt)
+    _env.fireproximityprompt = function(prompt, cameraStand)
         local camera = workspace.CurrentCamera
         local oldEnabled = prompt.Enabled
         local oldHoldDuration = prompt.HoldDuration
@@ -47,13 +48,37 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
         local oldCameraCFrame = camera.CFrame
         local oldCameraType = camera.CameraType
 
+        local function getCameraStand(prompt)
+            if cameraStand then return cameraStand end
+
+            local promptParent = prompt and prompt.Parent
+            local promptModel = prompt and prompt:FindFirstAncestorOfClass("Model")
+            local isHumanoidRootPart = promptModel and promptModel:FindFirstChild("HumanoidRootPart", true)
+
+            if promptParent and promptParent:IsA("BasePart") then return promptParent end
+            if isHumanoidRootPart and isHumanoidRootPart:IsA("BasePart") then return isHumanoidRootPart end
+
+            if promptModel then
+                for _, part in ipairs(promptModel:getDescendants()) do
+                    if part and part:IsA("BasePart") then return part end
+                end
+            end
+
+            warn("[Rael hub function] There is no support for camera (fireproximityprompt)")
+            return
+        end
+
         local success, err = pcall(function()
 
-            if placaIdFunctions[tostring(plcaId)] then 
-                placaIdFunctions[tostring(plcaId)].Active()
+            if placaIdFunctions[tostring(placeId)] then 
+                placaIdFunctions[tostring(placeId)].Active()
                 warn("[Rael Hub sUNC] function active")
                 task.wait(1)
             end
+
+            local targetPart = getCameraStand(prompt)
+            local centerPosition = targetPart and targetPart.Position
+            if not centerPosition then return end
 
             prompt.Enabled = true
             prompt.HoldDuration = 0
@@ -63,16 +88,6 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
             task.wait(0.1)
 
             camera.CameraType = Enum.CameraType.Scriptable
-
-            local targetModel = prompt:FindFirstAncestorOfClass("Model")
-            local centerPosition
-
-            if targetModel then
-                local modelCFrame = targetModel.WorldPivot
-                centerPosition = modelCFrame.Position
-            else
-                centerPosition = prompt.Parent and prompt.Parent.Position or prompt.Position
-            end
 
             local offset = Vector3.new(0, 5, 25)
             local cameraPosition = centerPosition + offset
@@ -92,8 +107,8 @@ if getgenv().fireproximityprompt and table.find(badExecutors, getNameExecutor) a
         camera.CFrame = oldCameraCFrame
         camera.CameraType = oldCameraType
 
-        if placaIdFunctions[tostring(plcaId)] then 
-            placaIdFunctions[tostring(plcaId)].Disabled()
+        if placaIdFunctions[tostring(placeId)] then
+            placaIdFunctions[tostring(placeId)].Disabled()
             warn("[Rael Hub sUNC] function disabled")
             task.wait(1)
         end
