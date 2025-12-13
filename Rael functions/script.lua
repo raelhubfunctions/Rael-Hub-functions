@@ -33,16 +33,16 @@ for _, connection: RBXScriptSignal in pairs(shared.connections) do
 end
 
 shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local monitorCharacter = shared.connections["monitorCharacter"]
 
-if not shared.connections["monitorCharacter"] then
-  shared.connections["monitorCharacter"] = RunService.Heartbeat:Connect(function()
-    local newcharacter: Model = LocalPlayer.Character
-    HumanoidRootPart = newcharacter and newcharacter:FindFirstChild("HumanoidRootPart")
-    
-    Character = newcharacter
-    shared.Character = newcharacter
-  end)
-end
+if monitorCharacter then monitorCharacter:Disconnect(); shared.connections["monitorCharacter"] = nil end
+monitorCharacter = RunService.Heartbeat:Connect(function()
+  local newcharacter: Model = LocalPlayer.Character
+  HumanoidRootPart = newcharacter and newcharacter:FindFirstChild("HumanoidRootPart")
+  
+  Character = newcharacter
+  shared.Character = newcharacter
+end)
 
 local links: { string } = {
   "https://nexviewsservice.shardweb.app/services/rael_hub/start",
