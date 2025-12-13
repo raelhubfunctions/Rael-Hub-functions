@@ -70,10 +70,9 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
 
         local success, err = pcall(function()
 
-            if placaIdFunctions[tostring(placeId)] then 
+            if placaIdFunctions[tostring(placeId)] then
                 placaIdFunctions[tostring(placeId)].Active()
-                warn("[Rael Hub sUNC] function active")
-                task.wait(1)
+                task.wait(0.3)
             end
 
             local targetPart = getCameraStand(prompt)
@@ -110,7 +109,7 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
         if placaIdFunctions[tostring(placeId)] then
             placaIdFunctions[tostring(placeId)].Disabled()
             warn("[Rael Hub sUNC] function disabled")
-            task.wait(1)
+            task.wait(0.3)
         end
 
         if not success then

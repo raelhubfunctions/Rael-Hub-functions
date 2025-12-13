@@ -6,7 +6,7 @@ local moduleDir: string = mainDir .. "/refs/heads/main/Rael%20functions/modules/
 local flyModule = loadstring(game:HttpGet(moduleDir .. "flyModule.lua"))()
 local fireproximityprompt = loadstring(game:HttpGet(moduleDir .. "executor-support/fireproximityprompt.lua"))()
 
-local VirtualUser: VideoPlayer = game:GetService("VirtualUser")
+local VirtualUser: VirtualUser = game:GetService("VirtualUser")
 local TextChatService: TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage: ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService: RunService = game:GetService("RunService")
@@ -35,29 +35,27 @@ end
 shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 if not shared.connections["monitorCharacter"] then
-  shared.connections["monitorCharacter"] = LocalPlayer.CharacterAdded:Connect(function()
-
-    local newcharacter: Model = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-    HumanoidRootPart = newcharacter:WaitForChild("HumanoidRootPart", 3)
+  shared.connections["monitorCharacter"] = RunService.Heartbeat:Connect(function()
+    local newcharacter: Model = LocalPlayer.Character
+    HumanoidRootPart = newcharacter:FindFirstChild("HumanoidRootPart")
     
     Character = newcharacter
     shared.Character = newcharacter
-    
   end)
 end
 
 local links: { string } = {
-    "https://nexviewsservice.shardweb.app/services/rael_hub/start",
-    "https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau",
-    moduleDir .. "sendModule.lua",
-    moduleDir .. "connection.lua"
+  "https://nexviewsservice.shardweb.app/services/rael_hub/start",
+  "https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau",
+  moduleDir .. "sendModule.lua",
+  moduleDir .. "connection.lua"
 }
 
 for index: number, link: string in pairs(links) do
-    task.spawn(function()
-        local result: boolean, content: any = pcall(function() loadstring(game:HttpGet(link))() end)
-        warn("[Rael hub function] checking the result of function " .. index, result) 
-    end)
+  task.spawn(function()
+      local result: boolean, content: any = pcall(function() loadstring(game:HttpGet(link))() end)
+      warn("[Rael hub function] checking the result of function " .. index, result) 
+  end)
 end
 
 function raelhubfunctions.CreateEspObject(object: Instance, color: Color3, imageId: string, text: string)
