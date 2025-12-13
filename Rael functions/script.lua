@@ -37,7 +37,7 @@ shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 if not shared.connections["monitorCharacter"] then
   shared.connections["monitorCharacter"] = RunService.Heartbeat:Connect(function()
     local newcharacter: Model = LocalPlayer.Character
-    HumanoidRootPart = newcharacter:FindFirstChild("HumanoidRootPart")
+    HumanoidRootPart = newcharacter and newcharacter:FindFirstChild("HumanoidRootPart")
     
     Character = newcharacter
     shared.Character = newcharacter
