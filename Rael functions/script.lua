@@ -6,6 +6,7 @@ local moduleDir: string = mainDir .. "/refs/heads/main/Rael%20functions/modules/
 local flyModule = loadstring(game:HttpGet(moduleDir .. "flyModule.lua"))()
 local fireproximityprompt = loadstring(game:HttpGet(moduleDir .. "executor-support/fireproximityprompt.lua"))()
 
+local VirtualInputManager: VirtualInputManager = game:GetService("VirtualInputManager")
 local VirtualUser: VirtualUser = game:GetService("VirtualUser")
 local TextChatService: TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage: ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -232,8 +233,26 @@ function raelhubfunctions.Auto_Click_V1(value: boolean)
   
   task.spawn(function()
     while _env.RaelHubAutoClickV1 do
-      mouseClick()
       task.wait()
+      mouseClick()
+    end
+  end)
+end
+
+function raelhubfunctions.Auto_Click_V2(value: boolean)
+  
+  _env.RaelHubAutoClickV2 = value
+  
+  local function mouseClick()
+    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+    task.wait(0.05)
+  end
+  
+  task.spawn(function()
+    while _env.RaelHubAutoClickV2 do
+      task.wait()
+      mouseClick()
     end
   end)
 end
