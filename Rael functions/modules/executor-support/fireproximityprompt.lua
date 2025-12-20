@@ -31,6 +31,30 @@ local placaIdFunctions = {
 
         end
 
+    },
+
+    ["15962819441"] = {
+
+        Active = function()
+
+            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
+            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
+            if not cameraScript then return end
+
+            cameraScript.Enabled = false
+
+        end,
+
+        Disabled = function()
+
+            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
+            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
+            if not cameraScript then return end
+
+            cameraScript.Enabled = true
+
+        end
+
     }
 
 }
