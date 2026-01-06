@@ -137,7 +137,7 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
 
             camera.CameraType = Enum.CameraType.Scriptable
 
-            local offset = Vector3.new(0, 5, 25)
+            local offset = Vector3.new(0, 5, oldMaxDistance)
             local cameraPosition = centerPosition + offset
 
             camera.CFrame = CFrame.new(cameraPosition, centerPosition)
