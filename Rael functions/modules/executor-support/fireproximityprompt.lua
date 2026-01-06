@@ -7,7 +7,7 @@ local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local PlayerScripts = LocalPlayer:WaitForChild("PlayerScripts")
 
-local placaIdFunctions = {
+local placeIdFunctions = {
 
     ["8056702588"] = {
 
@@ -99,11 +99,11 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
         local function getCameraStand(prompt)
             if cameraStand then return cameraStand end
 
-            local promptParent = prompt and prompt.Parent
-            local promptModel = prompt and prompt:FindFirstAncestorOfClass("Model")
+            local promptModel = prompt and prompt:FindFirstAncestorWhichIsA("Model")
+            local promptBasePart = prompt and prompt:FindFirstAncestorWhichIsA("BasePart")
             local isHumanoidRootPart = promptModel and promptModel:FindFirstChild("HumanoidRootPart", true)
 
-            if promptParent and promptParent:IsA("BasePart") then return promptParent end
+            if promptBasePart then return promptBasePart end
             if isHumanoidRootPart and isHumanoidRootPart:IsA("BasePart") then return isHumanoidRootPart end
 
             if promptModel then
@@ -118,8 +118,8 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
 
         local success, err = pcall(function()
 
-            if placaIdFunctions[tostring(placeId)] then
-                placaIdFunctions[tostring(placeId)].Active()
+            if placeIdFunctions[tostring(placeId)] then
+                placeIdFunctions[tostring(placeId)].Active()
             end
             
             task.wait(0.3)
@@ -155,8 +155,8 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
         camera.CFrame = oldCameraCFrame
         camera.CameraType = oldCameraType
 
-        if placaIdFunctions[tostring(placeId)] then
-            placaIdFunctions[tostring(placeId)].Disabled()
+        if placeIdFunctions[tostring(placeId)] then
+            placeIdFunctions[tostring(placeId)].Disabled()
         end
         
         task.wait(0.3)
