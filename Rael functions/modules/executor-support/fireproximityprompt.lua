@@ -3,7 +3,6 @@ local badExecutors = {"Xeno", "Solara"}
 local execName, exeVersion = (_env.identifyexecutor or function() return "Solara", "version?" end)()
 local placeId = game.PlaceId
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
 local LocalPlayer = Players.LocalPlayer
