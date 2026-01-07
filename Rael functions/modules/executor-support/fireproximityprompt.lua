@@ -2,7 +2,10 @@ local _env = getgenv()
 local badExecutors = {"Xeno", "Solara"}
 local execName, exeVersion = (_env.identifyexecutor or function() return "Solara", "version?" end)()
 local placeId = game.PlaceId
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local PlayerScripts = LocalPlayer:WaitForChild("PlayerScripts")
@@ -60,23 +63,13 @@ local placeIdFunctions = {
     ["13489800654"] = {
 
         Active = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = false
-
+            local cameraController = ReplicatedStorage:FindFirstChild("CameraController")
+            if cameraController then cameraController.TakeOver:Invoke(false) end
         end,
 
         Disabled = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = true
-
+            local cameraController = ReplicatedStorage:FindFirstChild("CameraController")
+            if cameraController then cameraController.TakeOver:Invoke(true) end
         end
 
     }
@@ -89,7 +82,6 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
 
     _env.fireproximityprompt = function(prompt, cameraStand)
         local camera = workspace.CurrentCamera
-        local oldEnabled = prompt.Enabled
         local oldHoldDuration = prompt.HoldDuration
         local oldLineOfSight = prompt.RequiresLineOfSight
         local oldMaxDistance = prompt.MaxActivationDistance
@@ -148,7 +140,6 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
             prompt:InputHoldEnd()
         end)
 
-        prompt.Enabled = oldEnabled
         prompt.HoldDuration = oldHoldDuration
         prompt.RequiresLineOfSight = oldLineOfSight
         prompt.MaxActivationDistance = oldMaxDistance
