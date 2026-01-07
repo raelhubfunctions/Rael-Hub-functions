@@ -10,76 +10,13 @@ local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local PlayerScripts = LocalPlayer:WaitForChild("PlayerScripts")
 
-local placeIdFunctions = {
-
-    ["8056702588"] = {
-
-        Active = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = false
-
-        end,
-
-        Disabled = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = true
-
-        end
-
-    },
-
-    ["15962819441"] = {
-
-        Active = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = false
-
-        end,
-
-        Disabled = function()
-
-            local playerScripts = PlayerGui:FindFirstChild("PlayerScripts")
-            local cameraScript = (playerScripts and playerScripts:FindFirstChild("Camera"))
-            if not cameraScript then return end
-
-            cameraScript.Enabled = true
-
-        end
-
-    },
-    
-    ["13489800654"] = {
-
-        Active = function()
-            local cameraController = ReplicatedStorage:FindFirstChild("CameraController")
-            if cameraController then cameraController.TakeOver:Invoke(false) end
-        end,
-
-        Disabled = function()
-            local cameraController = ReplicatedStorage:FindFirstChild("CameraController")
-            if cameraController then cameraController.TakeOver:Invoke(true) end
-        end
-
-    }
-
-}
-
 if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.isFireproximityPrompt then
     warn("[Rael Hub sUNC] Your ".. execName .." now has definitive support for the fireproximityprompt function")
     _env.isFireproximityPrompt = true
 
+    shared.supportSunc = {}
+    shared.supportSunc.fireProximityPromptFuncs = {}
+    
     _env.fireproximityprompt = function(prompt, cameraStand)
         local camera = workspace.CurrentCamera
         local oldHoldDuration = prompt.HoldDuration
@@ -87,6 +24,7 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
         local oldMaxDistance = prompt.MaxActivationDistance
         local oldCameraCFrame = camera.CFrame
         local oldCameraType = camera.CameraType
+        local funcs = shared.supportSunc.fireProximityPromptFuncs
 
         local function getCameraStand(prompt)
             if cameraStand then return cameraStand end
@@ -110,9 +48,7 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
 
         local success, err = pcall(function()
 
-            if placeIdFunctions[tostring(placeId)] then
-                placeIdFunctions[tostring(placeId)].Active()
-            end
+            if funcs and funcs.Activated then funcs.Activated() end
             
             task.wait(0.3)
 
@@ -146,9 +82,7 @@ if _env.fireproximityprompt and table.find(badExecutors, execName) and not _env.
         camera.CFrame = oldCameraCFrame
         camera.CameraType = oldCameraType
 
-        if placeIdFunctions[tostring(placeId)] then
-            placeIdFunctions[tostring(placeId)].Disabled()
-        end
+        if funcs and funcs.Disabled then funcs.Disabled() end
         
         task.wait(0.3)
         
