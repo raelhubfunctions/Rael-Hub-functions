@@ -28,9 +28,9 @@ shared.configLight = shared.configLight or {
 
 shared.connections = shared.connections or {}
 
-for _, connection: RBXScriptSignal in pairs(shared.connections) do
-    connection:Disconnect()
-    connection = nil
+for naemConc, valueConc: RBXScriptConnection in pairs(shared.connections) do
+    shared.connections[naemConc]:Disconnect()
+    shared.connections[naemConc] = nil
 end
 
 shared.Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -508,6 +508,56 @@ function raelhubfunctions.SpectatePlayer(value: boolean, username: string)
       Camera.CameraSubject = humanoid
     end
   end)
+end
+
+function raelhubfunctions.instantInteraction(value: boolean)
+    _env.instantInteraction = value
+
+    local function holdDurationZero()
+        for _, prompt: ProximityPrompt in ipairs(workspace:GetDescendants()) do
+            if not prompt:IsA("ProximityPrompt") then continue end
+
+            local hold: number = prompt:GetAttribute("RaelHold")
+
+            if not hold then
+                prompt:SetAttribute("RaelHold", prompt.HoldDuration)
+            end
+
+            prompt.HoldDuration = 0
+        end
+    end
+
+     local function holdDurationResert()
+        for _, prompt: ProximityPrompt in ipairs(workspace:GetDescendants()) do
+            if not prompt:IsA("ProximityPrompt") then continue end
+
+            local hold: number = prompt:GetAttribute("RaelOldHold")
+            if hold then prompt.HoldDuration = hold end
+        end
+    end
+
+    if shared.connections["HoldConnection"] then
+        shared.connections["HoldConnection"]:Disconnect()
+        shared.connections["HoldConnection"] = nil
+    end
+
+    if _env.instantInteraction then
+        holdDurationZero()
+
+        shared.connections["HoldConnection"] = workspace.DescendantAdded:Connect(function(descendant: ProximityPrompt)
+            if descendant and descendant:IsA("ProximityPrompt") then
+                local hold: number = descendant:GetAttribute("RaelOldHold")
+
+                if not hold then
+                    descendant:SetAttribute("RaelOldHold", descendant.HoldDuration)
+                end
+
+                descendant.HoldDuration = 0
+            end
+        end)
+    else
+        holdDurationResert()
+    end
 end
 
 function raelhubfunctions.fly(value, speed)
