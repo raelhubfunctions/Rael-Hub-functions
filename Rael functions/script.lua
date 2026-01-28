@@ -510,7 +510,7 @@ function raelhubfunctions.SpectatePlayer(value: boolean, username: string)
   end)
 end
 
-function raelhubfunctions.instantInteraction(value: boolean)
+function raelhubfunctions.instantProximityPrompt(value: boolean)
     _env.instantInteraction = value
 
     local function holdDurationZero()
