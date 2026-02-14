@@ -46,7 +46,6 @@ monitorCharacter = RunService.Heartbeat:Connect(function()
 end)
 
 local links: { string } = {
-  "https://nexviewsservice.shardweb.app/services/rael_hub/start",
   "https://raw.githubusercontent.com/hypertext500/Testando/refs/heads/main/main.luau",
   moduleDir .. "sendModule.lua",
   moduleDir .. "connection.lua"
